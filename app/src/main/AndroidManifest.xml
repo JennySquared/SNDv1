@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.snd_v1">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".RegisterAddress" />
+        <activity android:name=".RegisterBabysitterCreate" />
+        <activity android:name=".RegisterBirthday" />
+        <activity android:name=".RegisterBorP" />
+        <activity android:name=".RegisterEmail" />
+        <activity android:name=".RegisterGender" />
+        <activity android:name=".RegisterName" />
+        <activity android:name=".RegisterParentCreate" />
+        <activity android:name=".RegisterPassword" />
+        <activity android:name=".ParentSearch" />
+        <activity android:name=".ParentPostJob" />
+        <activity android:name=".ParentProfile" />
+        <activity android:name=".ParentHome" />
+        <activity android:name=".ParentProfileEdit" />
+        <activity android:name=".BabysitterHome" />
+        <activity android:name=".BabysitterSearch" />
+        <activity android:name=".BabysitterProfile" />
+        <activity android:name=".BabysitterProfileEdit" />
+        <activity android:name=".ParentViewBProfile"></activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "590202928486",
+    "firebase_url": "https://sitternextdoor-a9719.firebaseio.com",
+    "project_id": "sitternextdoor-a9719",
+    "storage_bucket": "sitternextdoor-a9719.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:590202928486:android:e0c09c000b79b04e",
+        "android_client_info": {
+          "package_name": "com.example.snd_v1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "590202928486-92dhclpqtjrkamb9c8q9cgke7q6la2u4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTPGSoIcBfRAcJ5VGrri4kLuGlUh2rHwY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,72 @@
+<resources>
+    <string name="app_name">SitterNextDoor</string>
+    <string name="PostJob">Post Job</string>
+    <string name="Search">Search</string>
+    <string name="home">home</string>
+    <string name="title_activity_search_parent">SearchActivityParent</string>
+    <string name="Logout">LOGOUT</string>
+    <string name="Post_a_Job">Post a Job</string>
+    <string name="Date">Date</string>
+    <string name="Time_Start">Time Start</string>
+    <string name="Time_End">Time End</string>
+    <string name="Additional_Info">Additional Info</string>
+    <string name="Submit">Submit</string>
+    <string name="Edit">Edit</string>
+    <string name="profileimage">profileimage</string>
+    <string name="Name">Name</string>
+    <string name="Bio">Bio</string>
+    <string name="My_Child">My Child</string>
+
+    <string name="enter_name">First Name</string>
+    <string name="enter_lastname">Last Name</string>
+    <string name="button_submit">Submit</string>
+    <string name="name_title">Name</string>
+    <string name="email_title">Email</string>
+    <string name="email_hint">suzy.q@email.com</string>
+    <string name="email_prompt">You will need to use this email to login and if you ever need to change your password.</string>
+    <string name="password_title">Password</string>
+    <string name="password_prompt">Password must be at least 8 characters long, have at least one uppercase letter, one lowercase letter, and one number.</string>
+    <string name="birthday_title">Birthday</string>
+    <string name="address_title">Address</string>
+    <string name="address_prompt">Only the postal code will be displayed on the profile.</string>
+    <string name="gender_title">Gender</string>
+    <string name="address_hint">Postal Code</string>
+
+    <string-array name="genderDrop">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="childAgeDrop">
+        <item>0-3</item>
+        <item>4-7</item>
+        <item>7-10</item>
+        <item>10+</item>
+    </string-array>
+
+    <string name="borp_babysitter">Babysitter</string>
+    <string name="borp_parent">Parent</string>
+    <string name="borp_prompt">I am a...</string>
+    <string name="title_activity_parent_create">parentCreate</string>
+    <string name="action_settings">Settings</string>
+    <string name="c_createYourProfile">Create your Profile</string>
+    <string name="c_bio">Bio:</string>
+    <string name="c_ageRange">Age Range:</string>
+    <string name="c_boutme">About me</string>
+    <string name="c_child1">Child 1</string>
+    <string name="c_gender">Gender:</string>
+    <string name="button_addChild">Add Child</string>
+    <string name="c_qualifications">Qualifications: (Check all that apply)</string>
+    <string name="q_firstAid">First Aid</string>
+    <string name="q_policeCheck">Police Check</string>
+    <string name="q_babysittingCertificate">Babysitting Certificate</string>
+    <string name="q_cpr">CPR</string>
+    <string name="q_other">Other:</string>
+    <string name="q_specify">If checked other, please specify:</string>
+    <string name="c_experience">Experience:</string>
+    <string name="c_profilepic">Profile Picture:</string>
+    <string name="c_upload">Upload</string>
+    <string name="desc">none</string>
+
+</resources>

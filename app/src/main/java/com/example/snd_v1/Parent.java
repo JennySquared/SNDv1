@@ -8,9 +8,13 @@ import java.util.ArrayList;
 
 public class Parent extends User {
     private String child, bio;
-    public Parent(String a,String e,String n,String p,String b,int g, String c, String bi, String i){
-        super(a,e,n,p,b,g,bi,i);
+
+    public Parent(String a,String e,String n,String p,String b,int g, String c, String bi, String i,String ag){
+        super(a,e,n,p,b,g,bi,i,ag);
         child=c;
+
+    }
+    public Parent(){
 
     }
 

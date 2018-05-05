@@ -5,10 +5,10 @@ package com.example.snd_v1;
  */
 
 public class User {
-      private String address, password, birthday,im, email, name,bio;
-      private int gend,age;
+      private String address, password, birthday,im, email, name,bio, age;
+      private int gend;
 
-    public User(String a,String e,String n,String p,String b, int g, String i ,String bi){
+    public User(String a,String e,String n,String p,String b, int g, String i ,String bi, String ag){
         address=a;
         password =p;
         birthday =b;
@@ -17,39 +17,47 @@ public class User {
         gend=g;
         bio= bi;
         im=i;
+        age=ag;
+
+    }
+    public User(){
 
     }
 
-      public String getAddress (){
+    public String getAddress (){
           return address;
       }
+    public String getAge (){
+        return age;
+    }
 
-      public String getPassword (){
+    public String getPassword (){
             return password;
       }
 
-      public String getBirthday (){
+    public String getBirthday (){
             return birthday;
       }
-      public String getEmail (){
+    public String getEmail (){
             return email;
       }
-        public String getBio (){
+    public String getBio (){
         return bio;
     }
-     public String getImage (){
+    public String getImage (){
         return im;
     }
-        public int getGender (){
+    public int getGender (){
         return gend;
     }
-      public String getName (){
+    public String getName (){
           return name;
       }
-      public void setAddress(String a){
+
+    public void setAddress(String a){
           address = a;
       }
-      public void setName(String a){
+    public void setName(String a){
           name = a;
       }
     public void setBio(String a) {

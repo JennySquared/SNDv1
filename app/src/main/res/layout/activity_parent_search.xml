@@ -77,8 +77,8 @@
             android:layout_marginStart="64dp"
             android:layout_marginTop="16dp"
             android:ems="10"
+            android:hint="Profile Search"
             android:inputType="textPersonName"
-            android:text="Profile Search"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -91,12 +91,26 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="24dp"
             android:background="@android:color/transparent"
+            android:onClick="searchButton"
             android:tint="@android:color/darker_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/Search"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/search" />
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="352dp"
+            android:layout_height="347dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Search" />
 
     </android.support.constraint.ConstraintLayout>
 

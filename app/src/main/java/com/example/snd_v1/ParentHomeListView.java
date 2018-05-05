@@ -1,14 +1,12 @@
 package com.example.snd_v1;
 
 import android.app.Activity;
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -88,7 +86,7 @@ public class ParentHomeListView extends ArrayAdapter<String>{
             tvw1= (TextView) v.findViewById(R.id.name);
             tvw2= (TextView) v.findViewById(R.id.description);
             tvw3= (TextView) v.findViewById(R.id.rating);
-            tvw4= (TextView) v.findViewById(R.id.Address);
+            tvw4= (TextView) v.findViewById(R.id.address);
             ivw= (ImageView) v.findViewById(R.id.imgid);
         }
     }

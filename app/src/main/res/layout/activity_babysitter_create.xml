@@ -109,7 +109,7 @@
                 android:text="@string/q_other" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -136,7 +136,7 @@
                 android:inputType="textMultiLine" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"

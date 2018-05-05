@@ -70,7 +70,7 @@ public class ParentHome extends AppCompatActivity {
         Ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //Toast.makeText(getApplicationContext(),"Successfully Logged In",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),(getIntent().getExtras().getInt("id"))+"",Toast.LENGTH_SHORT).show();
 
 
                 for(int i=0; i<(int)dataSnapshot.child("Babysitter").getChildrenCount();i++) {
@@ -111,18 +111,26 @@ public class ParentHome extends AppCompatActivity {
 
     public void Search(View view) {
         Intent intent = new Intent(this, ParentSearch.class);
+        int id = (getIntent().getExtras().getInt("id"));
+        intent.putExtra("id",id);
         startActivity(intent);
     }
     public void Profile(View view) {
         Intent intent = new Intent(this, ParentProfile.class);
+        int id = (getIntent().getExtras().getInt("id"));
+        intent.putExtra("id",id);
         startActivity(intent);
     }
     public void JobPost(View view) {
         Intent intent = new Intent(this, ParentPostJob.class);
+        int id = (getIntent().getExtras().getInt("id"));
+        intent.putExtra("id",id);
         startActivity(intent);
     }
     public void Home(View view) {
         Intent intent = new Intent(this, ParentHome.class);
+        int id = (getIntent().getExtras().getInt("id"));
+        intent.putExtra("id",id);
         startActivity(intent);
     }
 //    public void BBprofile(View view) {

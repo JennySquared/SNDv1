@@ -34,17 +34,17 @@ public class ParentViewBProfile extends AppCompatActivity {
                 String qualifications = "\n\nQualifications:\n"+ dataSnapshot.child(tag+"").child("qualifications").getValue(String.class);
                 String bio = "\n\nBio:\n"+ dataSnapshot.child(tag+"").child("bio").getValue(String.class);
                 String ratings = dataSnapshot.child(tag+"").child("rating").getValue(String.class);
-                TextView n = findViewById(R.id.textView2);
+                TextView n = findViewById(R.id.name);
                 n.setText(name);
-                TextView a = findViewById(R.id.textView4);
+                TextView a = findViewById(R.id.age);
                 a.setText(age);
-                TextView r = findViewById(R.id.textView5);
+                TextView r = findViewById(R.id.address);
                 r.setText(ratings);
                 TextView pc = findViewById(R.id.textView6);
                 pc.setText(postalCode);
-                TextView b = findViewById(R.id.textView7);
+                TextView b = findViewById(R.id.bio);
                 b.setText(bio);
-                TextView q = findViewById(R.id.textView8);
+                TextView q = findViewById(R.id.child);
                 q.setText(qualifications);
                 Toast.makeText(getApplicationContext(),"You are viewing " + name+"'s Profile",Toast.LENGTH_SHORT).show();
             }

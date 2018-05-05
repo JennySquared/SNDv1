@@ -7,8 +7,8 @@ public class Babysitter extends User{
     private int ratings;
     private String qualifications, experience, reviews;
 
-    public Babysitter(String a,String e,String n,String p,String b,int g,String bi,String i, String q, String ex){
-        super(a,e,n,p,b,g,bi,i);
+    public Babysitter(String a,String e,String n,String p,String b,int g,String bi,String i, String q, String ex, String ag){
+        super(a,e,n,p,b,g,bi,i,ag);
         qualifications=q;
         experience = ex;
         ratings=5;

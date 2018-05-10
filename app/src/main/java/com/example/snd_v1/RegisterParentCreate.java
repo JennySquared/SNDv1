@@ -23,7 +23,7 @@ public class RegisterParentCreate extends AppCompatActivity implements AdapterVi
     public String bio;
     public static final int IMAGE_GALLERY_REQUEST = 20;
     private ImageView profileImageView;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

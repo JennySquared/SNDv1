@@ -33,7 +33,6 @@ public class RegisterEmail extends AppCompatActivity {
                 }
                 else{
                     setEmail(emailTest);
-                    Toast.makeText(getApplicationContext(),"Stored " + email,Toast.LENGTH_SHORT).show();
                     startActivity (new Intent(RegisterEmail.this, RegisterPassword.class));
                 }
             };
@@ -43,7 +42,6 @@ public class RegisterEmail extends AppCompatActivity {
     public boolean validateEmail(String eTest){
         if (eTest.matches(emailPattern) && eTest.length() > 0)
         {
-            Toast.makeText(getApplicationContext(),"valid email address",Toast.LENGTH_SHORT).show();
             flag = true;
             return flag;
         }

@@ -68,5 +68,6 @@
     <string name="c_profilepic">Profile Picture:</string>
     <string name="c_upload">Upload</string>
     <string name="desc">none</string>
+    <string name="Save">Save</string>
 
 </resources>

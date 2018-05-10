@@ -20,7 +20,6 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 public class RegisterParentCreate extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-
     public String bio;
     public static final int IMAGE_GALLERY_REQUEST = 20;
     private ImageView profileImageView;
@@ -40,14 +39,6 @@ public class RegisterParentCreate extends AppCompatActivity implements AdapterVi
         spinner.setAdapter(adapter2);
         spinner.setPrompt("Select");
         spinner.setOnItemSelectedListener(this);
-
-        Spinner spinner2 = findViewById(R.id.childAgeDrop);
-        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.childAgeDrop, android.R.layout.simple_spinner_item);
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner2.setAdapter(adapter3);
-        spinner2.setPrompt("Select");
-        spinner2.setOnItemSelectedListener(this);
-
     }
 
     /**
@@ -99,10 +90,5 @@ public class RegisterParentCreate extends AppCompatActivity implements AdapterVi
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
-    }
-
-    public void Login(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
     }
 }

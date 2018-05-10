@@ -35,7 +35,7 @@ public class ParentProfile extends AppCompatActivity {
         children = findViewById(R.id.child);
 
 
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 parent = dataSnapshot.child(id+"").getValue(Parent.class);
@@ -50,7 +50,7 @@ public class ParentProfile extends AppCompatActivity {
     }
     public void setText(){
         name.setText(parent.getName());
-        age.setText(parent.getAge());
+        age.setText("34 yrs old");
         addr.setText(parent.getAddress());
         bio.setText("Bio\n\n"+parent.getBio());
         children.setText("Child\n\n"+parent.getChild());

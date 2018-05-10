@@ -20,12 +20,7 @@ public class RegisterPassword extends AppCompatActivity {
 
         passwordText = (EditText) findViewById(R.id.passwordText);
 
-
         configureNextButton();
-    }
-
-    private void setPassword(String p){
-        password = p;
     }
 
     private void configureNextButton() {
@@ -33,10 +28,38 @@ public class RegisterPassword extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setPassword(passwordText.getText().toString());
-                Toast.makeText(getApplicationContext(),"Stored: " + password ,Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(RegisterPassword.this, RegisterBirthday.class));
+
+                if(passwordCheck(passwordText.getText().toString())&&passwordText.getText().toString().length()>=8){
+                    setPassword(passwordText.getText().toString());
+                    Toast.makeText(getApplicationContext(), "Stored: " + password, Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(RegisterPassword.this, RegisterBirthday.class));
+                }
             }
         });
     }
+    public boolean passwordCheck (String str) {
+        char ch;
+        boolean capitalFlag = false;
+        boolean lowerCaseFlag = false;
+        boolean numberFlag = false;
+        for(int i=0;i < str.length();i++) {
+            ch = str.charAt(i);
+            if( Character.isDigit(ch)) {
+                numberFlag = true;
+            }
+            else if (Character.isUpperCase(ch)) {
+                capitalFlag = true;
+            }
+
+            else if (Character.isLowerCase(ch)) {
+                lowerCaseFlag = true;
+            }
+            if(numberFlag && capitalFlag && lowerCaseFlag)
+                return true;
+        }
+        passwordText.setError("ur invalid haha");
+        return false;
+    }
+    private void setPassword(String p){ password = p;}
+
 }

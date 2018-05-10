@@ -11,6 +11,7 @@ import android.widget.Toast;
 public class RegisterName extends AppCompatActivity {
     public String name;
     public EditText firstName, lastName;
+    boolean entryFlag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,17 +23,40 @@ public class RegisterName extends AppCompatActivity {
         configureNextButton();
     }
 
+    /*
+    Upon the user clicking the submit button this method checks to see if
+     */
     private void configureNextButton(){
 
         Button submitButton= (Button) findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                setName(firstName.getText().toString(), lastName.getText().toString());
-                Toast.makeText(getApplicationContext(), "Stored " + name, Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(RegisterName.this, RegisterEmail.class));
+                entryChecks(firstName.getText().toString(), lastName.getText().toString());
+
+                if(entryFlag){
+                    setName(firstName.getText().toString(), lastName.getText().toString());
+                    startActivity(new Intent(RegisterName.this, RegisterEmail.class));
+                }
             }
         });
+    }
+
+    public boolean entryChecks(String first, String last){
+        if(first.matches("")){
+            firstName.setError("Invalid entry");
+            entryFlag = false;
+        }
+
+        if (last.matches("")){
+            lastName.setError("Invalid Entry");
+            entryFlag = false;
+        }
+        if(!first.matches("")&&!last.matches("")){
+            entryFlag = true;
+        }
+
+        return entryFlag;
     }
 
     public void setName(String n, String l){name = n + " " + l;}

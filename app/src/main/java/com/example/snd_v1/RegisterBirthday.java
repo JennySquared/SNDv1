@@ -14,7 +14,7 @@ import java.util.Date;
 public class RegisterBirthday extends AppCompatActivity {
 
     public String bday;
-    public Date birthday;
+    public int age, year, month, date;
     public DatePicker birthdayPicker;
     Calendar now = Calendar.getInstance();
 
@@ -23,11 +23,11 @@ public class RegisterBirthday extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_birthday);
 
-        int year = now.get(Calendar.YEAR);
-        int month = now.get(Calendar.MONTH) + 1;
-        int date = now.get(Calendar.DATE);
+        year = now.get(Calendar.YEAR);
+        month = now.get(Calendar.MONTH) + 1;
+        date = now.get(Calendar.DATE);
 
-        birthdayPicker = (DatePicker) findViewById(R.id.birthdayPicker);
+        birthdayPicker = findViewById(R.id.birthdayPicker);
 
         configureNextButton();
     }
@@ -37,28 +37,39 @@ public class RegisterBirthday extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 setBirthday(birthdayPicker.getDayOfMonth(), birthdayPicker.getMonth()+1, birthdayPicker.getYear());
-                Toast.makeText(getApplicationContext(),"Stored: " + bday ,Toast.LENGTH_SHORT).show();
+
+                age = getAge(year,month, date, birthdayPicker.getYear(), birthdayPicker.getMonth()+1, birthdayPicker.getDayOfMonth());
+                oldEnough();
+
+                Toast.makeText(getApplicationContext(),"Stored: " + bday + "Age: " + age ,Toast.LENGTH_LONG).show();
                 startActivity(new Intent(RegisterBirthday.this, RegisterAddress.class));
             }
         });
+    }
+
+    private void oldEnough (){
+        if(age<13){
+            Toast.makeText(getApplicationContext(), "ur 2 young, get outta here" ,Toast.LENGTH_LONG).show();
+        }
     }
 
     private void setBirthday(int d, int m, int y){
         bday = d + ", " + m + ", " + y;
     }
 
-    public int getAge(int ty, int tm, int td, int by, int bm, int bd)
+    public int getAge(int thisYear, int thisMonth, int thisDate, int birthYear, int birthMonth, int birthDate)
     {
         int age;
 
-        if( tm ==bm&&td<bd)
+        if( (thisMonth==birthMonth&&thisDate<birthDate)||thisMonth<birthMonth)
         {
-            age = (ty)-(by)-1;
+            age = (thisYear-birthYear)-1;
             return age;
         }
 
-        age = (ty-by);
+        age = (thisYear-birthYear);
         return age;
     }
 }

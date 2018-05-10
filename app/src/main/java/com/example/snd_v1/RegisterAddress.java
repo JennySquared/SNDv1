@@ -18,10 +18,8 @@ public class RegisterAddress extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address);
 
-
         addressText = (EditText) findViewById(R.id.addressText);
         postalText = (EditText) findViewById(R.id.postalText);
-
 
         configureNextButton();
     }
@@ -31,6 +29,7 @@ public class RegisterAddress extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 setAddress(addressText.getText().toString(), postalText.getText().toString());
                 Toast.makeText(getApplicationContext(),"Stored: " + address ,Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(RegisterAddress.this, RegisterGender.class));
@@ -38,8 +37,11 @@ public class RegisterAddress extends AppCompatActivity {
         });
     }
 
+    public boolean postalCheck(){
+        return false;
+    }
+
     private void setAddress(String a, String p){
         address = a + ", " + p;
     }
 }
-

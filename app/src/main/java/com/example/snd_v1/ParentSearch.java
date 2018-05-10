@@ -62,7 +62,7 @@ public class ParentSearch extends AppCompatActivity {
                         //Toast.makeText(getApplicationContext(),"Successfully Logged In",Toast.LENGTH_SHORT).show();
 
                         for(int i=0; i<(int)dataSnapshot.getChildrenCount();i++) {
-                            if(text.contains(dataSnapshot.child("Babysitter").child(i+1+"").child("name").getValue(String.class))){
+                            if((dataSnapshot.child("Babysitter").child(i+1+"").child("name").getValue(String.class)).contains(text)){
                                 counter.add(i+1);
                             }
                             else if(text.contains(dataSnapshot.child("Babysitter").child(i+1+"").child("age").getValue(String.class))){
@@ -90,6 +90,9 @@ public class ParentSearch extends AppCompatActivity {
                         if(counter.size()==0){
                             Toast.makeText(getApplicationContext(),"Sorry no results found HAHA SCREW U WHERES MICHEAL????",Toast.LENGTH_LONG).show();
                         }
+
+                        Toast.makeText(getApplicationContext(),""+counter.size(),Toast.LENGTH_LONG).show();
+
                         ListView list = (ListView) findViewById(R.id.listView);
                         String[] name = new String[counter.size()];
                         String[] description = new String[counter.size()];

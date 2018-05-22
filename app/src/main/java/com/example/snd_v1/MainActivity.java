@@ -73,8 +73,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
-
-
             }
 
             @Override
@@ -85,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         if(success==false){
             Toast.makeText(getApplicationContext(),"WRONG",Toast.LENGTH_SHORT).show();
         }
-
+                                //pLogin(view, 1);
     }
 
 

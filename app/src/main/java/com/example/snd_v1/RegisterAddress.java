@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class RegisterAddress extends AppCompatActivity {
 
-    public String address;
+    public String address, postalPattern = "[a-zA-Z]+[0-9]+[a-zA-Z]+[0-9]+[a-zA-Z]+[0-9]";
     public EditText addressText, postalText;
 
     @Override
@@ -24,21 +24,27 @@ public class RegisterAddress extends AppCompatActivity {
         configureNextButton();
     }
 
-    private void configureNextButton() {
+    public void configureNextButton() {
         Button submitButton = (Button) findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                setAddress(addressText.getText().toString(), postalText.getText().toString());
-                Toast.makeText(getApplicationContext(),"Stored: " + address ,Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(RegisterAddress.this, RegisterGender.class));
+                if(postalCheck(postalText.getText().toString())&&postalText.getText().toString().length()==6){
+                    setAddress(addressText.getText().toString(), postalText.getText().toString());
+                    Toast.makeText(getApplicationContext(),"Stored: " + address ,Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(RegisterAddress.this, RegisterGender.class));
+                }
             }
         });
     }
 
-    public boolean postalCheck(){
-        return false;
+    public boolean postalCheck(String postalTest){
+        if(!postalTest.matches(postalPattern)){
+            postalText.setError("Invalid entry");
+            return false;
+        }
+        return true;
     }
 
     private void setAddress(String a, String p){

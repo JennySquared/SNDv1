@@ -82,34 +82,39 @@
                 android:id="@+id/fistAidCheck"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
                 android:text="@string/q_firstAid" />
 
             <CheckBox
                 android:id="@+id/babysittingCertificateCheck"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
                 android:text="@string/q_babysittingCertificate" />
 
             <CheckBox
                 android:id="@+id/cprCheck"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
                 android:text="@string/q_cpr" />
 
             <CheckBox
                 android:id="@+id/policeCheck"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
                 android:text="@string/q_policeCheck" />
 
             <CheckBox
                 android:id="@+id/otherCheck"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="onCheckboxClicked"
                 android:text="@string/q_other" />
 
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/otherEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -141,7 +146,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:layout_marginTop="16dp"
-                android:onClick="Login"
+                android:onClick="submit"
                 android:text="@string/button_submit"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"

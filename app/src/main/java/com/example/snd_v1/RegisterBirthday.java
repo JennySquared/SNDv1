@@ -41,18 +41,21 @@ public class RegisterBirthday extends AppCompatActivity {
                 setBirthday(birthdayPicker.getDayOfMonth(), birthdayPicker.getMonth()+1, birthdayPicker.getYear());
 
                 age = getAge(year,month, date, birthdayPicker.getYear(), birthdayPicker.getMonth()+1, birthdayPicker.getDayOfMonth());
-                oldEnough();
-
-                Toast.makeText(getApplicationContext(),"Stored: " + bday + "Age: " + age ,Toast.LENGTH_LONG).show();
-                startActivity(new Intent(RegisterBirthday.this, RegisterAddress.class));
+                if(oldEnough()){
+                    Toast.makeText(getApplicationContext(),"Stored: " + bday + " Age: " + age ,Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(RegisterBirthday.this, RegisterAddress.class));
+                };
             }
         });
     }
 
-    private void oldEnough (){
+    public boolean oldEnough (){
         if(age<13){
-            Toast.makeText(getApplicationContext(), "ur 2 young, get outta here" ,Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "You must be at lest 13 years of age " ,Toast.LENGTH_LONG).show();
+            return false;
         }
+
+        return true;
     }
 
     private void setBirthday(int d, int m, int y){

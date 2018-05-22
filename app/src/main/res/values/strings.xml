@@ -28,7 +28,7 @@
     <string name="password_prompt">Password must be at least 8 characters long, have at least one uppercase letter, one lowercase letter, and one number.</string>
     <string name="birthday_title">Birthday</string>
     <string name="address_title">Address</string>
-    <string name="address_prompt">Only the postal code will be displayed on the profile.</string>
+    <string name="address_prompt">Only the postal code will be displayed on the profile. Please enter the postal code without spaces. </string>
     <string name="gender_title">Gender</string>
     <string name="address_hint">Postal Code</string>
 

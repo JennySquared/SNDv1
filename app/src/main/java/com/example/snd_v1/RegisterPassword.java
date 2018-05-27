@@ -57,7 +57,7 @@ public class RegisterPassword extends AppCompatActivity {
             if(numberFlag && capitalFlag && lowerCaseFlag)
                 return true;
         }
-        passwordText.setError("ur invalid haha");
+        passwordText.setError("Invalid password");
         return false;
     }
     private void setPassword(String p){ password = p;}

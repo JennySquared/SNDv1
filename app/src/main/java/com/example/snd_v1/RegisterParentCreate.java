@@ -23,7 +23,8 @@ public class RegisterParentCreate extends AppCompatActivity implements AdapterVi
     public String bio;
     public static final int IMAGE_GALLERY_REQUEST = 20;
     private ImageView profileImageView;
-    
+    public EditText bioText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +32,7 @@ public class RegisterParentCreate extends AppCompatActivity implements AdapterVi
 
         profileImageView = (ImageView) findViewById(R.id.profileImageView); //get reference to image view that holds image that the user will see
 
-        EditText bioText = (EditText) findViewById(R.id.bioText);
+        bioText = (EditText) findViewById(R.id.bioText);
 
         Spinner spinner = findViewById(R.id.genderDrop);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.genderDrop, android.R.layout.simple_spinner_item);
@@ -90,5 +91,9 @@ public class RegisterParentCreate extends AppCompatActivity implements AdapterVi
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    public void setBio(){
+        bio= bioText.getText().toString();
     }
 }

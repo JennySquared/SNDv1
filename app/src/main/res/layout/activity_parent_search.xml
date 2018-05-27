@@ -100,7 +100,7 @@
             app:srcCompat="@drawable/search" />
 
         <ListView
-            android:id="@+id/listView"
+            android:id="@+id/list"
             android:layout_width="352dp"
             android:layout_height="347dp"
             android:layout_marginBottom="8dp"

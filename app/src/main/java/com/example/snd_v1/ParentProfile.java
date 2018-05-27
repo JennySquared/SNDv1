@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +29,7 @@ public class ParentProfile extends AppCompatActivity {
 
         name = findViewById(R.id.name);
         age = findViewById(R.id.age);
-        addr = findViewById(R.id.address);
+        addr = findViewById(R.id.tEnd);
         bio = findViewById(R.id.bio);
         children = findViewById(R.id.child);
 

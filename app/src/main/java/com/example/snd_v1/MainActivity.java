@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
    // FirebaseDatabase database = FirebaseDatabase.getInstance();
     //DatabaseReference myRef = database.getReference("Users");
-    public String[] num = new String[1];
+    public String[] num = new String[3];
     public EditText email, password;
     boolean success = false;
 
@@ -29,13 +29,47 @@ public class MainActivity extends AppCompatActivity {
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
 
+
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("numBabysitters");
+
+        DatabaseReference Ref = database.getReference("Users");
+
+//        int counter=1;
+//        for(int i =0;i<5;i++) {
+//            Babysitter b = new Babysitter("a", "b", "c", "d", "e", 1, "f","g","h", "h","i");
+//            Ref.child("Babysitter").child(counter + "").setValue(b);
+//            counter++;
+//        }
+//        counter=1;
+//        for(int i =0;i<5;i++) {
+//            Parent b = new Parent("a", "b", "c", "d", "e", 1, "f","g", "h","i");
+//            Ref.child("Parent").child(counter + "").setValue(b);
+//            counter++;
+//        }
+
+        Parent b = new Parent("K8U2E4", "hitty@gmail.com", "Paul g" +
+                "", "jkkk", "e", 1, "f","h", "h","i");
+            Ref.child("Parent").child("4").setValue(b);
+        DatabaseReference myRef = database.getReference();
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                num[0] = dataSnapshot.getValue(String.class);
+                num[0] = dataSnapshot.child("numBabysitters").getValue(String.class);
+                /*num[1] = dataSnapshot.child("numParents").getValue(String.class);
+                for(int i = 0; i<Integer.parseInt(num[1]); i++){
+                    int numJobs =dataSnapshot.child("Users").child("Parent").child(i+1+"").child("jobs").getValue(ArrayList.class).size();
+                    ArrayList<jobPost> jobs = dataSnapshot.child("Users").child("Parent").child(i+1+"").child("jobs").getValue(ArrayList.class);
+                    if(numJobs>0){
+                        for(int j = 0; j<numJobs;j++){
+                            jobs.get(j).getDate();
+                            jobs.get(j).getStart();
+                            jobs.get(j).getEnd();
+                            dataSnapshot.child("Users").child("Parent").child(i+1+"").child("Name");
+                        }
+                    }
+                }*/
 //                num=Integer.parseInt(numBB);
 //                Toast.makeText(getApplicationContext(),"Read",Toast.LENGTH_SHORT).show();
             }
@@ -45,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
     public void login(View view) {
@@ -53,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         final DatabaseReference myRef = database.getReference("Users");
         final String username =email.getText().toString();
         final String pass = password.getText().toString();
+
         myRef.addValueEventListener(new ValueEventListener() {
 
             @Override
@@ -110,15 +146,4 @@ public class MainActivity extends AppCompatActivity {
 }
 
 
-//        int counter=1;
-//        for(int i =0;i<5;i++) {
-//            Babysitter b = new Babysitter("51 Stick Drive", "jiskjb@gmail.com", "Jeremy Xu", "i like chesse", "December 5", 1, "my name is jen lala","myimage.jpg","First Aid, Cerificate", "LOL i have no experience");
-//            myRef.child("Babysitter").child(counter + "").setValue(b);
-//            counter++;
-//        }
-//        counter=1;
-//        for(int i =0;i<5;i++) {
-//            Parent b = new Parent("h9 Stick Drive", "jikhvhjb@gmail.com", "Jeremy lu", "i like chessejjj", "December 5", 1, "Female 10-12","ello", "myimage.jpg");
-//            myRef.child("Parent").child(counter + "").setValue(b);
-//            counter++;
-//        }
+

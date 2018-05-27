@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TimePicker;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -14,6 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 public class ParentPostJob extends AppCompatActivity {
     Parent p = new Parent();
     String d, s,e,i;
+    EditText addInfo,tStart, tEnd,date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,18 +26,29 @@ public class ParentPostJob extends AppCompatActivity {
     }
 
     public void Submit(View view) {
-        Intent intent = new Intent(this, ParentPostJob.class);
+        final Intent intent = new Intent(this, ParentPostJob.class);
         final int id = (getIntent().getExtras().getInt("id"));
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Users/Parent");
 
+        date = findViewById(R.id.date);
+        tStart = findViewById(R.id.tStart);
+        tEnd = findViewById(R.id.tEnd);
+        addInfo = findViewById(R.id.addInfo);
+
+        d= date.getText().toString();
+        s= tStart.getText().toString();
+        e= tEnd.getText().toString();
+        i= addInfo.getText().toString();
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 p=dataSnapshot.child(id+"").getValue(Parent.class);
-                p.createJob(d,s,e,i);
-
+                p.setJob(d,s,e,i);
+                setParent(p, id);
+                intent.putExtra("id",id);
+                startActivity(intent);
             }
 
             @Override
@@ -42,10 +57,14 @@ public class ParentPostJob extends AppCompatActivity {
             }
         });
 
-        myRef.child(id+"").setValue(p);
 
-        intent.putExtra("id",id);
-        startActivity(intent);
+
+    }
+
+    public void setParent (Parent p, int id){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Users/Parent");
+        myRef.child(id+"").setValue(p);
     }
 
     public void Search(View view) {

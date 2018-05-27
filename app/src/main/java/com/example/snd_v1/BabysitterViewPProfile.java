@@ -1,9 +1,7 @@
 package com.example.snd_v1;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,9 +11,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class ParentViewBProfile extends AppCompatActivity {
+public class BabysitterViewPProfile extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_babysitter_view_pprofile);
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference("Users/Babysitter");
 
@@ -55,30 +57,6 @@ public class ParentViewBProfile extends AppCompatActivity {
             }
         });
 
-
 //        name.setText(tag+"");
-    }
-
-
-    public void Search(View view) {
-        Intent intent = new Intent(this, ParentSearch.class);
-        startActivity(intent);
-    }
-    public void Profile(View view) {
-        Intent intent = new Intent(this, ParentProfile.class);
-        startActivity(intent);
-    }
-    public void JobPost(View view) {
-        Intent intent = new Intent(this, ParentPostJob.class);
-        startActivity(intent);
-    }
-    public void Home(View view) {
-        Intent intent = new Intent(this, ParentHome.class);
-        startActivity(intent);
-    }
-
-    public void Logout(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
     }
 }

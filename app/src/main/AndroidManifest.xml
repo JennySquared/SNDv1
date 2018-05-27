@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.snd_v1">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -36,7 +36,11 @@
         <activity android:name=".BabysitterSearch" />
         <activity android:name=".BabysitterProfile" />
         <activity android:name=".BabysitterProfileEdit" />
-        <activity android:name=".ParentViewBProfile"></activity>
+        <activity android:name=".ParentViewBProfile" />
+        <activity
+            android:name=".BabysitterViewPProfile"
+            android:label="@string/title_activity_babysitter_view_pprofile"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -93,7 +91,7 @@ public class ParentSearch extends AppCompatActivity {
 
                         Toast.makeText(getApplicationContext(),""+counter.size(),Toast.LENGTH_LONG).show();
 
-                        ListView list = (ListView) findViewById(R.id.listView);
+                        ListView list = (ListView) findViewById(R.id.list);
                         String[] name = new String[counter.size()];
                         String[] description = new String[counter.size()];
                         Integer[] imgid = new Integer[counter.size()];

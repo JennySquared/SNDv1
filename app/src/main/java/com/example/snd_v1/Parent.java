@@ -8,13 +8,19 @@ import java.util.ArrayList;
 
 public class Parent extends User {
     private String child;
-    private ArrayList<jobPost> jobs;
+    private jobPost[] jobs;
+    private jobPost job;
+    private int numJobs;
 
     public Parent(String a,String e,String n,String p,String b,int g, String c, String bi, String i,String ag){
         super(a,e,n,p,b,g,bi,i,ag);
         child=c;
-        jobs = new ArrayList<jobPost>();
+        jobs= new jobPost[15];
+        numJobs=0;
+        job = new jobPost("0","0","0","0");
+
     }
+
     public Parent(){
 
     }
@@ -23,14 +29,26 @@ public class Parent extends User {
         return child;
     }
 
+    public jobPost getJob (){
+        return job;
+    }
 
     public void setChild(String a){
         child = a;
     }
 
+    public void setJob(String d, String s, String e, String i){
+        jobPost post = new jobPost(d,s,e,i);
+        job=post;
+    }
     public void createJob (String d, String s, String e, String i){
         jobPost post = new jobPost(d,s,e,i);
-        jobs.add(post);
+        jobs[numJobs]=post;
+        numJobs++;
+
+        if(numJobs==19){
+            numJobs=0;
+        }
     }
 
 

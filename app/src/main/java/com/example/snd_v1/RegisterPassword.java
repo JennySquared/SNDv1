@@ -7,7 +7,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
+/*
+Name: Jenny /hua
+Date:
+Title: Parent Profile Registration
+Description:
+ */
 public class RegisterPassword extends AppCompatActivity {
 
     public String password;
@@ -31,7 +36,6 @@ public class RegisterPassword extends AppCompatActivity {
 
                 if(passwordCheck(passwordText.getText().toString())&&passwordText.getText().toString().length()>=8){
                     setPassword(passwordText.getText().toString());
-                    Toast.makeText(getApplicationContext(), "Stored: " + password, Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(RegisterPassword.this, RegisterBirthday.class));
                 }
             }

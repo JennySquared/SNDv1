@@ -10,29 +10,29 @@ import android.widget.Toast;
 
 public class RegisterAddress extends AppCompatActivity {
 
-    public String address, postalPattern = "[a-zA-Z]+[0-9]+[a-zA-Z]+[0-9]+[a-zA-Z]+[0-9]";
+    public String address, postalPattern = "[a-zA-Z]+[0-9]+[a-zA-Z]+[0-9]+[a-zA-Z]+[0-9]", addressPattern = "[0-9]+[a-zA-Z]";
     public EditText addressText, postalText;
+    boolean addressFlag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address);
 
-        addressText = (EditText) findViewById(R.id.addressText);
-        postalText = (EditText) findViewById(R.id.postalText);
+        addressText = findViewById(R.id.addressText);
+        postalText = findViewById(R.id.postalText);
 
         configureNextButton();
     }
 
     public void configureNextButton() {
-        Button submitButton = (Button) findViewById(R.id.submitButton);
+        Button submitButton = findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(postalCheck(postalText.getText().toString())&&postalText.getText().toString().length()==6){
+                if(postalCheck(postalText.getText().toString())&&postalText.getText().toString().length()==6&&addressCheck(addressText.getText().toString())){
                     setAddress(addressText.getText().toString(), postalText.getText().toString());
-                    Toast.makeText(getApplicationContext(),"Stored: " + address ,Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(RegisterAddress.this, RegisterGender.class));
                 }
             }
@@ -47,6 +47,16 @@ public class RegisterAddress extends AppCompatActivity {
         return true;
     }
 
+    public boolean addressCheck(String a){
+        if(a.matches("")){
+            addressText.setError("Invalid entry");
+            addressFlag = false;
+        }
+        else{
+            addressFlag= true;
+        }
+        return addressFlag;
+    }
     private void setAddress(String a, String p){
         address = a + ", " + p;
     }

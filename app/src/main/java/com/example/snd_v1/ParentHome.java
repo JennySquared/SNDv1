@@ -3,7 +3,6 @@ package com.example.snd_v1;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -15,17 +14,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.HashMap;
-
 public class ParentHome extends AppCompatActivity {
     public static int tag =-1;
 
-
-//    DataSnapshot dataSnap;
-//    Babysitter n = dataSnap.child("Users").child("Babysitter").child("1").getValue(Babysitter.class);
-//    String[] name;
-//    String[] description;
-//    Integer[] imgid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,21 +29,7 @@ public class ParentHome extends AppCompatActivity {
         setContentView(R.layout.activity_parent_home);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        DatabaseReference myRef = database.getReference("numBabysitters");
-//
-//        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                numBB = dataSnapshot.getValue(String.class);
-////                num=Integer.parseInt(numBB);
-//                Toast.makeText(getApplicationContext(),"Read",Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
+
         String numBB = (getIntent().getExtras().getString("n"));
         final int num = Integer.parseInt(numBB);
         String[] name = new String[num];
@@ -61,7 +38,7 @@ public class ParentHome extends AppCompatActivity {
         String[] rating = new String[num];
         String[] address= new String[num];
 
-        list = (ListView) findViewById(R.id.listView);
+        list = (ListView) findViewById(R.id.list);
         final ParentHomeListView liview = new ParentHomeListView(this, name,description,imgid,address,rating);
         list.setAdapter(liview);
 
@@ -77,7 +54,7 @@ public class ParentHome extends AppCompatActivity {
                     liview.setName(dataSnapshot.child("Babysitter").child(i+1+"").child("name").getValue(String.class), i);
                     liview.setDescription(dataSnapshot.child("Babysitter").child(i+1+"").child("bio").getValue(String.class), i);
                     liview.setAddress(dataSnapshot.child("Babysitter").child(i+1+"").child("address").getValue(String.class), i);
-                    liview.setRating(dataSnapshot.child("Babysitter").child(i+1+"").child("rating").getValue(String.class), i);
+                    liview.setRating(dataSnapshot.child("Babysitter").child(i+1+"").child("ratings").getValue(String.class), i);
                 }
                 list.setAdapter(liview);
             }
@@ -108,7 +85,12 @@ public class ParentHome extends AppCompatActivity {
 //    public void setNum(int n){
 //        num = n;
 //    }
-
+    public void Filter(View view) {
+        Intent intent = new Intent(this, ParentSearch.class);
+        int id = (getIntent().getExtras().getInt("id"));
+        intent.putExtra("id",id);
+        startActivity(intent);
+    }
     public void Search(View view) {
         Intent intent = new Intent(this, ParentSearch.class);
         int id = (getIntent().getExtras().getInt("id"));
@@ -133,13 +115,6 @@ public class ParentHome extends AppCompatActivity {
         intent.putExtra("id",id);
         startActivity(intent);
     }
-//    public void BBprofile(View view) {
-//        Intent intent = new Intent(this, ParentViewBProfile.class);
-////         //tag = list.getId();
-//        list.getPositionForView(view);
-//        startActivity(intent);
-//
-//    }
 
     public void Logout(View view) {
         Intent intent = new Intent(this, MainActivity.class);

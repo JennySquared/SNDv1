@@ -69,5 +69,6 @@
     <string name="c_upload">Upload</string>
     <string name="desc">none</string>
     <string name="Save">Save</string>
+    <string name="title_activity_babysitter_view_pprofile">BabysitterViewPProfile</string>
 
 </resources>

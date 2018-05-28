@@ -15,6 +15,10 @@ public class jobPost {
         setInfo(info);
     }
 
+    public jobPost(){
+
+    }
+
     public String getStart(){
         return tStart;
     }

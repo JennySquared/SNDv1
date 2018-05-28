@@ -113,7 +113,7 @@
             app:layout_constraintTop_toBottomOf="@+id/age" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/child"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="155dp"
@@ -134,10 +134,10 @@
             android:text="@string/Bio"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            app:layout_constraintTop_toBottomOf="@+id/child" />
 
         <TextView
-            android:id="@+id/child"
+            android:id="@+id/job"
             android:layout_width="300dp"
             android:layout_height="84dp"
             android:layout_marginBottom="11dp"

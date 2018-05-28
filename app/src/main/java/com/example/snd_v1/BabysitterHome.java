@@ -119,15 +119,21 @@ public class BabysitterHome extends AppCompatActivity {
     }
     public void Search(View view) {
         Intent intent = new Intent(this, BabysitterSearch.class);
+        int id = (getIntent().getExtras().getInt("id"));
+        intent.putExtra("id",id);
         startActivity(intent);
     }
     public void Profile(View view) {
         Intent intent = new Intent(this, BabysitterProfile.class);
+        int id = (getIntent().getExtras().getInt("id"));
+        intent.putExtra("id",id);
         startActivity(intent);
     }
 
     public void Home(View view) {
         Intent intent = new Intent(this, BabysitterHome.class);
+        int id = (getIntent().getExtras().getInt("id"));
+        intent.putExtra("id",id);
         startActivity(intent);
     }
 

@@ -46,14 +46,14 @@
             android:id="@+id/tStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/tEnd"
-            android:layout_alignBottom="@+id/tEnd"
+            android:layout_alignBaseline="@+id/address"
+            android:layout_alignBottom="@+id/address"
             android:layout_alignLeft="@+id/name"
             android:layout_alignStart="@+id/name"
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/tEnd"
+            android:id="@+id/address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/imgid"

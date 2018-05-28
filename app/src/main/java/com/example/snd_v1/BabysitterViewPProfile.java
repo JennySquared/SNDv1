@@ -1,7 +1,9 @@
 package com.example.snd_v1;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,36 +21,41 @@ public class BabysitterViewPProfile extends AppCompatActivity {
         setContentView(R.layout.activity_babysitter_view_pprofile);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference myRef = database.getReference("Users/Babysitter");
+        final DatabaseReference myRef = database.getReference("Users/Parent");
 
 
         final int tag = (getIntent().getExtras().getInt("p"));
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_parent_view_bprofile);
 
         myRef.addValueEventListener(new ValueEventListener(){
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 String name = dataSnapshot.child(tag+"").child("name").getValue(String.class);
-                String postalCode = dataSnapshot.child(tag+"").child("address").getValue(String.class);
-                String age = dataSnapshot.child(tag+"").child("age").getValue(String.class);
-                String qualifications = "\n\nQualifications:\n"+ dataSnapshot.child(tag+"").child("qualifications").getValue(String.class);
-                String bio = "\n\nBio:\n"+ dataSnapshot.child(tag+"").child("bio").getValue(String.class);
-                String ratings = dataSnapshot.child(tag+"").child("rating").getValue(String.class);
                 TextView n = findViewById(R.id.name);
                 n.setText(name);
+
+                String age = dataSnapshot.child(tag+"").child("age").getValue(String.class)+" yrs old";
                 TextView a = findViewById(R.id.age);
                 a.setText(age);
-                TextView r = findViewById(R.id.tEnd);
-                r.setText(ratings);
-                TextView pc = findViewById(R.id.textView6);
-                pc.setText(postalCode);
+
+                String address = "Child: " +dataSnapshot.child(tag+"").child("address").getValue(String.class);
+                TextView add = findViewById(R.id.address);
+                add.setText(address);
+
+                String child = dataSnapshot.child(tag+"").child("child").getValue(String.class);
+                TextView c = findViewById(R.id.child);
+                c.setText(child);
+
+                String bio = "Bio:\n"+dataSnapshot.child(tag+"").child("bio").getValue(String.class);
                 TextView b = findViewById(R.id.bio);
                 b.setText(bio);
-                TextView q = findViewById(R.id.child);
-                q.setText(qualifications);
-                Toast.makeText(getApplicationContext(),"You are viewing " + name+"'s Profile",Toast.LENGTH_SHORT).show();
+
+                jobPost post = dataSnapshot.child(tag+"").child("job").getValue(jobPost.class);
+                String job = "Job Information\n"+post.getDate() +" at "+post.getStart()+ " till "+ post.getEnd()+"\nAdditional Information: "+
+                        post.getInfo();
+                TextView j = findViewById(R.id.job);
+                j.setText(job);
+
             }
 
             @Override
@@ -58,5 +65,30 @@ public class BabysitterViewPProfile extends AppCompatActivity {
         });
 
 //        name.setText(tag+"");
+    }
+
+    public void Search(View view) {
+        Intent intent = new Intent(this, BabysitterSearch.class);
+        int id = (getIntent().getExtras().getInt("id"));
+        intent.putExtra("id",id);
+        startActivity(intent);
+    }
+    public void Profile(View view) {
+        Intent intent = new Intent(this, BabysitterProfile.class);
+        int id = (getIntent().getExtras().getInt("id"));
+        intent.putExtra("id",id);
+        startActivity(intent);
+    }
+
+    public void Home(View view) {
+        Intent intent = new Intent(this, BabysitterHome.class);
+        int id = (getIntent().getExtras().getInt("id"));
+        intent.putExtra("id",id);
+        startActivity(intent);
+    }
+
+    public void Logout(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

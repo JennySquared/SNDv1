@@ -34,7 +34,7 @@ public class ParentProfileEdit extends AppCompatActivity {
 
         name = findViewById(R.id.name);
         //age = findViewById(R.id.age);
-        addr = findViewById(R.id.tEnd);
+        addr = findViewById(R.id.address);
         bio = findViewById(R.id.bio);
         //children = findViewById(R.id.child);
 

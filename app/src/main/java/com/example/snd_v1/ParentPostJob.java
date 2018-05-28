@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TimePicker;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,7 +31,7 @@ public class ParentPostJob extends AppCompatActivity {
 
         date = findViewById(R.id.date);
         tStart = findViewById(R.id.tStart);
-        tEnd = findViewById(R.id.tEnd);
+        tEnd = findViewById(R.id.address);
         addInfo = findViewById(R.id.addInfo);
 
         d= date.getText().toString();

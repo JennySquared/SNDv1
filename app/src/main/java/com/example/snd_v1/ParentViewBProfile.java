@@ -38,13 +38,13 @@ public class ParentViewBProfile extends AppCompatActivity {
                 n.setText(name);
                 TextView a = findViewById(R.id.age);
                 a.setText(age);
-                TextView r = findViewById(R.id.tEnd);
+                TextView r = findViewById(R.id.address);
                 r.setText(ratings);
-                TextView pc = findViewById(R.id.textView6);
+                TextView pc = findViewById(R.id.child);
                 pc.setText(postalCode);
                 TextView b = findViewById(R.id.bio);
                 b.setText(bio);
-                TextView q = findViewById(R.id.child);
+                TextView q = findViewById(R.id.job);
                 q.setText(qualifications);
                 Toast.makeText(getApplicationContext(),"You are viewing " + name+"'s Profile",Toast.LENGTH_SHORT).show();
             }

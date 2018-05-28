@@ -89,7 +89,7 @@ public class BabysitterHomeListView extends ArrayAdapter<String> {
             tvw1= (TextView) v.findViewById(R.id.name);
             tvw2= (TextView) v.findViewById(R.id.date);
             tvw3= (TextView) v.findViewById(R.id.tStart);
-            tvw4= (TextView) v.findViewById(R.id.tEnd);
+            tvw4= (TextView) v.findViewById(R.id.address);
             ivw= (ImageView) v.findViewById(R.id.imgid);
         }
     }

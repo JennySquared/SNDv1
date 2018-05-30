@@ -1,3 +1,10 @@
+/*
+Name: Jenny /hua
+Date:
+Title: Parent Profile Registration
+Description:
+ */
+
 package com.example.snd_v1;
 
 import android.content.Intent;
@@ -29,9 +36,9 @@ import javax.xml.datatype.Duration;
 public class RegisterBabysitterCreate extends AppCompatActivity {
     public static final int IMAGE_GALLERY_REQUEST = 20;
     private ImageView profileImageView;
-    public static Bitmap image;
-    public EditText babyBioTextBox, otherEdit;
-    String babyBioText;
+    public static Bitmap image;;
+    public EditText babyBioTextBox, experienceEdit, otherEdit;
+    public static String babyBioText, experience;
     CheckBox firstAidCheck, babysittingCertificateCheck, cprCheck, policeCheck, otherCheck;
     String list[] = {"no","no","no","no","no"};
 
@@ -40,15 +47,14 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_babysitter_create);
         babyBioTextBox = findViewById(R.id.bioText);
+        experienceEdit = findViewById(R.id.experienceText);
         firstAidCheck = findViewById(R.id.fistAidCheck);
         babysittingCertificateCheck = findViewById(R.id.babysittingCertificateCheck);
         cprCheck = findViewById(R.id.cprCheck);
         policeCheck = findViewById(R.id.policeCheck);
         otherCheck = findViewById(R.id.otherCheck);
         otherEdit = findViewById(R.id.otherEdit);
-        profileImageView = (ImageView) findViewById(R.id.profileImageView); //Get a reference to the imageView that holds the image that the user will see
-
-
+        profileImageView = findViewById(R.id.profileImageView); //Get a reference to the imageView that holds the image that the user will see
     }
 
     /**
@@ -98,12 +104,15 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
         }
     }
 
-    public void setBabyBioText() {
-        babyBioText = babyBioTextBox.getText().toString();
+    public void setBabyBioText(String babyBio) {
+        babyBioText = babyBio;
+    }
+
+    public void setExperience(String e){
+        experience = e;
     }
 
     public void onCheckboxClicked(View view) {
-
         // Is the view now checked?
         boolean checked = ((CheckBox)view).isChecked();
 
@@ -135,10 +144,23 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
                     list[3] = "no";
                 break;
             case R.id.otherCheck:
-                if(checked)
+                if(checked) {
+                    if (!otherCheck(otherEdit.getText().toString())) {
+                        otherEdit.setError("Please input your qualification");
+                    }
                     list[4] = otherEdit.getText().toString();
+                }
                 else
                     list[4] = "no";
+        }
+    }
+
+    public boolean otherCheck(String entry){
+        if(entry.matches("")){
+            return false;
+        }
+        else{
+            return true;
         }
     }
 
@@ -186,6 +208,9 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference Ref = database.getReference("Users/Babysitter");
         Ref.child(n+1+"").setValue(b);
-    }
 
+        setBabyBioText(babyBioTextBox.getText().toString());
+        setExperience(experienceEdit.getText().toString());
+        startActivity(new Intent(RegisterBabysitterCreate.this, MainActivity.class));
+    }
 }

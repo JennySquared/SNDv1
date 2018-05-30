@@ -1,3 +1,9 @@
+/*
+Name: Jenny Hua
+Date:
+Title: Parent Profile Registration
+Description:
+ */
 package com.example.snd_v1;
 
 import android.content.Intent;
@@ -42,7 +48,6 @@ public class RegisterBirthday extends AppCompatActivity {
 
                 age = getAge(year,month, date, birthdayPicker.getYear(), birthdayPicker.getMonth()+1, birthdayPicker.getDayOfMonth());
                 if(oldEnough()){
-                    Toast.makeText(getApplicationContext(),"Stored: " + bday + " Age: " + age ,Toast.LENGTH_LONG).show();
                     startActivity(new Intent(RegisterBirthday.this, RegisterAddress.class));
                 };
             }

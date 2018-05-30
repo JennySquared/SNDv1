@@ -1,3 +1,9 @@
+/*
+Name: Jenny /hua
+Date:
+Title: Parent Profile Registration
+Description:
+ */
 package com.example.snd_v1;
 
 import android.content.Intent;
@@ -28,13 +34,13 @@ public class RegisterName extends AppCompatActivity {
      */
     private void configureNextButton(){
 
-        Button submitButton= (Button) findViewById(R.id.submitButton);
+        Button submitButton= findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
                 entryChecks(firstName.getText().toString(), lastName.getText().toString());
 
-                if(entryFlag){
+                if(entryChecks(firstName.getText().toString(), lastName.getText().toString())){
                     setName(firstName.getText().toString(), lastName.getText().toString());
                     startActivity(new Intent(RegisterName.this, RegisterEmail.class));
                 }

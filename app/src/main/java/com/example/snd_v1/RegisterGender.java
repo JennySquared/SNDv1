@@ -1,3 +1,9 @@
+/*
+Name: Jenny /hua
+Date:
+Title: Parent Profile Registration
+Description:
+ */
 package com.example.snd_v1;
 
 import android.content.Intent;

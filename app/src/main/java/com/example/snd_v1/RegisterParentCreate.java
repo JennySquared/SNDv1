@@ -1,3 +1,11 @@
+/*
+Name: Jenny /hua
+Date:
+Title: Parent Profile Registration
+Description:
+ */
+
+
 package com.example.snd_v1;
 
 import android.content.Intent;
@@ -15,12 +23,15 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.snd_v1.MainActivity;
+import com.example.snd_v1.R;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 public class RegisterParentCreate extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    public String bio;
+    public String bio, childGender, childAgeRange;
     public static final int IMAGE_GALLERY_REQUEST = 20;
     private ImageView profileImageView;
     public EditText bioText;
@@ -30,16 +41,24 @@ public class RegisterParentCreate extends AppCompatActivity implements AdapterVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_create);
 
-        profileImageView = (ImageView) findViewById(R.id.profileImageView); //get reference to image view that holds image that the user will see
+        profileImageView = findViewById(R.id.profileImageView); //get reference to image view that holds image that the user will see
 
-        bioText = (EditText) findViewById(R.id.bioText);
+        bioText = findViewById(R.id.bioText);
 
-        Spinner spinner = findViewById(R.id.genderDrop);
+        Spinner childGenderDrop = findViewById(R.id.genderDrop);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.genderDrop, android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter2);
-        spinner.setPrompt("Select");
-        spinner.setOnItemSelectedListener(this);
+        childGenderDrop.setAdapter(adapter2);
+        childGenderDrop.setPrompt("Select");
+        childGenderDrop.setOnItemSelectedListener(this);
+        setChildGender(childGenderDrop.getSelectedItem().toString());
+
+        Spinner childAgeDrop = findViewById(R.id.childAgeDrop);
+        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.childAgeDrop, android.R.layout.simple_spinner_item);
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        childAgeDrop.setAdapter(adapter3);
+        childAgeDrop.setOnItemSelectedListener(this);
+        setChildAge(childAgeDrop.getSelectedItem().toString());
     }
 
     /**
@@ -93,7 +112,20 @@ public class RegisterParentCreate extends AppCompatActivity implements AdapterVi
 
     }
 
-    public void setBio(){
-        bio= bioText.getText().toString();
+    public void setBio(String b){
+        bio= b;
+    }
+
+    public void setChildGender(String g){
+        childGender = g;
+    }
+
+    public void setChildAge(String ageRange){
+        childAgeRange = ageRange;
+    }
+
+    public void submit(View view) {
+        setBio(bioText.getText().toString());
+        startActivity(new Intent(RegisterParentCreate.this, MainActivity.class));
     }
 }

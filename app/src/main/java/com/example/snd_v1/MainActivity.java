@@ -33,24 +33,25 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-        DatabaseReference Ref = database.getReference("Users");
+        DatabaseReference Ref = database.getReference();
 
 //        int counter=1;
 //        for(int i =0;i<5;i++) {
-//            Babysitter b = new Babysitter("a", "b", "c", "d", "e", 1, "f","g","h", "h","i");
-//            Ref.child("Babysitter").child(counter + "").setValue(b);
+//            Babysitter b = new Babysitter();
+//            Ref.child("Users").child("Babysitter").child(counter + "").setValue(b);
 //            counter++;
 //        }
 //        counter=1;
 //        for(int i =0;i<5;i++) {
-//            Parent b = new Parent("a", "b", "c", "d", "e", 1, "f","g", "h","i");
-//            Ref.child("Parent").child(counter + "").setValue(b);
+//            Parent b = new Parent();
+//            Ref.child("Users").child("Parent").child(counter + "").setValue(b);
 //            counter++;
 //        }
 
-        Parent b = new Parent("K8U2E4", "hitty@gmail.com", "Paul g" +
-                "", "jkkk", "e", 1, "f","h", "h","i");
-            Ref.child("Parent").child("4").setValue(b);
+//        Parent b = new Parent("K8U2E4", "hitty@gmail.com", "Paul g" +
+//                "", "jkkk", "e", 1, "f","h", "h","i");
+//            Ref.child("Parent").child("4").setValue(b);
+
         DatabaseReference myRef = database.getReference();
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {

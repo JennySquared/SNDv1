@@ -81,7 +81,9 @@
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginRight="137dp"
+            android:layout_marginLeft="64dp" />
 
         <ImageButton
             android:id="@+id/sButton"
@@ -97,7 +99,9 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/Search"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/search" />
+            app:srcCompat="@drawable/search"
+            android:layout_marginRight="81dp"
+            android:layout_marginLeft="8dp" />
 
         <ListView
             android:id="@+id/list"

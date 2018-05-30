@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class RegisterPassword extends AppCompatActivity {
 
-    public String password;
+    public static String password;
     public EditText passwordText;
 
     @Override

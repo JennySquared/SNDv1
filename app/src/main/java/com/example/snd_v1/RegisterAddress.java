@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class RegisterAddress extends AppCompatActivity {
 
-    public String address, postalPattern = "[a-zA-Z]+[0-9]+[a-zA-Z]+[0-9]+[a-zA-Z]+[0-9]";
+    public static String address, postalPattern = "[a-zA-Z]+[0-9]+[a-zA-Z]+[0-9]+[a-zA-Z]+[0-9]";
     public EditText addressText, postalText;
 
     @Override

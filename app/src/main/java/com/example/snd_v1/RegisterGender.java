@@ -12,7 +12,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 public class RegisterGender extends AppCompatActivity implements OnItemSelectedListener{
-    public String gender;
+    public static String gender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

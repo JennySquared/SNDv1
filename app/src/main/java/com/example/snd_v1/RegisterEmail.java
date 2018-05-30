@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class RegisterEmail extends AppCompatActivity {
 
-    public String email, emailTest, emailPattern = "[a-zA-Z0-9.]+@[a-z]+\\.+[a-z]+";
+    public static String email, emailTest, emailPattern = "[a-zA-Z0-9.]+@[a-z]+\\.+[a-z]+";
     public EditText emailText;
     boolean flag;
 

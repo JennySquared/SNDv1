@@ -14,8 +14,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -26,6 +29,7 @@ import javax.xml.datatype.Duration;
 public class RegisterBabysitterCreate extends AppCompatActivity {
     public static final int IMAGE_GALLERY_REQUEST = 20;
     private ImageView profileImageView;
+    public static Bitmap image;
     public EditText babyBioTextBox, otherEdit;
     String babyBioText;
     CheckBox firstAidCheck, babysittingCertificateCheck, cprCheck, policeCheck, otherCheck;
@@ -81,7 +85,7 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
                 try {
                     inputStream = getContentResolver().openInputStream(imageUri); //Getting an image stream based on URI of image
 
-                    Bitmap image = BitmapFactory.decodeStream(inputStream); //Get a bitmap from the stream
+                    image = BitmapFactory.decodeStream(inputStream); //Get a bitmap from the stream
 
                     profileImageView.setImageBitmap(image); //Show the image to the user
 
@@ -147,7 +151,41 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
             }
         }
         Toast.makeText(this,qualifications, Toast.LENGTH_LONG).show();
+        int genderNum=-1;
+        String gender = RegisterGender.gender;
+        if(gender.equals("Female")){
+            genderNum =0;
+        }
+        else if (gender.equals("Male")){
+            genderNum =1;
+        }
+        else{
+            genderNum =2;
+        }
+        final Babysitter b = new Babysitter(RegisterAddress.address, RegisterEmail.email, RegisterName.name, RegisterPassword.password, RegisterBirthday.bday, genderNum, babyBioText, image, qualifications, "NA", RegisterBirthday.age+"" );
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference Ref = database.getReference();
+
+        Ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                   int n = 2;
+                           //Integer.parseInt(dataSnapshot.child("numBabysitters").getValue(String.class));
+                   Ref.child("numBabysitters").setValue(n+1+"");
+                   setBabysitter(n,b);
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
         startActivity(new Intent(RegisterBabysitterCreate.this, MainActivity.class));
+    }
+
+    public void setBabysitter(int n, Babysitter b){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference Ref = database.getReference("Users/Babysitter");
+        Ref.child(n+1+"").setValue(b);
     }
 
 }

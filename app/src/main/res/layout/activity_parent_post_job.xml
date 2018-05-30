@@ -81,7 +81,8 @@ app:layout_constraintTop_toTopOf="parent">
         android:textColor="@android:color/black"
         android:textSize="15pt"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="16dp" />
 
     <EditText
         android:id="@+id/date"
@@ -96,7 +97,9 @@ app:layout_constraintTop_toTopOf="parent">
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.123"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:layout_marginRight="125dp"
+        android:layout_marginLeft="16dp" />
 
     <EditText
         android:id="@+id/tStart"
@@ -122,7 +125,9 @@ app:layout_constraintTop_toTopOf="parent">
         android:text="@string/Time_End"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tStart"
-        app:layout_constraintTop_toBottomOf="@+id/date" />
+        app:layout_constraintTop_toBottomOf="@+id/date"
+        android:layout_marginRight="86dp"
+        android:layout_marginLeft="12dp" />
 
     <EditText
         android:id="@+id/addInfo"
@@ -135,7 +140,8 @@ app:layout_constraintTop_toTopOf="parent">
         android:singleLine="false"
         android:text="@string/Additional_Info"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/address" />
+        app:layout_constraintTop_toBottomOf="@+id/address"
+        android:layout_marginLeft="16dp" />
 
     <Button
         android:id="@+id/button3"
@@ -152,7 +158,9 @@ app:layout_constraintTop_toTopOf="parent">
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addInfo" />
+        app:layout_constraintTop_toBottomOf="@+id/addInfo"
+        android:layout_marginRight="264dp"
+        android:layout_marginLeft="16dp" />
 </android.support.constraint.ConstraintLayout>
 
     </android.support.constraint.ConstraintLayout>

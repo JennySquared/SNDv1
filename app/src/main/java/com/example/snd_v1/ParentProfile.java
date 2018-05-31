@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ public class ParentProfile extends AppCompatActivity {
 
     Parent parent = new Parent();
     TextView name, age, addr, bio,children;
+    ImageView pic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class ParentProfile extends AppCompatActivity {
         addr = findViewById(R.id.address);
         bio = findViewById(R.id.bio);
         children = findViewById(R.id.job);
+       // pic = findViewById(R.id.pic);
 
 
         myRef.addValueEventListener(new ValueEventListener() {

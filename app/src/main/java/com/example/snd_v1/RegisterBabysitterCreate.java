@@ -172,27 +172,33 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
                 qualifications = qualifications + list[i] + " ";
             }
         }
+
+        setBabyBioText(babyBioTextBox.getText().toString());
+        setExperience(experienceEdit.getText().toString());
+
+
         Toast.makeText(this,qualifications, Toast.LENGTH_LONG).show();
         int genderNum=-1;
+
         String gender = RegisterGender.gender;
-        if(gender.equals("Female")){
+        if(gender.compareTo("Female")==0){
             genderNum =0;
         }
-        else if (gender.equals("Male")){
+        else if (gender.compareTo("Male")==0){
             genderNum =1;
         }
         else{
             genderNum =2;
         }
-        final Babysitter b = new Babysitter(RegisterAddress.address, RegisterEmail.email, RegisterName.name, RegisterPassword.password, RegisterBirthday.bday, genderNum, babyBioText, image, qualifications, "NA", RegisterBirthday.age+"" );
+
+        final Babysitter b = new Babysitter(RegisterAddress.address, RegisterEmail.email, RegisterName.name, RegisterPassword.password, RegisterBirthday.bday, genderNum, babyBioText, image, qualifications, experience, RegisterBirthday.age+"" );
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference Ref = database.getReference();
 
-        Ref.addValueEventListener(new ValueEventListener() {
+        Ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                   int n = 2;
-                           //Integer.parseInt(dataSnapshot.child("numBabysitters").getValue(String.class));
+                   int n = Integer.parseInt(dataSnapshot.child("numBabysitters").getValue(String.class));
                    Ref.child("numBabysitters").setValue(n+1+"");
                    setBabysitter(n,b);
 
@@ -209,8 +215,5 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
         DatabaseReference Ref = database.getReference("Users/Babysitter");
         Ref.child(n+1+"").setValue(b);
 
-        setBabyBioText(babyBioTextBox.getText().toString());
-        setExperience(experienceEdit.getText().toString());
-        startActivity(new Intent(RegisterBabysitterCreate.this, MainActivity.class));
     }
 }

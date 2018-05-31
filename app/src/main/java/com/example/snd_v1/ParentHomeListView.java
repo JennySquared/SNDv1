@@ -47,8 +47,8 @@ public class ParentHomeListView extends ArrayAdapter<String>{
         }
     }
     public void setAddress(String n, int index){
-        int pc = n.indexOf(", ");
-        address[index]=n.substring(0,pc);
+        int pc = n.indexOf(", ")+2;
+        address[index]=n.substring(pc);
     }
     public void setRating(String n, int index){
         rating[index]= n ;

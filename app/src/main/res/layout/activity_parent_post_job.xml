@@ -111,7 +111,8 @@ app:layout_constraintTop_toTopOf="parent">
         android:inputType="time"
         android:text="@string/Time_Start"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date" />
+        app:layout_constraintTop_toBottomOf="@+id/date"
+        android:layout_marginLeft="16dp" />
 
     <EditText
         android:id="@+id/address"
@@ -130,11 +131,7 @@ app:layout_constraintTop_toTopOf="parent">
         android:layout_marginLeft="12dp" />
 
     <EditText
-<<<<<<< HEAD
-        android:id="@+id/experienceText"
-=======
         android:id="@+id/addInfo"
->>>>>>> 96a533571a62b88370f8681552d6e94b2db72ee5
         android:layout_width="320dp"
         android:layout_height="147dp"
         android:layout_marginStart="16dp"
@@ -162,17 +159,13 @@ app:layout_constraintTop_toTopOf="parent">
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-<<<<<<< HEAD
+        android:layout_marginRight="264dp"
+        android:layout_marginLeft="16dp" />
         app:layout_constraintTop_toBottomOf="@+id/addInfo"
         android:layout_marginRight="264dp"
         android:layout_marginLeft="16dp" />
-=======
-<<<<<<< HEAD
         app:layout_constraintTop_toBottomOf="@+id/experienceText" />
-=======
         app:layout_constraintTop_toBottomOf="@+id/addInfo" />
->>>>>>> 96a533571a62b88370f8681552d6e94b2db72ee5
->>>>>>> bc9e88bef67274b2ce52cb0defc7419649099cec
 </android.support.constraint.ConstraintLayout>
 
     </android.support.constraint.ConstraintLayout>

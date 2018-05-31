@@ -25,6 +25,11 @@ import android.widget.Toast;
 
 import com.example.snd_v1.MainActivity;
 import com.example.snd_v1.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -35,6 +40,7 @@ public class RegisterParentCreate extends AppCompatActivity implements AdapterVi
     public static final int IMAGE_GALLERY_REQUEST = 20;
     private ImageView profileImageView;
     public EditText bioText;
+    public Bitmap image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +97,7 @@ public class RegisterParentCreate extends AppCompatActivity implements AdapterVi
 
                 try {
                     inputStream = getContentResolver().openInputStream(imageUri); //Getting an image stream based on URI of image
-                    Bitmap image = BitmapFactory.decodeStream(inputStream);
+                    image = BitmapFactory.decodeStream(inputStream);
 
                     profileImageView.setImageBitmap(image); //Show the image to the user
                 } catch (FileNotFoundException e) {
@@ -126,6 +132,42 @@ public class RegisterParentCreate extends AppCompatActivity implements AdapterVi
 
     public void submit(View view) {
         setBio(bioText.getText().toString());
+
+        int genderNum=-1;
+        String gender = RegisterGender.gender;
+        if(gender.compareTo("Female")==0){
+            genderNum =0;
+        }
+        else if (gender.compareTo("Male")==0){
+            genderNum =1;
+        }
+        else{
+            genderNum =2;
+        }
+        final Parent p = new Parent(RegisterAddress.address, RegisterEmail.email, RegisterName.name, RegisterPassword.password, RegisterBirthday.bday, genderNum, childAgeRange+" yr old "+childGender, bio, image, ""+RegisterBirthday.age );
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference Ref = database.getReference();
+
+        Ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int n = Integer.parseInt(dataSnapshot.child("numParents").getValue(String.class));
+                Ref.child("numParents").setValue(n+1+"");
+                setParent(n,p);
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
         startActivity(new Intent(RegisterParentCreate.this, MainActivity.class));
     }
+
+    public void setParent(int n, Parent p){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference Ref = database.getReference("Users/Parent");
+        Ref.child(n+1+"").setValue(p);
+
+    }
+
 }

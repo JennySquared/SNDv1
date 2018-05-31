@@ -134,11 +134,7 @@
                 android:textSize="8pt" />
 
             <EditText
-<<<<<<< HEAD
                 android:id="@+id/experienceText"
-=======
-                android:id="@+id/addInfo"
->>>>>>> 96a533571a62b88370f8681552d6e94b2db72ee5
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"

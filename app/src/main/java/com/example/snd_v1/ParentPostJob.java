@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,6 +36,7 @@ public class ParentPostJob extends AppCompatActivity {
         addInfo = findViewById(R.id.addInfo);
 
         d= date.getText().toString();
+        Toast.makeText(this, d, Toast.LENGTH_LONG).show();
         s= tStart.getText().toString();
         e= tEnd.getText().toString();
         i= addInfo.getText().toString();

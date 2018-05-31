@@ -19,8 +19,8 @@ import java.util.Date;
 
 public class RegisterBirthday extends AppCompatActivity {
 
-    public String bday;
-    public int age, year, month, date;
+    public static String bday;
+    public static int age, year, month, date;
     public DatePicker birthdayPicker;
     Calendar now = Calendar.getInstance();
 

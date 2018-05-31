@@ -1,5 +1,7 @@
 package com.example.snd_v1;
 
+import android.graphics.Bitmap;
+
 import java.util.ArrayList;
 
 /**
@@ -12,8 +14,8 @@ public class Parent extends User {
     private jobPost job;
     private int numJobs;
 
-    public Parent(String a,String e,String n,String p,String b,int g, String c, String bi, String i,String ag){
-        super(a,e,n,p,b,g,bi,i,ag);
+    public Parent(String a, String e, String n, String p, String b, int g, String c, String bi, Bitmap i, String ag){
+        super(a,e,n,p,b,g,i,bi,ag);
         child=c;
         jobs= new jobPost[15];
         numJobs=0;

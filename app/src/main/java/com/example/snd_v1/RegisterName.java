@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class RegisterName extends AppCompatActivity {
-    public String name;
+    public static String name;
     public EditText firstName, lastName;
     boolean entryFlag;
 

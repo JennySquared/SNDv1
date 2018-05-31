@@ -10,7 +10,9 @@ import android.widget.Toast;
 
 public class RegisterAddress extends AppCompatActivity {
 
-    public String address, postalPattern = "[a-zA-Z]+[0-9]+[a-zA-Z]+[0-9]+[a-zA-Z]+[0-9]", addressPattern = "[0-9]+[a-zA-Z]";
+
+    public static String address, postalPattern = "[a-zA-Z]+[0-9]+[a-zA-Z]+[0-9]+[a-zA-Z]+[0-9]";
+    public String addressPattern = "[0-9]+[a-zA-Z]";
     public EditText addressText, postalText;
     boolean addressFlag;
 

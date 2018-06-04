@@ -15,7 +15,6 @@ import android.widget.DatePicker;
 import android.widget.Toast;
 
 import java.util.Calendar;
-import java.util.Date;
 
 public class RegisterBirthday extends AppCompatActivity {
 
@@ -39,7 +38,7 @@ public class RegisterBirthday extends AppCompatActivity {
     }
 
     private void configureNextButton() {
-        Button submitButton = (Button) findViewById(R.id.submitButton);
+        Button submitButton = findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,7 +48,7 @@ public class RegisterBirthday extends AppCompatActivity {
                 age = getAge(year,month, date, birthdayPicker.getYear(), birthdayPicker.getMonth()+1, birthdayPicker.getDayOfMonth());
                 if(oldEnough()){
                     startActivity(new Intent(RegisterBirthday.this, RegisterAddress.class));
-                };
+                }
             }
         });
     }

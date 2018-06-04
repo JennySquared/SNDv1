@@ -169,7 +169,7 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
         String qualifications = "";
         for(int i = 0;i < list.length; i++) {
             if(!(list[i].toString().equals("no"))) {
-                qualifications = qualifications + list[i] + " ";
+                qualifications = qualifications + list[i] + ", ";
             }
         }
 

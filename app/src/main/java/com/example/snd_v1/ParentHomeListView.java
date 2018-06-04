@@ -39,8 +39,8 @@ public class ParentHomeListView extends ArrayAdapter<String>{
         name[index]=n;
     }
     public void setDescription(String n, int index){
-        if(n.length()>20) {
-            description[index] = "\n"+ n.substring(0, 20) + "...";
+        if(n.length()>10) {
+            description[index] = "\n"+ n.substring(0, 10) + "...";
         }
         else{
             description[index] = n;
@@ -52,7 +52,19 @@ public class ParentHomeListView extends ArrayAdapter<String>{
     }
     public void setRating(String n, int index){
         rating[index]= n ;
-        rating[index] +=" Stars";
+        if(rating[index].contains("!!!")){
+            rating[index]= rating[index].substring(0, rating[index].indexOf("!!!"));
+            if(rating[index].length()>10) {
+                rating[index] = "\n"+ n.substring(0, 10) + "...";
+            }
+            else{
+                rating[index] = n;
+            }
+        }
+        else{
+            rating[index] +=" Stars";
+        }
+
     }
     public void setImgid(int n, int index){
         imgid[index]=n;

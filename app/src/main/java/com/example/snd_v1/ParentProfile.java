@@ -40,8 +40,14 @@ public class ParentProfile extends AppCompatActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                parent = dataSnapshot.child(id+"").getValue(Parent.class);
-                setText();
+//                parent = dataSnapshot.child(id+"").getValue(Parent.class);
+//                setText();
+                String name = dataSnapshot.child(id+"").child("name").getValue(String.class);
+                String age = dataSnapshot.child(id+"").child("age").getValue(String.class)+ "yrs old";
+                String addr =dataSnapshot.child(id+"").child("address").getValue(String.class);
+                String bio =dataSnapshot.child(id+"").child("bio").getValue(String.class);
+                String children =dataSnapshot.child(id+"").child("child").getValue(String.class);
+                setText(name, age, addr, bio, children);
 
             }
             @Override
@@ -50,43 +56,62 @@ public class ParentProfile extends AppCompatActivity {
             }
         });
     }
-    public void setText(){
-        name.setText(parent.getName());
-        age.setText("34 yrs old");
-        addr.setText(parent.getAddress());
-        bio.setText("Bio\n\n"+parent.getBio());
-        children.setText("Child\n\n"+parent.getChild());
+    public void setText(String n, String a, String add, String b, String c){
+//        name.setText(parent.getName());
+//        age.setText("34 yrs old");
+//        addr.setText(parent.getAddress());
+//        bio.setText("Bio\n\n"+parent.getBio());
+//        children.setText("Child\n\n"+parent.getChild());
+//        Toast.makeText(getApplicationContext(),parent.getAge(),Toast.LENGTH_SHORT).show();
+
+        name.setText(n);
+        age.setText(a);
+        addr.setText(add);
+        bio.setText(b);
+        children.setText("Child\n\n"+c);
         Toast.makeText(getApplicationContext(),parent.getAge(),Toast.LENGTH_SHORT).show();
+
+
     }
 
     public void Search(View view) {
         Intent intent = new Intent(this, ParentSearch.class);
         int id = (getIntent().getExtras().getInt("id"));
         intent.putExtra("id",id);
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
         startActivity(intent);
     }
     public void Profile(View view) {
         Intent intent = new Intent(this, ParentProfile.class);
         int id = (getIntent().getExtras().getInt("id"));
         intent.putExtra("id",id);
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
         startActivity(intent);
     }
     public void JobPost(View view) {
         Intent intent = new Intent(this, ParentPostJob.class);
         int id = (getIntent().getExtras().getInt("id"));
         intent.putExtra("id",id);
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
         startActivity(intent);
     }
     public void Home(View view) {
         Intent intent = new Intent(this, ParentHome.class);
         int id = (getIntent().getExtras().getInt("id"));
         intent.putExtra("id",id);
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
         startActivity(intent);
     }
     public void Edit(View view) {
         Intent intent = new Intent(this, ParentProfileEdit.class);
         int id = (getIntent().getExtras().getInt("id"));
         intent.putExtra("id",id);
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
         startActivity(intent);
     }
 }

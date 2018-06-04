@@ -14,7 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class BabysitterViewPProfile extends AppCompatActivity {
-
+    int tag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,10 +22,8 @@ public class BabysitterViewPProfile extends AppCompatActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference("Users/Parent");
-
-
-        final int tag = (getIntent().getExtras().getInt("p"));
-
+        final int t = (getIntent().getExtras().getInt("p"));
+        tag=t;
         myRef.addValueEventListener(new ValueEventListener(){
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -38,11 +36,11 @@ public class BabysitterViewPProfile extends AppCompatActivity {
                 TextView a = findViewById(R.id.age);
                 a.setText(age);
 
-                String address = "Child: " +dataSnapshot.child(tag+"").child("address").getValue(String.class);
+                String address = dataSnapshot.child(tag+"").child("address").getValue(String.class);
                 TextView add = findViewById(R.id.address);
                 add.setText(address);
 
-                String child = dataSnapshot.child(tag+"").child("child").getValue(String.class);
+                String child = "Child: " +dataSnapshot.child(tag+"").child("child").getValue(String.class);
                 TextView c = findViewById(R.id.child);
                 c.setText(child);
 
@@ -87,8 +85,20 @@ public class BabysitterViewPProfile extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void Logout(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
+    public void Request(View view) {
+        Intent intent = new Intent(this, BabysitterHome.class);
+        int id = (getIntent().getExtras().getInt("id"));
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Users/Parent");
+        myRef.child(1+"").child("job").child("date").setValue("0");
+        myRef.child(1+"").child("job").child("start").setValue("0");
+        myRef.child(1+"").child("job").child("end").setValue("0");
+        myRef.child(1+"").child("job").child("info").setValue(""+id);
+        Toast.makeText(getApplicationContext(),"You are booked!",Toast.LENGTH_SHORT).show();
+
+        intent.putExtra("id",id);
         startActivity(intent);
     }
+
+
 }

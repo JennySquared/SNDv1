@@ -61,7 +61,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/Search"
+            android:id="@+id/search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="137dp"
@@ -72,26 +72,36 @@
             android:text="Profile Search"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginRight="137dp"
-            android:layout_marginLeft="64dp" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/imageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="81dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="81dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="24dp"
             android:background="@android:color/transparent"
+            android:onClick="searchButton"
             android:tint="@android:color/darker_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/Search"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/search" />
+
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="352dp"
+            android:layout_height="347dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search" />
 
     </android.support.constraint.ConstraintLayout>
 

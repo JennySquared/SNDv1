@@ -46,7 +46,7 @@ public class BabysitterHome extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Toast.makeText(getApplicationContext(),(getIntent().getExtras().getInt("id"))+"",Toast.LENGTH_SHORT).show();
 
-                int num = Integer.parseInt(dataSnapshot.child("numParent").getValue(String.class));
+                int num = Integer.parseInt(dataSnapshot.child("numParents").getValue(String.class));
                 for(int i = 0; i<num; i++){
                     //int numJobs =dataSnapshot.child("Users").child("Parent").child(i+1+"").child("jobs").getValue(ArrayList.class).size();
                     jobPost job = dataSnapshot.child("Users").child("Parent").child(i+1+"").child("job").getValue(jobPost.class);
@@ -106,6 +106,8 @@ public class BabysitterHome extends AppCompatActivity {
 
                 Intent intent = new Intent(BabysitterHome.this, BabysitterViewPProfile.class);
                 intent.putExtra("p", position+1);
+                int id = (getIntent().getExtras().getInt("id"));
+                intent.putExtra("id",id);
                 startActivity(intent);
 
 

@@ -61,23 +61,41 @@ public class ParentProfileEdit extends AppCompatActivity {
     }
     public void Search(View view) {
         Intent intent = new Intent(this, ParentSearch.class);
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
+        int id = (getIntent().getExtras().getInt("id"));
+        intent.putExtra("id",id);
         startActivity(intent);
     }
     public void Profile(View view) {
         Intent intent = new Intent(this, ParentProfile.class);
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
+        int id = (getIntent().getExtras().getInt("id"));
+        intent.putExtra("id",id);
         startActivity(intent);
     }
     public void JobPost(View view) {
         Intent intent = new Intent(this, ParentPostJob.class);
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
+        int id = (getIntent().getExtras().getInt("id"));
+        intent.putExtra("id",id);
         startActivity(intent);
     }
     public void Home(View view) {
         Intent intent = new Intent(this, ParentHome.class);
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
+        int id = (getIntent().getExtras().getInt("id"));
+        intent.putExtra("id",id);
         startActivity(intent);
     }
 
     public void Save(View view) {
         Intent intent = new Intent(this, ParentProfile.class);
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
 
         parent.setName(name.getText().toString());
         parent.setAddress(addr.getText().toString());

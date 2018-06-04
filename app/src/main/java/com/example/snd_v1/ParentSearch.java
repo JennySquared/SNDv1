@@ -18,34 +18,61 @@ import java.util.ArrayList;
 
 public class ParentSearch extends AppCompatActivity {
     public EditText search;
+    final String [] num = new String [1];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_search);
         search = findViewById(R.id.Search);
+
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference myRef = database.getReference();
+//
+//        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                num[0] = dataSnapshot.child("numBabysitters").getValue(String.class);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
     }
     public void Search(View view) {
         Intent intent = new Intent(this, ParentSearch.class);
         int id = (getIntent().getExtras().getInt("id"));
         intent.putExtra("id",id);
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
         startActivity(intent);
     }
     public void Profile(View view) {
         Intent intent = new Intent(this, ParentProfile.class);
         int id = (getIntent().getExtras().getInt("id"));
         intent.putExtra("id",id);
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
         startActivity(intent);
     }
     public void JobPost(View view) {
         Intent intent = new Intent(this, ParentPostJob.class);
         int id = (getIntent().getExtras().getInt("id"));
         intent.putExtra("id",id);
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
         startActivity(intent);
     }
+
     public void Home(View view) {
+
         Intent intent = new Intent(this, ParentHome.class);
         int id = (getIntent().getExtras().getInt("id"));
         intent.putExtra("id",id);
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
+//        intent.putExtra("n",num[0]);
         startActivity(intent);
     }
 
@@ -59,34 +86,34 @@ public class ParentSearch extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         //Toast.makeText(getApplicationContext(),"Successfully Logged In",Toast.LENGTH_SHORT).show();
 
-                        for(int i=0; i<(int)dataSnapshot.getChildrenCount();i++) {
+                        for(int i=0; i<(int)dataSnapshot.child("Babysitter").getChildrenCount();i++) {
                             if((dataSnapshot.child("Babysitter").child(i+1+"").child("name").getValue(String.class)).contains(text)){
                                 counter.add(i+1);
                             }
-                            else if(text.contains(dataSnapshot.child("Babysitter").child(i+1+"").child("age").getValue(String.class))){
+                            else if((dataSnapshot.child("Babysitter").child(i+1+"").child("age").getValue(String.class)).contains(text)){
                                 counter.add(i+1);
                             }
-                            else if(text.contains(dataSnapshot.child("Babysitter").child(i+1+"").child("bio").getValue(String.class))){
+                            else if((dataSnapshot.child("Babysitter").child(i+1+"").child("bio").getValue(String.class)).contains(text)){
                                 counter.add(i+1);
                             }
-                            else if(text.contains(dataSnapshot.child("Babysitter").child(i+1+"").child("experience").getValue(String.class))){
+                            else if((dataSnapshot.child("Babysitter").child(i+1+"").child("experience").getValue(String.class)).contains(text)){
                                 counter.add(i+1);
                             }
 //                            else if(text.contains(dataSnapshot.child("Babysitter").child(i+1+"").child("gender").getValue(String.class))){
 //                                counter.add(i+1);
  //                           }
-                            else if(text.contains(dataSnapshot.child("Babysitter").child(i+1+"").child("address").getValue(String.class))){
+                            else if((dataSnapshot.child("Babysitter").child(i+1+"").child("address").getValue(String.class)).contains(text)){
                                 counter.add(i+1);
                             }
-                            else if(text.contains(dataSnapshot.child("Babysitter").child(i+1+"").child("qualifications").getValue(String.class))){
+                            else if((dataSnapshot.child("Babysitter").child(i+1+"").child("qualifications").getValue(String.class)).contains(text)){
                                 counter.add(i+1);
                             }
-                            else if(text.contains(dataSnapshot.child("Babysitter").child(i+1+"").child("rating").getValue(String.class))){
+                            else if((dataSnapshot.child("Babysitter").child(i+1+"").child("ratings").getValue(String.class)).contains(text)){
                                 counter.add(i+1);
                             }
                         }
                         if(counter.size()==0){
-                            Toast.makeText(getApplicationContext(),"Sorry no results found HAHA SCREW U WHERES MICHEAL????",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(),"Sorry no results found.",Toast.LENGTH_LONG).show();
                         }
 
                         Toast.makeText(getApplicationContext(),""+counter.size(),Toast.LENGTH_LONG).show();
@@ -103,7 +130,7 @@ public class ParentSearch extends AppCompatActivity {
                             description[i] = dataSnapshot.child("Babysitter").child(counter.get(i)+"").child("bio").getValue(String.class);
                             imgid[i] = R.drawable.logo;
                             address[i] = dataSnapshot.child("Babysitter").child(counter.get(i)+"").child("address").getValue(String.class);
-                            rating[i] = dataSnapshot.child("Babysitter").child(counter.get(i)+"").child("rating").getValue(String.class);
+                            rating[i] = dataSnapshot.child("Babysitter").child(counter.get(i)+"").child("ratings").getValue(String.class);
                         }
                         listView(name, description,imgid,address,rating,list);
 
@@ -119,6 +146,12 @@ public class ParentSearch extends AppCompatActivity {
 
     public void listView(String[] n, String[] de, Integer[] i,String[] a,String[] r, ListView list ){
         final ParentHomeListView liview = new ParentHomeListView(this, n,de,i,a,r);
+        for(int j=0; j<n.length;j++) {
+            liview.setName(n[j], j);
+            liview.setDescription(de[j], j);
+            liview.setAddress(a[j], j);
+            liview.setRating(r[j], j);
+        }
         list.setAdapter(liview);
     }
 }

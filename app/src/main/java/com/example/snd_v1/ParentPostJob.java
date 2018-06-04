@@ -69,24 +69,32 @@ public class ParentPostJob extends AppCompatActivity {
         Intent intent = new Intent(this, ParentSearch.class);
         int id = (getIntent().getExtras().getInt("id"));
         intent.putExtra("id",id);
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
         startActivity(intent);
     }
     public void Profile(View view) {
         Intent intent = new Intent(this, ParentProfile.class);
         int id = (getIntent().getExtras().getInt("id"));
         intent.putExtra("id",id);
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
         startActivity(intent);
     }
     public void JobPost(View view) {
         Intent intent = new Intent(this, ParentPostJob.class);
         int id = (getIntent().getExtras().getInt("id"));
         intent.putExtra("id",id);
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
         startActivity(intent);
     }
     public void Home(View view) {
         Intent intent = new Intent(this, ParentHome.class);
         int id = (getIntent().getExtras().getInt("id"));
         intent.putExtra("id",id);
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
         startActivity(intent);
     }
 }

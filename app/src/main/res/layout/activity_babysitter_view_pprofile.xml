@@ -151,12 +151,13 @@
             app:layout_constraintTop_toBottomOf="@+id/bio" />
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/request"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="10dp"
+            android:onClick="Request"
             android:text="I Want to do this Job!"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

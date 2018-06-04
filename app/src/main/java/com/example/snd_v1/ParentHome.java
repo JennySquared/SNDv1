@@ -41,6 +41,7 @@ public class ParentHome extends AppCompatActivity {
         list = (ListView) findViewById(R.id.list);
         final ParentHomeListView liview = new ParentHomeListView(this, name,description,imgid,address,rating);
         list.setAdapter(liview);
+        final int id = (getIntent().getExtras().getInt("id"));
 
         DatabaseReference Ref = database.getReference("Users");
 
@@ -48,7 +49,12 @@ public class ParentHome extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Toast.makeText(getApplicationContext(),(getIntent().getExtras().getInt("id"))+"",Toast.LENGTH_SHORT).show();
-
+                if(dataSnapshot.child("Parent").child(""+id).child("job").child("info").getValue(String.class).compareTo("0")!=0&&dataSnapshot.child("Parent").child(""+id).child("job").child("date").getValue(String.class).equals("0")){
+                    Toast.makeText(getApplicationContext(),"Your booking is booked by "
+                            +dataSnapshot.child("Babysitter").child(""+Integer.parseInt(dataSnapshot.child("Parent").
+                            child(""+id).child("job").child("info").getValue(String.class))).child("name").
+                            getValue(String.class),Toast.LENGTH_SHORT).show();
+                }
 
                 for(int i=0; i<(int)dataSnapshot.child("Babysitter").getChildrenCount();i++) {
                     liview.setName(dataSnapshot.child("Babysitter").child(i+1+"").child("name").getValue(String.class), i);
@@ -89,11 +95,15 @@ public class ParentHome extends AppCompatActivity {
         Intent intent = new Intent(this, ParentSearch.class);
         int id = (getIntent().getExtras().getInt("id"));
         intent.putExtra("id",id);
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
         startActivity(intent);
     }
     public void Search(View view) {
         Intent intent = new Intent(this, ParentSearch.class);
         int id = (getIntent().getExtras().getInt("id"));
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
         intent.putExtra("id",id);
         startActivity(intent);
     }
@@ -101,18 +111,24 @@ public class ParentHome extends AppCompatActivity {
         Intent intent = new Intent(this, ParentProfile.class);
         int id = (getIntent().getExtras().getInt("id"));
         intent.putExtra("id",id);
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
         startActivity(intent);
     }
     public void JobPost(View view) {
         Intent intent = new Intent(this, ParentPostJob.class);
         int id = (getIntent().getExtras().getInt("id"));
         intent.putExtra("id",id);
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
         startActivity(intent);
     }
     public void Home(View view) {
         Intent intent = new Intent(this, ParentHome.class);
         int id = (getIntent().getExtras().getInt("id"));
         intent.putExtra("id",id);
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
         startActivity(intent);
     }
 

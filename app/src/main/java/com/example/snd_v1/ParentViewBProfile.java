@@ -33,15 +33,15 @@ public class ParentViewBProfile extends AppCompatActivity {
                 String age = dataSnapshot.child(tag+"").child("age").getValue(String.class);
                 String qualifications = "\n\nQualifications:\n"+ dataSnapshot.child(tag+"").child("qualifications").getValue(String.class);
                 String bio = "\n\nBio:\n"+ dataSnapshot.child(tag+"").child("bio").getValue(String.class);
-                String ratings = dataSnapshot.child(tag+"").child("rating").getValue(String.class);
+                String ratings = dataSnapshot.child(tag+"").child("ratings").getValue(String.class);
                 TextView n = findViewById(R.id.name);
                 n.setText(name);
                 TextView a = findViewById(R.id.age);
-                a.setText(age);
+                a.setText(age+ " yrs old");
                 TextView r = findViewById(R.id.address);
-                r.setText(ratings);
+                r.setText(ratings+" Stars");
                 TextView pc = findViewById(R.id.child);
-                pc.setText(postalCode);
+                pc.setText(postalCode.substring(postalCode.indexOf(", ")+1));
                 TextView b = findViewById(R.id.bio);
                 b.setText(bio);
                 TextView q = findViewById(R.id.job);
@@ -62,23 +62,43 @@ public class ParentViewBProfile extends AppCompatActivity {
 
     public void Search(View view) {
         Intent intent = new Intent(this, ParentSearch.class);
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
+        int id = (getIntent().getExtras().getInt("id"));
+        intent.putExtra("id",id);
         startActivity(intent);
     }
     public void Profile(View view) {
         Intent intent = new Intent(this, ParentProfile.class);
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
+        int id = (getIntent().getExtras().getInt("id"));
+        intent.putExtra("id",id);
         startActivity(intent);
     }
     public void JobPost(View view) {
         Intent intent = new Intent(this, ParentPostJob.class);
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
+        int id = (getIntent().getExtras().getInt("id"));
+        intent.putExtra("id",id);
         startActivity(intent);
     }
     public void Home(View view) {
         Intent intent = new Intent(this, ParentHome.class);
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
+        int id = (getIntent().getExtras().getInt("id"));
+        intent.putExtra("id",id);
         startActivity(intent);
     }
 
     public void Logout(View view) {
         Intent intent = new Intent(this, MainActivity.class);
+        String numBB = (getIntent().getExtras().getString("n"));
+        intent.putExtra("n",numBB);
+        int id = (getIntent().getExtras().getInt("id"));
+        intent.putExtra("id",id);
         startActivity(intent);
     }
 }

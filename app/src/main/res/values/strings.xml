@@ -6,7 +6,7 @@
     <string name="title_activity_search_parent">SearchActivityParent</string>
     <string name="Logout">LOGOUT</string>
     <string name="Post_a_Job">Post a Job</string>
-    <string name="Date">Date</string>
+    <string name="Date">Date (mm/dd/yyyy)</string>
     <string name="Time_Start">Time Start</string>
     <string name="Time_End">Time End</string>
     <string name="Additional_Info">Additional Info</string>

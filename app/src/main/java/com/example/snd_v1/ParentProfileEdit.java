@@ -29,6 +29,7 @@ import java.io.InputStream;
 public class ParentProfileEdit extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Parent parent = new Parent();
     EditText name,addr,bio;
+    public String childGender, childAgeRange;
     int h=0;
     DatePicker age;
     //age, addr, bio;
@@ -48,10 +49,8 @@ public class ParentProfileEdit extends AppCompatActivity implements AdapterView.
         h=id;
 
         name = findViewById(R.id.name);
-        //age = findViewById(R.id.age);
         addr = findViewById(R.id.address);
         bio = findViewById(R.id.bio);
-        //children = findViewById(R.id.child);
 
         profileImageView = findViewById(R.id.profileImageView);
 
@@ -61,12 +60,14 @@ public class ParentProfileEdit extends AppCompatActivity implements AdapterView.
         childGenderDrop.setAdapter(adapter2);
         childGenderDrop.setPrompt("Select");
         childGenderDrop.setOnItemSelectedListener(this);
+        setChildGender(childGenderDrop.getSelectedItem().toString());
 
         Spinner childAgeDrop = findViewById(R.id.childAgeDrop);
         ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.childAgeDrop, android.R.layout.simple_spinner_item);
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         childAgeDrop.setAdapter(adapter3);
         childAgeDrop.setOnItemSelectedListener(this);
+        setChildAge(childAgeDrop.getSelectedItem().toString());
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -124,6 +125,14 @@ public class ParentProfileEdit extends AppCompatActivity implements AdapterView.
         return true;
     }
 
+    public void setChildGender(String g){
+        childGender = g;
+    }
+
+    public void setChildAge(String ageRange){
+        childAgeRange = ageRange;
+    }
+
     public void setText(){
         name.setText(parent.getName());
         //age.setText("34 yrs old");
@@ -175,7 +184,7 @@ public class ParentProfileEdit extends AppCompatActivity implements AdapterView.
             parent.setAddress(addr.getText().toString());
         }
         parent.setBio(bio.getText().toString());
-
+        parent.setChild(childAgeRange+" yr old "+childGender);
         myRef.child(h+"").setValue(parent);
 
         startActivity(intent);

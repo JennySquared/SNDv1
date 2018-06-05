@@ -16,8 +16,17 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+/*
+   Title: Babysitter Home
+   Author: Jenny Shen
+   Date: March 20, 2018
+   Description: Home Screen when Babysitter first logs in, displays the listview of parent jobs
+*/
 public class BabysitterHome extends AppCompatActivity {
-    public static int tag =-1;
+
+    public static int tag =-1;//stores Babysitter id
+
+    //Arraylist stores an attribute of every job post
     ArrayList<String> name = new ArrayList<>();
     ArrayList<String> date = new ArrayList<>();
     ArrayList<String> tStart = new ArrayList<>();
@@ -25,14 +34,13 @@ public class BabysitterHome extends AppCompatActivity {
     ArrayList<String> tEnd = new ArrayList<>();
     ArrayList<String> addInfo = new ArrayList<>();
 
-
-
+    //Main Method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_babysitter_home);
 
-        final ListView list= (ListView)findViewById(R.id.l);;
+        final ListView list= (ListView)findViewById(R.id.l);//listview in the GUI
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 

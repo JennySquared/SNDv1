@@ -32,7 +32,6 @@ public class BabysitterHome extends AppCompatActivity {
     ArrayList<String> tStart = new ArrayList<>();
     ArrayList<Integer> imgid = new ArrayList<>();
     ArrayList<String> tEnd = new ArrayList<>();
-    ArrayList<String> addInfo = new ArrayList<>();
 
     //Main Method
     @Override
@@ -42,34 +41,20 @@ public class BabysitterHome extends AppCompatActivity {
 
         final ListView list= (ListView)findViewById(R.id.l);//listview in the GUI
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();//initialize database
+        DatabaseReference Ref = database.getReference();//retrieve database reference
 
-//        final BabysitterHomeListView liview = new BabysitterHomeListView(this, name,date,imgid,tStart,tEnd);
-//        list.setAdapter(liview);
-
-        DatabaseReference Ref = database.getReference();
-
+        //Action Listener for retrieving data from the database
         Ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Toast.makeText(getApplicationContext(),(getIntent().getExtras().getInt("id"))+"",Toast.LENGTH_SHORT).show();
 
-                int num = Integer.parseInt(dataSnapshot.child("numParents").getValue(String.class));
+                int num = Integer.parseInt(dataSnapshot.child("numParents").getValue(String.class));//number of parents in the system
+
                 for(int i = 0; i<num; i++){
-                    //int numJobs =dataSnapshot.child("Users").child("Parent").child(i+1+"").child("jobs").getValue(ArrayList.class).size();
                     jobPost job = dataSnapshot.child("Users").child("Parent").child(i+1+"").child("job").getValue(jobPost.class);
 
-//                        for(int j = 0; j<10;j++){
-//                            date.add(jobs[j].getDate());
-//                            tStart.add(jobs[j].getStart());
-//                            tEnd.add(jobs[j].getEnd());
-//                            name.add(dataSnapshot.child("Users").child("Parent").child(i+1+"").child("Name").getValue(String.class));
-//                            imgid.add(R.drawable.logo);
-//
-//                            if(jobs[j+1]==null){
-//                                break;
-//                            }
-//                        }
                     if(job.getEnd().equals("0")){
 
                     }
@@ -109,8 +94,6 @@ public class BabysitterHome extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 tag=position;
-
-                //Toast.makeText(getApplicationContext(),position+"",Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(BabysitterHome.this, BabysitterViewPProfile.class);
                 intent.putExtra("p", position+1);

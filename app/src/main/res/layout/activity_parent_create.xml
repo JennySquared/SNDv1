@@ -27,21 +27,21 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/createView3"
-                android:layout_width="match_parent"
-                android:layout_height="71dp"
-                android:layout_marginTop="16dp"
-                android:gravity="center"
-                android:text="@string/c_createYourProfile"
-                android:textSize="15pt"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
                 android:id="@+id/profileView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/c_profilepic"
                 android:textSize="8pt" />
+
+            <TextView
+                android:id="@+id/createView3"
+                android:layout_width="match_parent"
+                android:layout_height="95dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="@string/c_createYourProfile"
+                android:textSize="15pt"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/profileImageView"
@@ -79,7 +79,7 @@
                 android:id="@+id/child1View"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:text="@string/c_child1"
+                android:text="@string/c_myChild"
                 android:textSize="8pt"
                 android:textStyle="bold" />
 
@@ -121,12 +121,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/button_addChild" />
 
             <Button
                 android:id="@+id/button2"

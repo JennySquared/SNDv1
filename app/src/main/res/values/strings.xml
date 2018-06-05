@@ -55,7 +55,7 @@
     <string name="c_bio">Bio:</string>
     <string name="c_ageRange">Age Range:</string>
     <string name="c_boutme">About me</string>
-    <string name="c_child1">Child 1</string>
+    <string name="c_myChild">My Child</string>
     <string name="c_gender">Gender:</string>
     <string name="button_addChild">Add Child</string>
     <string name="c_qualifications">Qualifications: (Check all that apply)</string>
@@ -71,5 +71,9 @@
     <string name="desc">none</string>
     <string name="Save">Save</string>
     <string name="title_activity_babysitter_view_pprofile">BabysitterViewPProfile</string>
+    <string name="age">Age</string>
+    <string name="my_profile">My Profile</string>
+    <string name="upload">Upload</string>
+    <string name="save">SAVE</string>
 
 </resources>

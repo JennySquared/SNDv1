@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -26,11 +27,13 @@ import java.io.InputStream;
 
 public class BabysitterProfileEdit extends AppCompatActivity {
     Parent parent = new Parent();
-    EditText name,addr,bio;
+    EditText name,addr,bio, otherEdit;
     int h=0;
 //    DatePicker age;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("Users/Babysitter");
+    CheckBox firstAidCheck, babysittingCertificateCheck, cprCheck, policeCheck, otherCheck;
+    String list[] = {"no","no","no","no","no"};
 
     public static final int IMAGE_GALLERY_REQUEST = 20;
     private ImageView profileImageView;
@@ -45,6 +48,13 @@ public class BabysitterProfileEdit extends AppCompatActivity {
         name = findViewById(R.id.editText);
         addr = findViewById(R.id.editText2);
         bio = findViewById(R.id.editText4);
+
+        firstAidCheck = findViewById(R.id.fistAidCheck);
+        babysittingCertificateCheck = findViewById(R.id.babysittingCertificateCheck);
+        cprCheck = findViewById(R.id.cprCheck);
+        policeCheck = findViewById(R.id.policeCheck);
+        otherCheck = findViewById(R.id.otherCheck);
+        otherEdit = findViewById(R.id.otherEdit);
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -121,6 +131,57 @@ public class BabysitterProfileEdit extends AppCompatActivity {
             }
         }
     }
+
+    public void onCheckboxClicked(View view) {
+        // Is the view now checked?
+        boolean checked = ((CheckBox)view).isChecked();
+
+        switch (view.getId()) {
+            case R.id.fistAidCheck:
+                if(checked)
+                    list[0] = "First Aid";
+                else
+                    list[0] = "no";
+                break;
+            case R.id.babysittingCertificateCheck:
+                if(checked)
+                    list [1] = "Babysitting Certificate";
+                else
+                    list[1] = "no";
+                break;
+            case R.id.cprCheck:
+                if(checked)
+                    list[2] = "CPR";
+                else
+                    list[2] = "no";
+                break;
+            case R.id.policeCheck:
+                if(checked)
+                    list[3] = "Police Check";
+                else
+                    list[3] = "no";
+                break;
+            case R.id.otherCheck:
+                if(checked) {
+                    if (!otherCheck(otherEdit.getText().toString())) {
+                        otherEdit.setError("Please input your qualification");
+                    }
+                    list[4] = otherEdit.getText().toString();
+                }
+                else
+                    list[4] = "no";
+        }
+    }
+
+    public boolean otherCheck(String entry){
+        if(entry.matches("")){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
     public void Search(View view) {
         Intent intent = new Intent(this, BabysitterSearch.class);
         int id = (getIntent().getExtras().getInt("id"));
@@ -144,7 +205,14 @@ public class BabysitterProfileEdit extends AppCompatActivity {
         Intent intent = new Intent(this, BabysitterProfile.class);
         int id = (getIntent().getExtras().getInt("id"));
         intent.putExtra("id",id);
+        String qualifications = "";
+        for(int i = 0;i < list.length; i++) {
+            if(!(list[i].toString().equals("no"))) {
+                qualifications = qualifications + list[i] + ", ";
+            }
+        }
 
+        Toast.makeText(this,qualifications, Toast.LENGTH_LONG).show();
 
         myRef.child(h+"").child("name").setValue(name.getText().toString());
         myRef.child(h+"").child("address").setValue(addr.getText().toString());

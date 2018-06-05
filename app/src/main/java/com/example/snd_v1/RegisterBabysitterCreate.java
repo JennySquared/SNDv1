@@ -117,8 +117,6 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
         boolean checked = ((CheckBox)view).isChecked();
 
         switch (view.getId()) {
-            default:
-                System.out.println("Hi");
             case R.id.fistAidCheck:
                 if(checked)
                     list[0] = "First Aid";

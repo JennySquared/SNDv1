@@ -60,7 +60,7 @@ public class BabysitterHome extends AppCompatActivity {
                     }
                     else{
                         date.add(job.getDate());
-                        tStart.add("Time:    "+ job.getStart() + "    to   ");
+                        tStart.add("Time:    "+ job.getStart() + " to   ");
                         tEnd.add(job.getEnd());
                         name.add(dataSnapshot.child("Users").child("Parent").child(i+1+"").child("name").getValue(String.class));
                         imgid.add(R.drawable.logo);

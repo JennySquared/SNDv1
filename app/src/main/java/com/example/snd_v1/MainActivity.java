@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                     for(int i = 0; i<(int)dataSnapshot.child("Parent").getChildrenCount();i++){
                         if(username.equals(dataSnapshot.child("Parent").child(i+1+"").child("email").getValue(String.class))){
                             if(pass.equals(dataSnapshot.child("Parent").child(i+1+"").child("password").getValue(String.class))){
-                                Toast.makeText(getApplicationContext(),"Parent",Toast.LENGTH_SHORT).show();
+                              //  Toast.makeText(getApplicationContext(),"Parent",Toast.LENGTH_SHORT).show();
                                 pLogin(v, i+1);
                             }
                         }
@@ -105,12 +105,12 @@ public class MainActivity extends AppCompatActivity {
                     for(int i = 0; i<(int)dataSnapshot.child("Babysitter").getChildrenCount();i++){
                     if(username.equals(dataSnapshot.child("Babysitter").child(i+1+"").child("email").getValue(String.class))){
                         if(pass.equals(dataSnapshot.child("Babysitter").child(i+1+"").child("password").getValue(String.class))){
-                            Toast.makeText(getApplicationContext(),"babysitter",Toast.LENGTH_SHORT).show();
+                          //  Toast.makeText(getApplicationContext(),"babysitter",Toast.LENGTH_SHORT).show();
                             bbLogin(v, i+1);
                         }
                     }
                 }
-                Toast.makeText(getApplicationContext(),"WRONG",Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(getApplicationContext(),"Username or Password Invalid",Toast.LENGTH_SHORT).show();
             }
 
             @Override

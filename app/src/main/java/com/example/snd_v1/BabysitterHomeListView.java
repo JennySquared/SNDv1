@@ -44,10 +44,10 @@ public class BabysitterHomeListView extends ArrayAdapter<String> {
     }
     public void setTStart(String n, int index){
 
-        tStart[index]="Time: "+n+" to ";
+        tStart[index]="Time: "+n+"-  ";
     }
     public void setTEnd(String n, int index){
-        tEnd[index]= n ;
+        tEnd[index]= "  "+n ;
 
     }
     public void setImgid(int n, int index){

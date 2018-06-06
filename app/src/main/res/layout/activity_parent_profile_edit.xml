@@ -74,6 +74,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
 
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -102,9 +103,10 @@
                     android:layout_marginStart="16dp"
                     android:contentDescription="@string/profileimage"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:srcCompat="@mipmap/ic_launcher_round"
-                    tools:layout_editor_absoluteY="81dp" />
+                    tools:layout_editor_absoluteY="0dp" />
 
                 <Button
                     android:id="@+id/uploadButton"
@@ -140,7 +142,7 @@
                 <EditText
                     android:id="@+id/age"
                     android:layout_width="match_parent"
-                    android:layout_height="16dp"
+                    android:layout_height="67dp"
                     android:ems="10"
                     android:hint="@string/age"
                     android:inputType="number"
@@ -150,23 +152,23 @@
 
                 <EditText
                     android:id="@+id/address"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="102dp"
-                    android:layout_marginLeft="103dp"
-                    android:layout_marginRight="102dp"
-                    android:layout_marginStart="103dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginStart="16dp"
                     android:ems="10"
                     android:hint="@string/address_hint"
                     android:inputType="textPersonName"
                     app:layout_constraintBottom_toTopOf="@+id/bio"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <EditText
                     android:id="@+id/bio"
-                    android:layout_width="309dp"
+                    android:layout_width="match_parent"
                     android:layout_height="67dp"
                     android:layout_marginBottom="16dp"
                     android:layout_marginEnd="16dp"
@@ -196,6 +198,12 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent" />
 
+                <TextView
+                    android:id="@+id/childGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/c_gender" />
+
                 <Spinner
                     android:id="@+id/genderDrop"
                     android:layout_width="match_parent"
@@ -208,6 +216,12 @@
                     app:layout_constraintBottom_toTopOf="@+id/childAgeDrop"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/childAgeRange"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/c_ageRange" />
 
                 <Spinner
                     android:id="@+id/childAgeDrop"
@@ -240,6 +254,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.396" />
+
             </LinearLayout>
         </ScrollView>
 

@@ -48,7 +48,7 @@ public class ParentHome extends AppCompatActivity {
         Ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Toast.makeText(getApplicationContext(),(getIntent().getExtras().getInt("id"))+"",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),(getIntent().getExtras().getInt("id"))+"",Toast.LENGTH_SHORT).show();
                 if(dataSnapshot.child("Parent").child(""+id).child("job").child("info").getValue(String.class).compareTo("0")!=0&&dataSnapshot.child("Parent").child(""+id).child("job").child("date").getValue(String.class).equals("0")){
                     Toast.makeText(getApplicationContext(),"Your booking is booked by "
                             +dataSnapshot.child("Babysitter").child(""+Integer.parseInt(dataSnapshot.child("Parent").

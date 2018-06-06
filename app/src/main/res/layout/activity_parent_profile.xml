@@ -136,7 +136,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/address" />
+            app:layout_constraintTop_toBottomOf="@+id/address"
+            android:layout_marginRight="155dp"
+            android:layout_marginLeft="143dp" />
 
         <TextView
             android:id="@+id/bio"

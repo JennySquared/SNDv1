@@ -73,7 +73,7 @@ public class BabysitterSearch extends AppCompatActivity {
                         }
                     }
                     if (counter.size() == 0) {
-                        Toast.makeText(getApplicationContext(), "Sorry no results found., Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Sorry no results found.", Toast.LENGTH_LONG).show();
                     }
 
                     Toast.makeText(getApplicationContext(), "" + counter.size(), Toast.LENGTH_LONG).show();

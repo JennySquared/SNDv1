@@ -54,48 +54,50 @@ public class BabysitterSearch extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //Toast.makeText(getApplicationContext(),"Successfully Logged In",Toast.LENGTH_SHORT).show();
-
-                for(int i=0; i<(int)dataSnapshot.child("Parent").getChildrenCount();i++) {
-                    if((dataSnapshot.child("Parent").child(i+1+"").child("name").getValue(String.class)).contains(text)){
-                        counter.add(i+1);
-                    }
-                    else if((dataSnapshot.child("Parent").child(i+1+"").child("age").getValue(String.class)).contains(text)){
-                        counter.add(i+1);
-                    }
-                    else if((dataSnapshot.child("Parent").child(i+1+"").child("bio").getValue(String.class)).contains(text)){
-                        counter.add(i+1);
-                    }
-                    else if((dataSnapshot.child("Parent").child(i+1+"").child("child").getValue(String.class)).contains(text)){
-                        counter.add(i+1);
-                    }
+                try {
+                    for (int i = 0; i < (int) dataSnapshot.child("Parent").getChildrenCount(); i++) {
+                        if ((dataSnapshot.child("Parent").child(i + 1 + "").child("name").getValue(String.class)).contains(text)) {
+                            counter.add(i + 1);
+                        } else if ((dataSnapshot.child("Parent").child(i + 1 + "").child("age").getValue(String.class)).contains(text)) {
+                            counter.add(i + 1);
+                        } else if ((dataSnapshot.child("Parent").child(i + 1 + "").child("bio").getValue(String.class)).contains(text)) {
+                            counter.add(i + 1);
+                        } else if ((dataSnapshot.child("Parent").child(i + 1 + "").child("child").getValue(String.class)).contains(text)) {
+                            counter.add(i + 1);
+                        }
 //                            else if(text.contains(dataSnapshot.child("Babysitter").child(i+1+"").child("gender").getValue(String.class))){
 //                                counter.add(i+1);
-                    //                           }
-                    else if((dataSnapshot.child("Parent").child(i+1+"").child("address").getValue(String.class)).contains(text)){
-                        counter.add(i+1);
+                        //                           }
+                        else if ((dataSnapshot.child("Parent").child(i + 1 + "").child("address").getValue(String.class)).contains(text)) {
+                            counter.add(i + 1);
+                        }
                     }
-                }
-                if(counter.size()==0){
-                    Toast.makeText(getApplicationContext(),"Sorry no results found.",Toast.LENGTH_LONG).show();
-                }
+                    if (counter.size() == 0) {
+                        Toast.makeText(getApplicationContext(), "Sorry no results found., Toast.LENGTH_LONG).show();
+                    }
 
-                Toast.makeText(getApplicationContext(),""+counter.size(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "" + counter.size(), Toast.LENGTH_LONG).show();
 
-                ListView list = (ListView) findViewById(R.id.list);
-                String[] name = new String[counter.size()];
-                String[] description = new String[counter.size()];
-                Integer[] imgid = new Integer[counter.size()];
-                String[] address = new String[counter.size()];
-                String[] rating = new String[counter.size()];
+                    ListView list = (ListView) findViewById(R.id.list);
+                    String[] name = new String[counter.size()];
+                    String[] description = new String[counter.size()];
+                    Integer[] imgid = new Integer[counter.size()];
+                    String[] address = new String[counter.size()];
+                    String[] rating = new String[counter.size()];
 
-                for(int i=0;i<counter.size();i++){
-                    name[i] = dataSnapshot.child("Parent").child(counter.get(i)+"").child("name").getValue(String.class);
-                    description[i] = dataSnapshot.child("Parent").child(counter.get(i)+"").child("bio").getValue(String.class);
-                    imgid[i] = R.drawable.logo;
-                    address[i] = dataSnapshot.child("Parent").child(counter.get(i)+"").child("address").getValue(String.class);
-                    rating[i] = dataSnapshot.child("Parent").child(counter.get(i)+"").child("child").getValue(String.class)+"!!!";
+                    for (int i = 0; i < counter.size(); i++) {
+                        name[i] = dataSnapshot.child("Parent").child(counter.get(i) + "").child("name").getValue(String.class);
+                        description[i] = dataSnapshot.child("Parent").child(counter.get(i) + "").child("bio").getValue(String.class);
+                        imgid[i] = R.drawable.logo;
+                        address[i] = dataSnapshot.child("Parent").child(counter.get(i) + "").child("address").getValue(String.class);
+                        rating[i] = dataSnapshot.child("Parent").child(counter.get(i) + "").child("child").getValue(String.class) + "!!!";
+                    }
+                    listView(name, description, imgid, address, rating, list);
                 }
-                listView(name, description,imgid,address,rating,list);
+                catch(Exception e){
+                    Toast.makeText(getApplicationContext(), "Sorry no results found. e", Toast.LENGTH_LONG).show();
+
+                }
 
             }
 

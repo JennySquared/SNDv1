@@ -43,17 +43,24 @@ public class ParentHome extends AppCompatActivity {
         list.setAdapter(liview);
         final int id = (getIntent().getExtras().getInt("id"));
 
-        DatabaseReference Ref = database.getReference("Users");
+        final DatabaseReference Ref = database.getReference("Users");
 
         Ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //Toast.makeText(getApplicationContext(),(getIntent().getExtras().getInt("id"))+"",Toast.LENGTH_SHORT).show();
+
                 if(dataSnapshot.child("Parent").child(""+id).child("job").child("info").getValue(String.class).compareTo("0")!=0&&dataSnapshot.child("Parent").child(""+id).child("job").child("date").getValue(String.class).equals("0")){
                     Toast.makeText(getApplicationContext(),"Your booking is booked by "
                             +dataSnapshot.child("Babysitter").child(""+Integer.parseInt(dataSnapshot.child("Parent").
                             child(""+id).child("job").child("info").getValue(String.class))).child("name").
                             getValue(String.class),Toast.LENGTH_SHORT).show();
+                    int id = (getIntent().getExtras().getInt("id"));
+                    Ref.child("Parent").child("id").child("job").child("date").setValue("0");
+                    Ref.child("Parent").child("id").child("job").child("start").setValue("0");
+                    Ref.child("Parent").child("id").child("job").child("end").setValue("0");
+                    Ref.child("Parent").child("id").child("job").child("info").setValue("0");
+
                 }
 
                 for(int i=0; i<(int)dataSnapshot.child("Babysitter").getChildrenCount();i++) {
@@ -76,21 +83,15 @@ public class ParentHome extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 tag=position;
 
-                //Toast.makeText(getApplicationContext(),position+"",Toast.LENGTH_SHORT).show();
-
                 Intent intent = new Intent(ParentHome.this, ParentViewBProfile.class);
                 intent.putExtra("p", position+1);
                 startActivity(intent);
-
 
             }
      });
 
     }
 
-//    public void setNum(int n){
-//        num = n;
-//    }
     public void Filter(View view) {
         Intent intent = new Intent(this, ParentSearch.class);
         int id = (getIntent().getExtras().getInt("id"));

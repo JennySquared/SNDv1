@@ -36,7 +36,7 @@ import javax.xml.datatype.Duration;
 public class RegisterBabysitterCreate extends AppCompatActivity {
     public static final int IMAGE_GALLERY_REQUEST = 20;
     private ImageView profileImageView;
-    public static Bitmap image;;
+    public static Bitmap image;
     public EditText babyBioTextBox, experienceEdit, otherEdit;
     public static String babyBioText, experience;
     CheckBox firstAidCheck, babysittingCertificateCheck, cprCheck, policeCheck, otherCheck;

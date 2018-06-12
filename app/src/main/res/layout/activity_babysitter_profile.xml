@@ -70,6 +70,7 @@
             android:layout_marginEnd="148dp"
             android:layout_marginStart="148dp"
             android:layout_marginTop="16dp"
+            android:background="@drawable/logo"
             android:contentDescription="@string/profileimage"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -40,7 +40,7 @@ public class ParentHomeListView extends ArrayAdapter<String>{
     }
     public void setDescription(String n, int index){
         if(n.length()>10) {
-            description[index] = "\n"+ n.substring(0, 10) + "...";
+            description[index] = ""+ n.substring(0, 10) + "...";
         }
         else{
             description[index] = n;

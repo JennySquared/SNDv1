@@ -29,12 +29,22 @@ public class ParentHome extends AppCompatActivity {
         setContentView(R.layout.activity_parent_home);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
+        String numBB;
 
-        String numBB = (getIntent().getExtras().getString("n"));
+        try {
+             numBB = (getIntent().getExtras().getString("n"));
+        }
+        catch(Exception e){
+             numBB= ""+5;
+        }
+
         final int num = Integer.parseInt(numBB);
         String[] name = new String[num];
         String[] description= new String[num];
-        Integer[] imgid={R.drawable.logo,R.drawable.logo,R.drawable.logo,R.drawable.logo,R.drawable.logo};
+        Integer[] imgid=new Integer[num];
+        for(int i = 0;i<num;i++){
+            imgid[i]=R.drawable.logo;
+        }
         String[] rating = new String[num];
         String[] address= new String[num];
 
@@ -63,11 +73,12 @@ public class ParentHome extends AppCompatActivity {
 
                 }
 
-                for(int i=0; i<(int)dataSnapshot.child("Babysitter").getChildrenCount();i++) {
+                for(int i=0; i<num;i++) {
                     liview.setName(dataSnapshot.child("Babysitter").child(i+1+"").child("name").getValue(String.class), i);
                     liview.setDescription(dataSnapshot.child("Babysitter").child(i+1+"").child("bio").getValue(String.class), i);
                     liview.setAddress(dataSnapshot.child("Babysitter").child(i+1+"").child("address").getValue(String.class), i);
                     liview.setRating(dataSnapshot.child("Babysitter").child(i+1+"").child("ratings").getValue(String.class), i);
+                    liview.setImgid(R.drawable.logo, i);
                 }
                 list.setAdapter(liview);
             }

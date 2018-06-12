@@ -10,20 +10,24 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-/**
- * Created by jenny on 2018-04-12.
+/*
+Title: ParentHomeListView
+Author: Jenny S
+Date: Created on April 12, 2018
+Description: Sets custom listview layout for the parent home,babysitter and parent search
  */
 
 public class ParentHomeListView extends ArrayAdapter<String>{
 
-    private String [] name;
-    private String [] description;
-    private Integer[] imgid;
-    private String [] rating;
-    private String [] address;
+    private String [] name;//parents/babysitters' name
+    private String [] description;//parent/babysitters' bio
+    private Integer[] imgid;//profile images
+    private String [] rating;//babysitter's rating or parent child's information
+    private String [] address;//users' address
 
     private Activity context;
 
+    //constructor
     public ParentHomeListView(@NonNull Activity context, String[] name, String[] description, Integer[] imgid, String[] address, String[] rating) {
         super(context, R.layout.babysitter_profile_list, name);
 
@@ -35,33 +39,34 @@ public class ParentHomeListView extends ArrayAdapter<String>{
             this.imgid = imgid;
     }
 
+    //mutator methods
     public void setName(String n, int index){
         name[index]=n;
     }
     public void setDescription(String n, int index){
         if(n.length()>10) {
-            description[index] = ""+ n.substring(0, 10) + "...";
+            description[index] = ""+ n.substring(0, 10) + "...";//if bio is too long, the string is cut
         }
         else{
             description[index] = n;
         }
     }
     public void setAddress(String n, int index){
-        int pc = n.indexOf(", ")+2;
+        int pc = n.indexOf(", ")+2;//remove the actual address portion, only postal code portion of the address is kept
         address[index]=n.substring(pc);
     }
     public void setRating(String n, int index){
         rating[index]= n ;
-        if(rating[index].contains("!!!")){
+        if(rating[index].contains("!!!")){//if it's a parent array storing child's information
             rating[index]= rating[index].substring(0, rating[index].indexOf("!!!"));
             if(rating[index].length()>10) {
-                rating[index] = "\n"+ n.substring(0, 10) + "...";
+                rating[index] = ""+ n.substring(0, 10) + "...";
             }
             else{
                 rating[index] = n;
             }
         }
-        else{
+        else{//if it's a babysitter array storing the number of stars a babysitter has
             rating[index] +=" Stars";
         }
 

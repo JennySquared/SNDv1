@@ -8,20 +8,21 @@ Date: April 6, 2018
 Description: Babysitter child object of the User superclass, has additional attributes
 such as ratings, qualifications, experience and reviews
  */
-import android.graphics.Bitmap;
+
 
 public class Babysitter extends User{
 
     //additional attributes
-    private int ratings;
-    private String qualifications, experience, reviews;
+
+    private String qualifications, experience, reviews, ratings;
 
     //parametrized constructor with all attributes
-    public Babysitter(String a, String e, String n, String p, String b, int g, String bi, Bitmap i, String q, String ex, String ag){
-        super(a,e,n,p,b,g,i,bi,ag); //set variables in the inherited user class
+    public Babysitter(String a, String e, String n, String p, String b, int g, String bi, String q, String ex, String ag){
+        super(a,e,n,p,b,g,bi,ag); //set variables in the inherited user class
         qualifications=q;
         experience = ex;
-        ratings=5;
+        ratings=((Math.random()*5)+"").substring(0,1);
+        ratings = ""+1;
         reviews="";
     }
 
@@ -40,7 +41,7 @@ public class Babysitter extends User{
     public String getReviews (){
         return reviews;
     }
-    public int getRatings (){
+    public String getRatings (){
         return ratings;
     }
 

@@ -48,7 +48,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="49dp"
         android:background="@color/colorPrimaryDark"
-        android:onClick="login"
+        android:onClick="log"
         android:text="LOGIN"
         android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toTopOf="@+id/imageView"

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -19,6 +20,9 @@ import java.util.ArrayList;
 public class ParentSearch extends AppCompatActivity {
     public EditText search;
     final String [] num = new String [1];
+    ListView list;
+    int[] idd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,12 +122,13 @@ public class ParentSearch extends AppCompatActivity {
 
                         Toast.makeText(getApplicationContext(),""+counter.size(),Toast.LENGTH_LONG).show();
 
-                        ListView list = (ListView) findViewById(R.id.list);
+                        list = (ListView) findViewById(R.id.list);
                         String[] name = new String[counter.size()];
                         String[] description = new String[counter.size()];
                         Integer[] imgid = new Integer[counter.size()];
                         String[] address = new String[counter.size()];
                         String[] rating = new String[counter.size()];
+                        idd = new int[counter.size()];
 
                         for(int i=0;i<counter.size();i++){
                             name[i] = dataSnapshot.child("Babysitter").child(counter.get(i)+"").child("name").getValue(String.class);
@@ -131,6 +136,8 @@ public class ParentSearch extends AppCompatActivity {
                             imgid[i] = R.drawable.logo;
                             address[i] = dataSnapshot.child("Babysitter").child(counter.get(i)+"").child("address").getValue(String.class);
                             rating[i] = dataSnapshot.child("Babysitter").child(counter.get(i)+"").child("ratings").getValue(String.class);
+                            idd[i] = counter.get(i);
+
                         }
                         listView(name, description,imgid,address,rating,list);
 
@@ -153,5 +160,19 @@ public class ParentSearch extends AppCompatActivity {
             liview.setRating(r[j], j);
         }
         list.setAdapter(liview);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                int tag=(idd[position]);
+
+                Intent intent = new Intent(ParentSearch.this, BabysitterViewPProfile.class);
+                intent.putExtra("p", tag);
+                int id = (getIntent().getExtras().getInt("id"));
+                intent.putExtra("id",id);
+                startActivity(intent);
+
+
+            }
+        });
     }
 }

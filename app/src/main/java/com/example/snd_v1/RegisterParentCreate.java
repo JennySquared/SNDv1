@@ -30,7 +30,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+//import com.google.firebase.storage.FirebaseStorage;
+//import com.google.firebase.storage.StorageReference;
+//import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -144,7 +148,7 @@ public class RegisterParentCreate extends AppCompatActivity implements AdapterVi
         else{
             genderNum =2;
         }
-        final Parent p = new Parent(RegisterAddress.address, RegisterEmail.email, RegisterName.name, RegisterPassword.password, RegisterBirthday.bday, genderNum, childAgeRange+" yr old "+childGender, bio, image, ""+RegisterBirthday.age );
+        final Parent p = new Parent(RegisterAddress.address, RegisterEmail.email, RegisterName.name, RegisterPassword.password, RegisterBirthday.bday, genderNum, childAgeRange+" yr old "+childGender, bio, ""+RegisterBirthday.age );
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference Ref = database.getReference();
 
@@ -160,6 +164,7 @@ public class RegisterParentCreate extends AppCompatActivity implements AdapterVi
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+
         startActivity(new Intent(RegisterParentCreate.this, MainActivity.class));
     }
 
@@ -167,6 +172,18 @@ public class RegisterParentCreate extends AppCompatActivity implements AdapterVi
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference Ref = database.getReference("Users/Parent");
         Ref.child(n+1+"").setValue(p);
+
+//        try{
+//            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+//            StorageReference pp = storageReference.child(n+"p.jpg");
+//            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//            image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+//            byte[] data = baos.toByteArray();
+//            UploadTask uploadTask = pp.putBytes(data);
+//        }
+//        catch(Exception e){
+//
+//        }
 
     }
 

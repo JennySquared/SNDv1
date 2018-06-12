@@ -15,6 +15,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 
 /*
    Title: Babysitter Home
@@ -31,7 +33,10 @@ public class BabysitterHome extends AppCompatActivity {
     ArrayList<String> date = new ArrayList<>();
     ArrayList<String> tStart = new ArrayList<>();
     ArrayList<Integer> imgid = new ArrayList<>();
+    ArrayList<Integer> dateNum = new ArrayList<>();
+    ArrayList<Integer> id = new ArrayList<>();
     ArrayList<String> tEnd = new ArrayList<>();
+    Integer[][] dn;
 
     //Main Method
     @Override
@@ -60,25 +65,55 @@ public class BabysitterHome extends AppCompatActivity {
                     }
                     else{
                         date.add(job.getDate());
+                        String day = (job.getDate().substring(0,job.getDate().indexOf("/")));
+                        String month = (job.getDate().substring(job.getDate().indexOf("/")+1,job.getDate().lastIndexOf("/") ));
+                        String year =(job.getDate().substring(job.getDate().lastIndexOf("/")+1 ));
+                        int d = Integer.parseInt(year+month+day);
+                        dateNum.add(d);
                         tStart.add("Time:    "+ job.getStart() + " to   ");
                         tEnd.add(job.getEnd());
+                        id.add(i);
                         name.add(dataSnapshot.child("Users").child("Parent").child(i+1+"").child("name").getValue(String.class));
-                        imgid.add(R.drawable.logo);
+//                        if(i==1) {
+//                            imgid.add(R.drawable.onep);
+//                        }
+//                        if(i==2){
+//                            imgid.add(R.drawable.twop);
+//                        }
+//                        if(i==3){
+//                            imgid.add(R.drawable.threep);
+//                        }
                     }
 
                 }
                 num = date.size();
+                dn = new Integer[num][2];
+                for (int j =0; j < num; j++){
+                    dn[j][0]= dateNum.get(j);
+                    dn[j][1]= j;
+                }
+                Arrays.sort(dn, new Comparator<Integer[]>() {
+                    @Override
+                    //arguments to this method represent the arrays to be sorted
+                    public int compare(Integer[] o1, Integer[] o2) {
+                        //get the item ids which are at index 0 of the array
+                        Integer itemIdOne = o1[0];
+                        Integer itemIdTwo = o2[0];
+                        // sort on item id
+                        return itemIdOne.compareTo(itemIdTwo);
+                    }
+                });
                 String [] d = new String[num];
                 String [] s = new String[num];
                 String [] e = new String[num];
                 String [] n = new String[num];
                 Integer [] i = new Integer[num];
                 for (int j =0; j < num; j++){
-                    d[j] = date.get(j);
-                    s[j] = tStart.get(j);
-                    e[j] = tEnd.get(j);
-                    n[j] = name.get(j);
-                    i[j] = imgid.get(j);
+                    d[j] = date.get(dn[j][1]);
+                    s[j] = tStart.get(dn[j][1]);
+                    e[j] = tEnd.get(dn[j][1]);
+                    n[j] = name.get(dn[j][1]);
+                    i[j] = imgid.get(dn[j][1]);
                 }
 
                 setListView(n,d,i,e,s,list);
@@ -93,10 +128,10 @@ public class BabysitterHome extends AppCompatActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                tag=position;
+                tag=(dn[position][1])+1;
 
                 Intent intent = new Intent(BabysitterHome.this, BabysitterViewPProfile.class);
-                intent.putExtra("p", position+1);
+                intent.putExtra("p", tag);
                 int id = (getIntent().getExtras().getInt("id"));
                 intent.putExtra("id",id);
                 startActivity(intent);

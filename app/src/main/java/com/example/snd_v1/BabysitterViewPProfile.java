@@ -4,14 +4,18 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+//import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+//import com.google.firebase.storage.FirebaseStorage;
+//import com.google.firebase.storage.StorageReference;
 
 public class BabysitterViewPProfile extends AppCompatActivity {
     int tag;
@@ -20,9 +24,20 @@ public class BabysitterViewPProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_babysitter_view_pprofile);
 
+        ImageView profileImageView = findViewById(R.id.imageView2);
+        final int t = (getIntent().getExtras().getInt("p"));
+//        try {
+//            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+//            StorageReference pp = storageReference.child(t+"p.jpg");
+//            Glide.with(this.getApplicationContext()).load(pp).into(profileImageView);
+//        }
+//        catch(Exception e){
+//
+//        }
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference("Users/Parent");
-        final int t = (getIntent().getExtras().getInt("p"));
+
         tag=t;
         myRef.addValueEventListener(new ValueEventListener(){
             @Override
@@ -49,10 +64,14 @@ public class BabysitterViewPProfile extends AppCompatActivity {
                 b.setText(bio);
 
                 jobPost post = dataSnapshot.child(tag+"").child("job").getValue(jobPost.class);
-                String job = "Job Information\n"+post.getDate() +" at "+post.getStart()+ " till "+ post.getEnd()+"\nAdditional Information: "+
-                        post.getInfo();
-                TextView j = findViewById(R.id.job);
-                j.setText(job);
+
+                if(!post.getDate().equals("0")){
+                    String job = "Job Information\n"+post.getDate() +" at "+post.getStart()+ " till "+ post.getEnd()+"\nAdditional Information: "+
+                            post.getInfo();
+                    TextView j = findViewById(R.id.job);
+                    j.setText(job);
+                }
+
 
             }
 

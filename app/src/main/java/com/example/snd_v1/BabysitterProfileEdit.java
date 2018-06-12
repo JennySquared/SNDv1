@@ -1,5 +1,6 @@
 package com.example.snd_v1;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,14 +14,24 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+//import com.bumptech.glide.Glide;
+//import com.bumptech.glide.Registry;
+//import com.bumptech.glide.annotation.GlideModule;
+//import com.bumptech.glide.module.AppGlideModule;
+//import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+//import com.google.firebase.storage.FirebaseStorage;
+//import com.google.firebase.storage.StorageReference;
+//import com.google.firebase.storage.UploadTask;
+
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -29,7 +40,7 @@ public class BabysitterProfileEdit extends AppCompatActivity {
     Parent parent = new Parent();
     EditText name,addr,bio, otherEdit;
     int h=0;
-//    DatePicker age;
+    Bitmap image;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("Users/Babysitter");
     CheckBox firstAidCheck, babysittingCertificateCheck, cprCheck, policeCheck, otherCheck;
@@ -48,6 +59,7 @@ public class BabysitterProfileEdit extends AppCompatActivity {
         name = findViewById(R.id.editText);
         addr = findViewById(R.id.editText2);
         bio = findViewById(R.id.editText4);
+        profileImageView = findViewById(R.id.imageView3);
 
         firstAidCheck = findViewById(R.id.fistAidCheck);
         babysittingCertificateCheck = findViewById(R.id.babysittingCertificateCheck);
@@ -55,6 +67,15 @@ public class BabysitterProfileEdit extends AppCompatActivity {
         policeCheck = findViewById(R.id.policeCheck);
         otherCheck = findViewById(R.id.otherCheck);
         otherEdit = findViewById(R.id.otherEdit);
+
+//        try {
+//            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+//            StorageReference bb = storageReference.child(id+"b.jpg");
+//            Glide.with(this.getApplicationContext()).load(bb).into(profileImageView);
+//        }
+//        catch(Exception e){
+//
+//        }
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -119,7 +140,7 @@ public class BabysitterProfileEdit extends AppCompatActivity {
                 try {
                     inputStream = getContentResolver().openInputStream(imageUri); //Getting an image stream based on URI of image
 
-                    Bitmap image = BitmapFactory.decodeStream(inputStream); //Get a bitmap from the stream
+                    image = BitmapFactory.decodeStream(inputStream); //Get a bitmap from the stream
 
                     profileImageView.setImageBitmap(image); //Show the image to the user
 
@@ -211,6 +232,17 @@ public class BabysitterProfileEdit extends AppCompatActivity {
                 qualifications = qualifications + list[i] + ", ";
             }
         }
+//        try{
+//            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+//            StorageReference bb = storageReference.child(id+"b.jpg");
+//            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//            image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+//            byte[] data = baos.toByteArray();
+//            UploadTask uploadTask = bb.putBytes(data);
+//        }
+//        catch(Exception e){
+//
+//        }
 
         Toast.makeText(this,qualifications, Toast.LENGTH_LONG).show();
 

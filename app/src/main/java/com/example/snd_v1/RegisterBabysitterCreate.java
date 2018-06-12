@@ -10,6 +10,7 @@ package com.example.snd_v1;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -26,7 +27,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+//import com.google.firebase.storage.FirebaseStorage;
+//import com.google.firebase.storage.StorageReference;
+//import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -37,6 +42,8 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
     public static final int IMAGE_GALLERY_REQUEST = 20;
     private ImageView profileImageView;
     public static Bitmap image;
+    Uri data;
+    InputStream inputStream;
     public EditText babyBioTextBox, experienceEdit, otherEdit;
     public static String babyBioText, experience;
     CheckBox firstAidCheck, babysittingCertificateCheck, cprCheck, policeCheck, otherCheck;
@@ -71,7 +78,7 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
         String pictureDirectoryPath = pictureDirectory.getPath();
 
         //Get URI representation
-        Uri data = Uri.parse(pictureDirectoryPath);
+        data = Uri.parse(pictureDirectoryPath);
 
         //Set data and type
         photoPickerIntent.setDataAndType(data, "image/*"); //Allows to get all image types
@@ -85,7 +92,7 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
         if (resultCode == RESULT_OK) { //Everything processed successfully
             if (requestCode == IMAGE_GALLERY_REQUEST) { // We have heard back from the gallery
                 Uri imageUri = data.getData(); //Address of image
-                InputStream inputStream; //Declare a stream to read the image data
+                 //Declare a stream to read the image data
 
                 //Set up a try catch in case user has removed SD card or file cannot open
                 try {
@@ -189,7 +196,7 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
             genderNum =2;
         }
 
-        final Babysitter b = new Babysitter(RegisterAddress.address, RegisterEmail.email, RegisterName.name, RegisterPassword.password, RegisterBirthday.bday, genderNum, babyBioText, image, qualifications, experience, RegisterBirthday.age+"" );
+        final Babysitter b = new Babysitter(RegisterAddress.address, RegisterEmail.email, RegisterName.name, RegisterPassword.password, RegisterBirthday.bday, genderNum, babyBioText, qualifications, experience, RegisterBirthday.age+"" );
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference Ref = database.getReference();
 
@@ -205,6 +212,8 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+
+
         startActivity(new Intent(RegisterBabysitterCreate.this, MainActivity.class));
     }
 
@@ -212,6 +221,24 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference Ref = database.getReference("Users/Babysitter");
         Ref.child(n+1+"").setValue(b);
+//        try{
+//            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+//            //StorageReference bb = storageReference.child(n+"b.jpg");
+////            profileImageView.setDrawingCacheEnabled(true);
+////            profileImageView.buildDrawingCache();
+////            Bitmap bit = ((BitmapDrawable) profileImageView.getDrawable()).getBitmap();
+////            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+////            bit.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+////            byte[] data = baos.toByteArray();
+////            UploadTask uploadTask = bb.putBytes(data);
+//
+//            StorageReference bb = storageReference.child(n+"b.jpg");
+//            bb.putFile(data);
+//        }
+//        catch(Exception e){
+//
+//        }
+
 
     }
 }

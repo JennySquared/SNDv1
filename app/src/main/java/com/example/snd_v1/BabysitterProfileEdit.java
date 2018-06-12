@@ -37,6 +37,7 @@ public class BabysitterProfileEdit extends AppCompatActivity {
 
     public static final int IMAGE_GALLERY_REQUEST = 20;
     private ImageView profileImageView;
+    public static Bitmap image;;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class BabysitterProfileEdit extends AppCompatActivity {
         policeCheck = findViewById(R.id.policeCheck);
         otherCheck = findViewById(R.id.otherCheck);
         otherEdit = findViewById(R.id.otherEdit);
+        profileImageView = findViewById(R.id.profileImageView); //Get a reference to the imageView that holds the image that the user will see
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -84,6 +86,7 @@ public class BabysitterProfileEdit extends AppCompatActivity {
         //children.setText("Child\n\n"+parent.getChild());
         //Toast.makeText(getApplicationContext(),parent.getAge(),Toast.LENGTH_SHORT).show();
     }
+
 
     /**
      * This method will be invoked when the user clicks on the upload button
@@ -119,7 +122,7 @@ public class BabysitterProfileEdit extends AppCompatActivity {
                 try {
                     inputStream = getContentResolver().openInputStream(imageUri); //Getting an image stream based on URI of image
 
-                    Bitmap image = BitmapFactory.decodeStream(inputStream); //Get a bitmap from the stream
+                    image = BitmapFactory.decodeStream(inputStream); //Get a bitmap from the stream
 
                     profileImageView.setImageBitmap(image); //Show the image to the user
 

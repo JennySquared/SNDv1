@@ -1,8 +1,8 @@
 /*
-Name: Jenny /hua
-Date:
-Title: Parent Profile Registration
-Description:
+Name: Jenny Hua
+Date: April 3, 2018
+Title: Register Babysitter Create
+Description: Allows babysitter to input the required information in order to complete their babysitting profile
  */
 
 package com.example.snd_v1;

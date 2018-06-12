@@ -1,8 +1,8 @@
 /*
-Name: Jenny /hua
-Date:
-Title: Parent Profile Registration
-Description:
+Name: Jenny Hua
+Date: March 28, 2018
+Title: Register Babysitter or Parent
+Description: Screen where users select if they are a parent user or a babysitter
  */
 package com.example.snd_v1;
 

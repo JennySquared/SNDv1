@@ -1,3 +1,9 @@
+/*
+Name: Jenny Hua
+Date: March 24, 2018
+Title: Register Address
+Description: Address screen for the general registration process; takes in the user's street address and postal code
+ */
 package com.example.snd_v1;
 
 import android.content.Intent;

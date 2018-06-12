@@ -1,3 +1,9 @@
+/*
+Name: Jenny /hua
+Date: March 21, 2018
+Title: Register Password
+Description: Password screen for the general registration process; takes in the user's created password
+ */
 package com.example.snd_v1;
 
 import android.content.Intent;
@@ -7,12 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-/*
-Name: Jenny /hua
-Date:
-Title: Parent Profile Registration
-Description:
- */
+
 public class RegisterPassword extends AppCompatActivity {
 
     public static String password;

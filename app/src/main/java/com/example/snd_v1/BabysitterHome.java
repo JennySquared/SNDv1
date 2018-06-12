@@ -28,7 +28,7 @@ public class BabysitterHome extends AppCompatActivity {
 
     public static int tag =-1;//stores Babysitter id
 
-    //Arraylist stores an attribute of every job post
+    //ArrayList stores an attribute of every job post
     ArrayList<String> name = new ArrayList<>();
     ArrayList<String> date = new ArrayList<>();
     ArrayList<String> tStart = new ArrayList<>();

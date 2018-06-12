@@ -1,8 +1,8 @@
 /*
 Name: Jenny Hua
-Date:
-Title: Parent Profile Registration
-Description:
+Date: March 22, 2018
+Title: Register Birthday
+Description: Birthday screen for the general registration process; allows users to enter their date of birth
  */
 package com.example.snd_v1;
 

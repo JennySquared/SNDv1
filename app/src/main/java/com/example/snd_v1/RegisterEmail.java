@@ -1,8 +1,8 @@
 /*
-Name: Jenny /hua
-Date:
-Title: Parent Profile Registration
-Description:
+Name: Jenny Hua
+Date: March 20, 2018
+Title: Register Email
+Description: Email screen for the general registration process, takes in the user's email
  */
 package com.example.snd_v1;
 

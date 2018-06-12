@@ -48,6 +48,7 @@ public class BabysitterProfileEdit extends AppCompatActivity {
 
     public static final int IMAGE_GALLERY_REQUEST = 20;
     private ImageView profileImageView;
+    public static Bitmap image;;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,7 @@ public class BabysitterProfileEdit extends AppCompatActivity {
         policeCheck = findViewById(R.id.policeCheck);
         otherCheck = findViewById(R.id.otherCheck);
         otherEdit = findViewById(R.id.otherEdit);
+        profileImageView = findViewById(R.id.profileImageView); //Get a reference to the imageView that holds the image that the user will see
 
 //        try {
 //            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
@@ -105,6 +107,7 @@ public class BabysitterProfileEdit extends AppCompatActivity {
         //children.setText("Child\n\n"+parent.getChild());
         //Toast.makeText(getApplicationContext(),parent.getAge(),Toast.LENGTH_SHORT).show();
     }
+
 
     /**
      * This method will be invoked when the user clicks on the upload button

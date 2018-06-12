@@ -1,8 +1,8 @@
 /*
-Name: Jenny /hua
-Date:
-Title: Parent Profile Registration
-Description:
+Name: Jenny Hua
+Date: March 29, 2018
+Title: Register Parent Create
+Description: Allows parents to input the required information in order to complete their account profile
  */
 
 

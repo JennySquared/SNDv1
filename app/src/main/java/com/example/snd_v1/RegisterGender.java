@@ -1,8 +1,8 @@
 /*
-Name: Jenny /hua
-Date:
-Title: Parent Profile Registration
-Description:
+Name: Jenny Hua
+Date: March 25, 2018
+Title: Register Gender
+Description: Gender select screen for the general registration process; takes in the user's gender
  */
 package com.example.snd_v1;
 

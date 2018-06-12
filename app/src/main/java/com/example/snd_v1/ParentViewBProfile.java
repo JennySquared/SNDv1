@@ -23,7 +23,7 @@ public class ParentViewBProfile extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference("Users/Babysitter");
 
-        ImageView profileImageView = findViewById(R.id.imageView2);
+
         final int tag = (getIntent().getExtras().getInt("p"));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_view_bprofile);
@@ -35,6 +35,7 @@ public class ParentViewBProfile extends AppCompatActivity {
 //        catch(Exception e){
 //
 //        }
+        final ImageView profileImageView = findViewById(R.id.imageView2);
 
         myRef.addValueEventListener(new ValueEventListener(){
             @Override
@@ -59,6 +60,28 @@ public class ParentViewBProfile extends AppCompatActivity {
                 TextView q = findViewById(R.id.job);
                 q.setText(qualifications);
                 Toast.makeText(getApplicationContext(),"You are viewing " + name+"'s Profile",Toast.LENGTH_SHORT).show();
+
+                if(tag==1){
+                    profileImageView.setImageResource(R.drawable.oneb);
+                }
+                if(tag==2){
+                    profileImageView.setImageResource(R.drawable.twob);
+                }
+                if(tag==3){
+                    profileImageView.setImageResource(R.drawable.threeb);
+                }
+                if(tag==4){
+                    profileImageView.setImageResource(R.drawable.fourb);
+                }
+                if(tag==5){
+                    profileImageView.setImageResource(R.drawable.fiveb);
+                }
+                if(tag==6){
+                    profileImageView.setImageResource(R.drawable.sixb);
+                }
+                if(tag==7){
+                    profileImageView.setImageResource(R.drawable.sevenb);
+                }
             }
 
             @Override

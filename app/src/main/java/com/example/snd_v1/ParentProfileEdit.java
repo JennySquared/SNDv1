@@ -59,6 +59,21 @@ public class ParentProfileEdit extends AppCompatActivity implements AdapterView.
         bio = findViewById(R.id.bio);
 
         profileImageView = findViewById(R.id.profileImageView);
+        if(id==1) {
+            profileImageView.setImageResource(R.drawable.onep);
+        }
+        if(id==2){
+            profileImageView.setImageResource(R.drawable.twop);
+        }
+        if(id==3){
+            profileImageView.setImageResource(R.drawable.threep);
+        }
+        if(id==4){
+            profileImageView.setImageResource(R.drawable.fourb);
+        }
+        if(id==5){
+            profileImageView.setImageResource(R.drawable.fiveb);
+        }
 
         Spinner childGenderDrop = findViewById(R.id.genderDrop);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.genderDrop, android.R.layout.simple_spinner_item);

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +25,7 @@ public class BabysitterViewPProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_babysitter_view_pprofile);
 
-        ImageView profileImageView = findViewById(R.id.imageView2);
+        final ImageView profileImageView = findViewById(R.id.imageView2);
         final int t = (getIntent().getExtras().getInt("p"));
 //        try {
 //            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
@@ -70,6 +71,21 @@ public class BabysitterViewPProfile extends AppCompatActivity {
                             post.getInfo();
                     TextView j = findViewById(R.id.job);
                     j.setText(job);
+                }
+                if(tag==1){
+                    profileImageView.setImageResource(R.drawable.onep);
+                }
+                if(tag==2){
+                    profileImageView.setImageResource(R.drawable.twop);
+                }
+                if(tag==3){
+                    profileImageView.setImageResource(R.drawable.threep);
+                }
+                if(tag==4){
+                    profileImageView.setImageResource(R.drawable.fourb);
+                }
+                if(tag==5){
+                    profileImageView.setImageResource(R.drawable.fiveb);
                 }
 
 

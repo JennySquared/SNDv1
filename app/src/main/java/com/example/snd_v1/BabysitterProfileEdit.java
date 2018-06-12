@@ -40,7 +40,6 @@ public class BabysitterProfileEdit extends AppCompatActivity {
     Parent parent = new Parent();
     EditText name,addr,bio, otherEdit;
     int h=0;
-    Bitmap image;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("Users/Babysitter");
     CheckBox firstAidCheck, babysittingCertificateCheck, cprCheck, policeCheck, otherCheck;
@@ -68,8 +67,28 @@ public class BabysitterProfileEdit extends AppCompatActivity {
         policeCheck = findViewById(R.id.policeCheck);
         otherCheck = findViewById(R.id.otherCheck);
         otherEdit = findViewById(R.id.otherEdit);
-        profileImageView = findViewById(R.id.profileImageView); //Get a reference to the imageView that holds the image that the user will see
-
+        //profileImageView = findViewById(R.id.profileImageView); //Get a reference to the imageView that holds the image that the user will see
+        if(h==1){
+            profileImageView.setImageResource(R.drawable.oneb);
+        }
+        if(h==2){
+            profileImageView.setImageResource(R.drawable.twob);
+        }
+        if(h==3){
+            profileImageView.setImageResource(R.drawable.threeb);
+        }
+        if(h==4){
+            profileImageView.setImageResource(R.drawable.fourb);
+        }
+        if(h==5){
+            profileImageView.setImageResource(R.drawable.fiveb);
+        }
+        if(h==6){
+            profileImageView.setImageResource(R.drawable.sixb);
+        }
+        if(h==7){
+            profileImageView.setImageResource(R.drawable.sevenb);
+        }
 //        try {
 //            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 //            StorageReference bb = storageReference.child(id+"b.jpg");
@@ -252,6 +271,7 @@ public class BabysitterProfileEdit extends AppCompatActivity {
         myRef.child(h+"").child("name").setValue(name.getText().toString());
         myRef.child(h+"").child("address").setValue(addr.getText().toString());
         myRef.child(h+"").child("bio").setValue(bio.getText().toString());
+        myRef.child(h+"").child("qualifications").setValue(qualifications);
 
         startActivity(intent);
     }

@@ -137,6 +137,27 @@ public class ParentSearch extends AppCompatActivity {
                             address[i] = dataSnapshot.child("Babysitter").child(counter.get(i)+"").child("address").getValue(String.class);
                             rating[i] = dataSnapshot.child("Babysitter").child(counter.get(i)+"").child("ratings").getValue(String.class);
                             idd[i] = counter.get(i);
+                            if(counter.get(i)==1){
+                                imgid[i] = R.drawable.oneb;
+                            }
+                            if(counter.get(i)==2){
+                                imgid[i] = R.drawable.twob;
+                            }
+                            if(counter.get(i)==3){
+                                imgid[i] = R.drawable.threeb;
+                            }
+                            if(counter.get(i)==4){
+                                imgid[i] = R.drawable.fourb;
+                            }
+                            if(counter.get(i)==5){
+                                imgid[i] = R.drawable.fiveb;
+                            }
+                            if(counter.get(i)==6){
+                                imgid[i] = R.drawable.sixb;
+                            }
+                            if(counter.get(i)==7){
+                                imgid[i] = R.drawable.sevenb;
+                            }
 
                         }
                         listView(name, description,imgid,address,rating,list);
@@ -165,7 +186,7 @@ public class ParentSearch extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 int tag=(idd[position]);
 
-                Intent intent = new Intent(ParentSearch.this, BabysitterViewPProfile.class);
+                Intent intent = new Intent(ParentSearch.this, ParentViewBProfile.class);
                 intent.putExtra("p", tag);
                 int id = (getIntent().getExtras().getInt("id"));
                 intent.putExtra("id",id);

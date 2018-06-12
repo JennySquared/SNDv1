@@ -39,7 +39,7 @@ public class ParentProfile extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Users/Parent");
 
-        ImageView profileImageView = findViewById(R.id.pic);
+        final ImageView profileImageView = findViewById(R.id.pic);
 //        try {
 //            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 //            StorageReference pp = storageReference.child(id + "p.jpg");
@@ -68,6 +68,21 @@ public class ParentProfile extends AppCompatActivity {
                 String bio =dataSnapshot.child(id+"").child("bio").getValue(String.class);
                 String children =dataSnapshot.child(id+"").child("child").getValue(String.class);
                 setText(name, age, addr, bio, children);
+                if(id==1) {
+                    profileImageView.setImageResource(R.drawable.onep);
+                }
+                if(id==2){
+                    profileImageView.setImageResource(R.drawable.twop);
+                }
+                if(id==3){
+                    profileImageView.setImageResource(R.drawable.threep);
+                }
+                if(id==2){
+                    profileImageView.setImageResource(R.drawable.fourb);
+                }
+                if(id==3){
+                    profileImageView.setImageResource(R.drawable.fiveb);
+                }
 
             }
             @Override

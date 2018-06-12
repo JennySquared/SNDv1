@@ -105,27 +105,27 @@ public class ParentHome extends AppCompatActivity {
                     liview.setDescription(dataSnapshot.child("Babysitter").child(nu+"").child("bio").getValue(String.class), rateNum[i][1]-1);
                     liview.setAddress(dataSnapshot.child("Babysitter").child(nu+"").child("address").getValue(String.class), rateNum[i][1]-1);
                     liview.setRating(dataSnapshot.child("Babysitter").child(nu+"").child("ratings").getValue(String.class), rateNum[i][1]-1);
-//                    if(nu==1){
-//                        liview.setImgid(R.drawable.oneb, i);
-//                    }
-//                    if(nu==2){
-//                        liview.setImgid(R.drawable.twob, i);
-//                    }
-//                    if(nu==3){
-//                        liview.setImgid(R.drawable.threeb, i);
-//                    }
-//                    if(nu==4){
-//                        liview.setImgid(R.drawable.fourb, i);
-//                    }
-//                    if(nu==5){
-//                        liview.setImgid(R.drawable.fiveb, i);
-//                    }
-//                    if(nu==6){
-//                        liview.setImgid(R.drawable.sixb, i);
-//                    }
-//                    if(nu==7){
-//                        liview.setImgid(R.drawable.oneb, i);
-//                    }
+                    if(nu==1){
+                        liview.setImgid(R.drawable.oneb, i);
+                    }
+                    if(nu==2){
+                        liview.setImgid(R.drawable.twob, i);
+                    }
+                    if(nu==3){
+                        liview.setImgid(R.drawable.threeb, i);
+                    }
+                    if(nu==4){
+                        liview.setImgid(R.drawable.fourb, i);
+                    }
+                    if(nu==5){
+                        liview.setImgid(R.drawable.fiveb, i);
+                    }
+                    if(nu==6){
+                        liview.setImgid(R.drawable.sixb, i);
+                    }
+                    if(nu==7){
+                        liview.setImgid(R.drawable.oneb, i);
+                    }
 
                 }
                 list.setAdapter(liview);

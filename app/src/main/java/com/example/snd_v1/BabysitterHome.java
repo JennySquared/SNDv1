@@ -74,15 +74,21 @@ public class BabysitterHome extends AppCompatActivity {
                         tEnd.add(job.getEnd());
                         id.add(i);
                         name.add(dataSnapshot.child("Users").child("Parent").child(i+1+"").child("name").getValue(String.class));
-//                        if(i==1) {
-//                            imgid.add(R.drawable.onep);
-//                        }
-//                        if(i==2){
-//                            imgid.add(R.drawable.twop);
-//                        }
-//                        if(i==3){
-//                            imgid.add(R.drawable.threep);
-//                        }
+                        if(i==0) {
+                            imgid.add(R.drawable.onep);
+                        }
+                        if(i==1){
+                            imgid.add(R.drawable.twop);
+                        }
+                        if(i==2){
+                            imgid.add(R.drawable.threep);
+                        }
+                        if(i==3){
+                            imgid.add(R.drawable.fourb);
+                        }
+                        if(i==4){
+                            imgid.add(R.drawable.fiveb);
+                        }
                     }
 
                 }

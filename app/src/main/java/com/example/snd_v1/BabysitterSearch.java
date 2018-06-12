@@ -60,7 +60,7 @@ public class BabysitterSearch extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //Toast.makeText(getApplicationContext(),"Successfully Logged In",Toast.LENGTH_SHORT).show();
 //                try {
-                    for (int i = 0; i < (int) dataSnapshot.getChildrenCount()-1; i++) {
+                    for (int i = 0; i < (int) dataSnapshot.getChildrenCount(); i++) {
                         if ((dataSnapshot.child(i + 1 + "").child("name").getValue(String.class)).contains(text)) {
                             counter.add(i + 1);
                         }
@@ -87,12 +87,27 @@ public class BabysitterSearch extends AppCompatActivity {
                     Integer[] imgid = new Integer[counter.size()];
                     String[] address = new String[counter.size()];
                     String[] rating = new String[counter.size()];
-                     idd = new int[counter.size()];
+                    idd = new int[counter.size()];
 
                     for (int i = 0; i < counter.size(); i++) {
                         name[i] = dataSnapshot.child(counter.get(i) + "").child("name").getValue(String.class);
                         description[i] = dataSnapshot.child(counter.get(i) + "").child("bio").getValue(String.class);
-                        imgid[i] = R.drawable.logo;
+                        if(counter.get(i)==1){
+                            imgid[i] = R.drawable.onep;
+                        }
+                        if(counter.get(i)==2){
+                            imgid[i] = R.drawable.twop;
+                        }
+                        if(counter.get(i)==3){
+                            imgid[i] = R.drawable.threep;
+                        }
+                        if(counter.get(i)==4){
+                            imgid[i] = R.drawable.fourb;
+                        }
+                        if(counter.get(i)==5){
+                            imgid[i] = R.drawable.fiveb;
+                        }
+
                         address[i] = dataSnapshot.child(counter.get(i) + "").child("address").getValue(String.class);
                         rating[i] = dataSnapshot.child(counter.get(i) + "").child("child").getValue(String.class) + "!!!";
                         idd[i] = counter.get(i);

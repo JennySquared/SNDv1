@@ -25,7 +25,7 @@ public class BabysitterProfile extends AppCompatActivity {
         setContentView(R.layout.activity_babysitter_profile);
         final int tag = (getIntent().getExtras().getInt("id"));
 
-        ImageView profileImageView = findViewById(R.id.imageView2);
+        final ImageView profileImageView = findViewById(R.id.imageView2);
 //        //try {
 //            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 //            StorageReference bb = storageReference.child(tag+"b.jpg");
@@ -59,7 +59,28 @@ public class BabysitterProfile extends AppCompatActivity {
                 b.setText(bio);
                 TextView q = findViewById(R.id.job);
                 q.setText(qualifications);
-                Toast.makeText(getApplicationContext(),"You are viewing " + name+"'s Profile",Toast.LENGTH_SHORT).show();
+                if(tag==1){
+                    profileImageView.setImageResource(R.drawable.oneb);
+                }
+                if(tag==2){
+                    profileImageView.setImageResource(R.drawable.oneb);
+                }
+                if(tag==3){
+                    profileImageView.setImageResource(R.drawable.oneb);
+                }
+                if(tag==4){
+                    profileImageView.setImageResource(R.drawable.oneb);
+                }
+                if(tag==5){
+                    profileImageView.setImageResource(R.drawable.oneb);
+                }
+                if(tag==6){
+                    profileImageView.setImageResource(R.drawable.oneb);
+                }
+                if(tag==7){
+                    profileImageView.setImageResource(R.drawable.oneb);
+                }
+
             }
 
             @Override

@@ -100,9 +100,9 @@ public class ParentSearch extends AppCompatActivity {
                             else if((dataSnapshot.child("Babysitter").child(i+1+"").child("bio").getValue(String.class)).contains(text)){
                                 counter.add(i+1);
                             }
-                            else if((dataSnapshot.child("Babysitter").child(i+1+"").child("experience").getValue(String.class)).contains(text)){
-                                counter.add(i+1);
-                            }
+//                            else if((dataSnapshot.child("Babysitter").child(i+1+"").child("experience").getValue(String.class)).contains(text)){
+//                                counter.add(i+1);
+//                            }
 //                            else if(text.contains(dataSnapshot.child("Babysitter").child(i+1+"").child("gender").getValue(String.class))){
 //                                counter.add(i+1);
  //                           }

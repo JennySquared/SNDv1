@@ -35,7 +35,6 @@
     <string-array name="genderDrop">
         <item>Male</item>
         <item>Female</item>
-        <item>Duck</item>
         <item>Other</item>
     </string-array>
 

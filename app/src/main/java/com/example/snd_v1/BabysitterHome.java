@@ -68,7 +68,7 @@ public class BabysitterHome extends AppCompatActivity {
                         String day = (job.getDate().substring(0,job.getDate().indexOf("/")));
                         String month = (job.getDate().substring(job.getDate().indexOf("/")+1,job.getDate().lastIndexOf("/") ));
                         String year =(job.getDate().substring(job.getDate().lastIndexOf("/")+1 ));
-                        int d = Integer.parseInt(year+month+day);
+                        int d = Integer.parseInt(year+day+month);
                         dateNum.add(d);
                         tStart.add("Time:    "+ job.getStart() + " to   ");
                         tEnd.add(job.getEnd());

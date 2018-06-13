@@ -54,7 +54,7 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_babysitter_create);
         babyBioTextBox = findViewById(R.id.bioText);
-        experienceEdit = findViewById(R.id.experienceText);
+//        experienceEdit = findViewById(R.id.experienceText);
         firstAidCheck = findViewById(R.id.fistAidCheck);
         babysittingCertificateCheck = findViewById(R.id.babysittingCertificateCheck);
         cprCheck = findViewById(R.id.cprCheck);
@@ -179,10 +179,10 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
         }
 
         setBabyBioText(babyBioTextBox.getText().toString());
-        setExperience(experienceEdit.getText().toString());
+//        setExperience(experienceEdit.getText().toString());
 
 
-        Toast.makeText(this,qualifications, Toast.LENGTH_LONG).show();
+        //Toast.makeText(this,qualifications, Toast.LENGTH_LONG).show();
         int genderNum=-1;
 
         String gender = RegisterGender.gender;

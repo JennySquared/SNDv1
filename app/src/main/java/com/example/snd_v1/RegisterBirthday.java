@@ -55,7 +55,7 @@ public class RegisterBirthday extends AppCompatActivity {
 
     public boolean oldEnough (){
         if(age<13){
-            Toast.makeText(getApplicationContext(), "You must be at lest 13 years of age " ,Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "You must be at least 13 years of age " ,Toast.LENGTH_LONG).show();
             return false;
         }
 

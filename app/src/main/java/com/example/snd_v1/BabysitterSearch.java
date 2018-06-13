@@ -60,7 +60,7 @@ public class BabysitterSearch extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //Toast.makeText(getApplicationContext(),"Successfully Logged In",Toast.LENGTH_SHORT).show();
 //                try {
-                    for (int i = 0; i < (int) dataSnapshot.getChildrenCount(); i++) {
+                    for (int i = 0; i < 5; i++) {
                         if ((dataSnapshot.child(i + 1 + "").child("name").getValue(String.class)).contains(text)) {
                             counter.add(i + 1);
                         }

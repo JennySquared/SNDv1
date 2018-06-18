@@ -102,9 +102,9 @@ public class ParentProfile extends AppCompatActivity {
         name.setText(n);
         age.setText(a);
         addr.setText(add);
-        bio.setText(b);
+        bio.setText("Bio\n\n"+b);
         children.setText("Child\n\n"+c);
-        Toast.makeText(getApplicationContext(),parent.getAge(),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),parent.getAge(),Toast.LENGTH_SHORT).show();
 
 
     }

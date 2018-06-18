@@ -14,19 +14,19 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
-//import com.bumptech.glide.Glide;
-//import com.bumptech.glide.Registry;
-//import com.bumptech.glide.annotation.GlideModule;
-//import com.bumptech.glide.module.AppGlideModule;
-//import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.Registry;
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.module.AppGlideModule;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-//import com.google.firebase.storage.FirebaseStorage;
-//import com.google.firebase.storage.StorageReference;
-//import com.google.firebase.storage.UploadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -36,26 +36,38 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+/*
+Title: Babysitter Profile
+Author: Jenny Shen edited by Jenny H ( added onActivityResult, onImageGalleryClicked, and onCheckboxClicked)
+Date: April 13, 2018
+Description: Babysitter can view their information and what their profile looks like
+ */
+
 public class BabysitterProfileEdit extends AppCompatActivity {
-    Parent parent = new Parent();
-    EditText name,addr,bio, otherEdit;
-    int h=0;
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("Users/Babysitter");
+
+    EditText name,addr,bio, otherEdit;//textviews from xml layout
+    int b =0; // id of the sitter
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance(); //initialize database
+    DatabaseReference myRef = database.getReference("Users/Babysitter");//initialize reference
+
     CheckBox firstAidCheck, babysittingCertificateCheck, cprCheck, policeCheck, otherCheck;
     String list[] = {"no","no","no","no","no"};
 
     public static final int IMAGE_GALLERY_REQUEST = 20;
     private ImageView profileImageView;
-    public static Bitmap image;;
+    public static Bitmap image;
 
+    //main method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_babysitter_profile_edit);
-        final int id = (getIntent().getExtras().getInt("id"));
-        h=id;
+        setContentView(R.layout.activity_babysitter_profile_edit);//set layout to babysitter profile edit xml
 
+        final int id = (getIntent().getExtras().getInt("id"));//get id of babysitter from previous screen
+        b=id;// set id to a public variable
+
+        //textfields that users can edit
         name = findViewById(R.id.editText);
         addr = findViewById(R.id.editText2);
         bio = findViewById(R.id.editText4);
@@ -67,48 +79,26 @@ public class BabysitterProfileEdit extends AppCompatActivity {
         policeCheck = findViewById(R.id.policeCheck);
         otherCheck = findViewById(R.id.otherCheck);
         otherEdit = findViewById(R.id.otherEdit);
-        //profileImageView = findViewById(R.id.profileImageView); //Get a reference to the imageView that holds the image that the user will see
-        if(h==1){
-            profileImageView.setImageResource(R.drawable.oneb);
-        }
-        if(h==2){
-            profileImageView.setImageResource(R.drawable.twob);
-        }
-        if(h==3){
-            profileImageView.setImageResource(R.drawable.threeb);
-        }
-        if(h==4){
-            profileImageView.setImageResource(R.drawable.fourb);
-        }
-        if(h==5){
-            profileImageView.setImageResource(R.drawable.fiveb);
-        }
-        if(h==6){
-            profileImageView.setImageResource(R.drawable.sixb);
-        }
-        if(h==7){
-            profileImageView.setImageResource(R.drawable.sevenb);
-        }
-//        try {
-//            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-//            StorageReference bb = storageReference.child(id+"b.jpg");
-//            Glide.with(this.getApplicationContext()).load(bb).into(profileImageView);
-//        }
-//        catch(Exception e){
-//
-//        }
+        profileImageView = findViewById(R.id.profileImageView); //Get a reference to the imageView that holds the image that the user will see
 
+        //set image from Firebase
+        try {
+            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+            StorageReference bb = storageReference.child(id+"b.jpg");
+            Glide.with(this.getApplicationContext()).load(bb).into(profileImageView);
+        }
+        catch(Exception e){
+
+        }
+
+        //get profile information of babysitter and sets that information into those textviews
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-//                parent = dataSnapshot.child(id+"").getValue(Parent.class);
-//                setText();
 
                 String name = dataSnapshot.child(id+"").child("name").getValue(String.class);
-//                String age = dataSnapshot.child(id+"").child("age").getValue(String.class);
                 String addr =dataSnapshot.child(id+"").child("address").getValue(String.class);
                 String bio =dataSnapshot.child(id+"").child("bio").getValue(String.class);
- //               String children =dataSnapshot.child(id+"").child("child").getValue(String.class);
                 setText(name, addr, bio);
             }
             @Override
@@ -117,14 +107,11 @@ public class BabysitterProfileEdit extends AppCompatActivity {
         });
     }
 
-
+    //sets text into textviews
     public void setText(String n, String a, String b){
         name.setText(n);
-        //age.setText("34 yrs old");
         addr.setText(a);
         bio.setText(b);
-        //children.setText("Child\n\n"+parent.getChild());
-        //Toast.makeText(getApplicationContext(),parent.getAge(),Toast.LENGTH_SHORT).show();
     }
 
 
@@ -225,18 +212,23 @@ public class BabysitterProfileEdit extends AppCompatActivity {
         }
     }
 
+    //when user clicks the search icon in tool bar,screen changes to search screen
     public void Search(View view) {
         Intent intent = new Intent(this, BabysitterSearch.class);
         int id = (getIntent().getExtras().getInt("id"));
         intent.putExtra("id",id);
         startActivity(intent);
     }
+
+    //when user clicks the profile icon in tool bar,screen changes to profile screen
     public void Profile(View view) {
         Intent intent = new Intent(this, BabysitterProfile.class);
         int id = (getIntent().getExtras().getInt("id"));
         intent.putExtra("id",id);
         startActivity(intent);
     }
+
+    //when user clicks the home icon in tool bar,screen changes to home screen
     public void Home(View view) {
         Intent intent = new Intent(this, BabysitterHome.class);
         int id = (getIntent().getExtras().getInt("id"));
@@ -244,6 +236,7 @@ public class BabysitterProfileEdit extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //when user clicks the save button, information is saved to the database
     public void Save(View view) {
         Intent intent = new Intent(this, BabysitterProfile.class);
         int id = (getIntent().getExtras().getInt("id"));
@@ -254,25 +247,27 @@ public class BabysitterProfileEdit extends AppCompatActivity {
                 qualifications = qualifications + list[i] + ", ";
             }
         }
-//        try{
-//            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-//            StorageReference bb = storageReference.child(id+"b.jpg");
-//            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//            image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-//            byte[] data = baos.toByteArray();
-//            UploadTask uploadTask = bb.putBytes(data);
-//        }
-//        catch(Exception e){
-//
-//        }
 
-        Toast.makeText(this,qualifications, Toast.LENGTH_LONG).show();
+        //replace image on Firebase Storage
+        try{
+            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+            StorageReference bb = storageReference.child(id+"b.jpg");
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] data = baos.toByteArray();
+            UploadTask uploadTask = bb.putBytes(data);
+        }
+        catch(Exception e){
 
-        myRef.child(h+"").child("name").setValue(name.getText().toString());
-        myRef.child(h+"").child("address").setValue(addr.getText().toString());
-        myRef.child(h+"").child("bio").setValue(bio.getText().toString());
-        myRef.child(h+"").child("qualifications").setValue(qualifications);
+        }
 
+        //sets new values onto Firebase
+        myRef.child(b+"").child("name").setValue(name.getText().toString());
+        myRef.child(b+"").child("address").setValue(addr.getText().toString());
+        myRef.child(b+"").child("bio").setValue(bio.getText().toString());
+        myRef.child(b+"").child("qualifications").setValue(qualifications);
+
+        //start new activity
         startActivity(intent);
     }
 }

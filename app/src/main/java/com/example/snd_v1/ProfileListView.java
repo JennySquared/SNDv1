@@ -10,30 +10,35 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 /*
-Title: ParentHomeListView
+Title: ProfileListView
 Author: Jenny S
 Date: Created on April 12, 2018
-Description: Sets custom listview layout for the parent home,babysitter and parent search
+Description: Sets custom listview layout for the parent home, babysitter and parent search
  */
 
-public class ParentHomeListView extends ArrayAdapter<String>{
+public class ProfileListView extends ArrayAdapter<String>{
 
     private String [] name;//parents/babysitters' name
     private String [] description;//parent/babysitters' bio
     private Integer[] imgid;//profile images
-    private String [] rating;//babysitter's rating or parent child's information
+    private String [] other;//babysitter's rating or parent child's information
     private String [] address;//users' address
+    private int[] id; //parent's id
 
     private Activity context;
 
     //constructor
-    public ParentHomeListView(@NonNull Activity context, String[] name, String[] description, Integer[] imgid, String[] address, String[] rating) {
+    public ProfileListView(@NonNull Activity context, String[] name, String[] description, Integer[] imgid, String[] address, String[] other, int[] id) {
         super(context, R.layout.babysitter_profile_list, name);
 
         this.context = context;
             this.name = name;
-            this.rating = rating;
+            this.other = other;
             this.address = address;
             this.description = description;
             this.imgid = imgid;
@@ -56,23 +61,24 @@ public class ParentHomeListView extends ArrayAdapter<String>{
         address[index]=n.substring(pc);
     }
     public void setRating(String n, int index){
-        rating[index]= n ;
-        if(rating[index].contains("!!!")){//if it's a parent array storing child's information
-            rating[index]= rating[index].substring(0, rating[index].indexOf("!!!"));
-            if(rating[index].length()>10) {
-                rating[index] = ""+ n.substring(0, 10) + "...";
+        other[index]= n ;
+        if(other[index].contains("!!!")){//if it's a parent array storing child's information
+            other[index]= other[index].substring(0, other[index].indexOf("!!!"));
+            if(other[index].length()>10) {
+                other[index] = ""+ n.substring(0, 10) + "...";
             }
             else{
-                rating[index] = n;
+                other[index] = n;
             }
         }
         else{//if it's a babysitter array storing the number of stars a babysitter has
-            rating[index] +=" Stars";
+            other[index] +=" Stars";
         }
 
     }
     public void setImgid(int n, int index){
         imgid[index]=n;
+
     }
 
     @NonNull
@@ -91,10 +97,31 @@ public class ParentHomeListView extends ArrayAdapter<String>{
         else{
             viewHolder = (ViewHolder) r.getTag();
         }
-        viewHolder.ivw.setImageResource(imgid[position]);
+        if (imgid[position]== R.drawable.logo){
+            try {
+                StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+                StorageReference bb = storageReference.child(id[position]+"b.jpg");
+                Glide.with(this.getContext()).load(bb).into(viewHolder.ivw);
+            }
+            catch(Exception e){
+                viewHolder.ivw.setImageResource(imgid[position]);
+            }
+        }
+        else{
+            try {
+                StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+                StorageReference bb = storageReference.child(id[position]+"p.jpg");
+                Glide.with(this.getContext()).load(bb).into(viewHolder.ivw);
+            }
+            catch(Exception e){
+                viewHolder.ivw.setImageResource(imgid[position]);
+            }
+        }
+
+
         viewHolder.tvw1.setText(name[position]);
         viewHolder.tvw2.setText(description[position]);
-        viewHolder.tvw3.setText(rating[position]);
+        viewHolder.tvw3.setText(other[position]);
         viewHolder.tvw4.setText(address[position]);
         return r;
     }

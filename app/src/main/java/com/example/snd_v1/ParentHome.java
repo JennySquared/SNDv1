@@ -1,5 +1,6 @@
 package com.example.snd_v1;
 
+import android.content.ComponentCallbacks;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,78 +17,81 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
+
+/*
+   Title: Parent Home
+   Author: Jenny Shen
+   Date: March 20, 2018
+   Description: Home Screen when Parent first logs in, displays the listview of babysitter profiles from highest rating
+*/
+
 
 public class ParentHome extends AppCompatActivity {
-    public static int tag =-1;
-    Integer[][] rateNum;
 
+    ProfileListView liview; //custom list view
+    Integer[][] rateNum;//2d array that is used to sort the ratings
 
+    //main method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
-        final ListView list;
-
+        final ListView list; //listview
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_parent_home);
+        setContentView(R.layout.activity_parent_home);// set layout
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        int numBB;
+        FirebaseDatabase database = FirebaseDatabase.getInstance();//initialize database
 
-        try {
-             numBB = Integer.parseInt(getIntent().getExtras().getString("n"));
-        }
-        catch(Exception e){
-             numBB= 5;
-        }
+        int numBB = Integer.parseInt(getIntent().getExtras().getString("n"));//get number of babysitters from previous screen
         final int num =numBB;
 
-
+        //arrays that store babysitter's information
         final String[] name = new String[num];
         final String[] description= new String[num];
         final Integer[] imgid=new Integer[num];
         for(int i = 0;i<num;i++){
-            imgid[i]=R.drawable.logo;
+            imgid[i]=R.drawable.logo; // default image
         }
         final String[] rating = new String[num];
         final String[] address= new String[num];
+        final int[] BabysitterId = new int[num];
 
-        list = (ListView) findViewById(R.id.list);
-        final ParentHomeListView liview = new ParentHomeListView(this, name,description,imgid,address,rating);
-        list.setAdapter(liview);
 
+        list = (ListView) findViewById(R.id.list);//initailize list view from xml
+
+        //get user id from previous screen
         final int id = (getIntent().getExtras().getInt("id"));
 
-        final DatabaseReference Ref = database.getReference("Users");
+        final DatabaseReference Ref = database.getReference("Users"); //initialize reference
 
+        //retrieve database values
         Ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //Toast.makeText(getApplicationContext(),(getIntent().getExtras().getInt("id"))+"",Toast.LENGTH_SHORT).show();
 
+                //if parent's job is booked, toast pops up saying who took the parent's job and resets job to default values
                 if(dataSnapshot.child("Parent").child(""+id).child("job").child("info").getValue(String.class).compareTo("0")!=0&&dataSnapshot.child("Parent").child(""+id).child("job").child("date").getValue(String.class).equals("0")){
                     Toast.makeText(getApplicationContext(),"Your booking is booked by "
                             +dataSnapshot.child("Babysitter").child(""+Integer.parseInt(dataSnapshot.child("Parent").
                             child(""+id).child("job").child("info").getValue(String.class))).child("name").
                             getValue(String.class),Toast.LENGTH_SHORT).show();
-                    int id = (getIntent().getExtras().getInt("id"));
                     Ref.child("Parent").child("id").child("job").child("date").setValue("0");
                     Ref.child("Parent").child("id").child("job").child("start").setValue("0");
                     Ref.child("Parent").child("id").child("job").child("end").setValue("0");
                     Ref.child("Parent").child("id").child("job").child("info").setValue("0");
 
                 }
+
+                //set values from rateNum (first column is the ratings, second column is babysitter id)
                 rateNum=new Integer[num][2];
                 for(int i=0; i<num;i++) {
-//                    name[i]=dataSnapshot.child("Babysitter").child(i+1+"").child("name").getValue(String.class);
-//                    description[i]=dataSnapshot.child("Babysitter").child(i+1+"").child("bio").getValue(String.class);
-//                    address[i]=dataSnapshot.child("Babysitter").child(i+1+"").child("address").getValue(String.class);
-//                    rating[i]=dataSnapshot.child("Babysitter").child(i+1+"").child("ratings").getValue(String.class);
                     rateNum[i][0]=Integer.parseInt(dataSnapshot.child("Babysitter").child(i+1+"").child("ratings").getValue(String.class));
                     rateNum[i][1]=i+1;
 
                 }
+
+                //sorts first column from highest to lowest
                 Arrays.sort(rateNum, new Comparator<Integer[]>() {
                     @Override
                     //arguments to this method represent the arrays to be sorted
@@ -96,37 +100,22 @@ public class ParentHome extends AppCompatActivity {
                         Integer itemIdOne = o1[0];
                         Integer itemIdTwo = o2[0];
                         // sort on item id
-                        return itemIdOne.compareTo(itemIdTwo);
+                        return itemIdTwo.compareTo(itemIdOne);
                     }
                 });
                 for(int i=0; i<num;i++) {
-                    int nu =rateNum[i][1];
-                    liview.setName(dataSnapshot.child("Babysitter").child(nu+"").child("name").getValue(String.class), rateNum[i][1]-1);
-                    liview.setDescription(dataSnapshot.child("Babysitter").child(nu+"").child("bio").getValue(String.class), rateNum[i][1]-1);
-                    liview.setAddress(dataSnapshot.child("Babysitter").child(nu+"").child("address").getValue(String.class), rateNum[i][1]-1);
-                    liview.setRating(dataSnapshot.child("Babysitter").child(nu+"").child("ratings").getValue(String.class), rateNum[i][1]-1);
-                    if(nu==1){
-                        liview.setImgid(R.drawable.oneb, i);
-                    }
-                    if(nu==2){
-                        liview.setImgid(R.drawable.twob, i);
-                    }
-                    if(nu==3){
-                        liview.setImgid(R.drawable.threeb, i);
-                    }
-                    if(nu==4){
-                        liview.setImgid(R.drawable.fourb, i);
-                    }
-                    if(nu==5){
-                        liview.setImgid(R.drawable.fiveb, i);
-                    }
-                    if(nu==6){
-                        liview.setImgid(R.drawable.sixb, i);
-                    }
-                    if(nu==7){
-                        liview.setImgid(R.drawable.oneb, i);
-                    }
+                    BabysitterId[i]= rateNum[i][0]+1;
+                }
 
+                //sets ListView
+                setListView(name, description, imgid, address, rating, BabysitterId);
+
+                //mutates information in the listview to modify formatting
+                for(int i=0; i<num;i++) {
+                    liview.setName(dataSnapshot.child("Babysitter").child(rateNum[i][1]+"").child("name").getValue(String.class), i);
+                    liview.setDescription(dataSnapshot.child("Babysitter").child(rateNum[i][1]+"").child("bio").getValue(String.class), i);
+                    liview.setAddress(dataSnapshot.child("Babysitter").child(rateNum[i][1]+"").child("address").getValue(String.class), i);
+                    liview.setRating(dataSnapshot.child("Babysitter").child(rateNum[i][1]+"").child("ratings").getValue(String.class), i);
                 }
                 list.setAdapter(liview);
             }
@@ -137,31 +126,30 @@ public class ParentHome extends AppCompatActivity {
             }
         });
 
+     //if parent clicks an element of the listview, the screen changes to parent views babysitter profile screen with the parent id and babysitter id
      list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                tag=rateNum[position][1];
+                int tag=rateNum[position][1];
                 Intent intent = new Intent(ParentHome.this, ParentViewBProfile.class);
-                intent.putExtra("p", position+1);
+                intent.putExtra("p", tag);
                 int id = (getIntent().getExtras().getInt("id"));
                 intent.putExtra("id",id);
                 String numBB = (getIntent().getExtras().getString("n"));
                 intent.putExtra("n",numBB);
                 startActivity(intent);
-
             }
      });
 
     }
 
-    public void Filter(View view) {
-        Intent intent = new Intent(this, ParentSearch.class);
-        int id = (getIntent().getExtras().getInt("id"));
-        intent.putExtra("id",id);
-        String numBB = (getIntent().getExtras().getString("n"));
-        intent.putExtra("n",numBB);
-        startActivity(intent);
+    //intializes custom listview
+    public void setListView(String[]name, String[] description, Integer[] imgid, String[] address, String[] rating, int[] BabysitterId) {
+         liview = new ProfileListView(this, name,description,imgid,address,rating, BabysitterId);
+
     }
+
+    //when user clicks the search icon in tool bar, screen changes to search screen
     public void Search(View view) {
         Intent intent = new Intent(this, ParentSearch.class);
         int id = (getIntent().getExtras().getInt("id"));
@@ -170,6 +158,8 @@ public class ParentHome extends AppCompatActivity {
         intent.putExtra("id",id);
         startActivity(intent);
     }
+
+    //when user clicks the profile icon in tool bar, screen changes to profile screen
     public void Profile(View view) {
         Intent intent = new Intent(this, ParentProfile.class);
         int id = (getIntent().getExtras().getInt("id"));
@@ -178,6 +168,8 @@ public class ParentHome extends AppCompatActivity {
         intent.putExtra("n",numBB);
         startActivity(intent);
     }
+
+    //when user clicks the job post icon in tool bar, screen changes to job post screen
     public void JobPost(View view) {
         Intent intent = new Intent(this, ParentPostJob.class);
         int id = (getIntent().getExtras().getInt("id"));
@@ -186,6 +178,8 @@ public class ParentHome extends AppCompatActivity {
         intent.putExtra("n",numBB);
         startActivity(intent);
     }
+
+    //when user clicks the home icon in tool bar, screen changes to home screen
     public void Home(View view) {
         Intent intent = new Intent(this, ParentHome.class);
         int id = (getIntent().getExtras().getInt("id"));
@@ -195,8 +189,9 @@ public class ParentHome extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //when user clicks the logout button, screen changes to login screen
     public void Logout(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, Login.class);
         startActivity(intent);
     }
 

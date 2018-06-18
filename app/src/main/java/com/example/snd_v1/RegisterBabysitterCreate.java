@@ -16,7 +16,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -27,6 +26,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 //import com.google.firebase.storage.FirebaseStorage;
 //import com.google.firebase.storage.StorageReference;
 //import com.google.firebase.storage.UploadTask;
@@ -35,8 +37,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-
-import javax.xml.datatype.Duration;
 
 public class RegisterBabysitterCreate extends AppCompatActivity {
     public static final int IMAGE_GALLERY_REQUEST = 20;
@@ -169,6 +169,7 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
         }
     }
 
+    //When user presses submit
     public void submit(View view) {
 
         String qualifications = "";
@@ -179,12 +180,10 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
         }
 
         setBabyBioText(babyBioTextBox.getText().toString());
-//        setExperience(experienceEdit.getText().toString());
 
-
-        //Toast.makeText(this,qualifications, Toast.LENGTH_LONG).show();
         int genderNum=-1;
 
+        //sets converts gender to an int 0,1, or 2
         String gender = RegisterGender.gender;
         if(gender.compareTo("Female")==0){
             genderNum =0;
@@ -196,10 +195,13 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
             genderNum =2;
         }
 
+        //initialize babysitter object from inputted values
         final Babysitter b = new Babysitter(RegisterAddress.address, RegisterEmail.email, RegisterName.name, RegisterPassword.password, RegisterBirthday.bday, genderNum, babyBioText, qualifications, experience, RegisterBirthday.age+"" );
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference Ref = database.getReference();
 
+        FirebaseDatabase database = FirebaseDatabase.getInstance();//initialize database
+        final DatabaseReference Ref = database.getReference();//initialize reference
+
+        //store the new babysitter into Firebase
         Ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -214,30 +216,31 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
         });
 
 
-        startActivity(new Intent(RegisterBabysitterCreate.this, MainActivity.class));
+        startActivity(new Intent(RegisterBabysitterCreate.this, Login.class));//switch screen to login
     }
 
+    //method that takes in the babysitter object and stores that into Firebase
     public void setBabysitter(int n, Babysitter b){
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference Ref = database.getReference("Users/Babysitter");
-        Ref.child(n+1+"").setValue(b);
-//        try{
-//            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-//            //StorageReference bb = storageReference.child(n+"b.jpg");
-////            profileImageView.setDrawingCacheEnabled(true);
-////            profileImageView.buildDrawingCache();
-////            Bitmap bit = ((BitmapDrawable) profileImageView.getDrawable()).getBitmap();
-////            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-////            bit.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-////            byte[] data = baos.toByteArray();
-////            UploadTask uploadTask = bb.putBytes(data);
-//
-//            StorageReference bb = storageReference.child(n+"b.jpg");
-//            bb.putFile(data);
-//        }
-//        catch(Exception e){
-//
-//        }
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();//initialize database
+        DatabaseReference Ref = database.getReference("Users/Babysitter");//initialize reference
+        Ref.child(n+1+"").setValue(b);//store value
+
+        //uploads image to Firebase Storage
+        try{
+            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+            StorageReference bb = storageReference.child(n+"b.jpg");
+            profileImageView.setDrawingCacheEnabled(true);
+            profileImageView.buildDrawingCache();
+            Bitmap bit = ((BitmapDrawable) profileImageView.getDrawable()).getBitmap();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bit.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] data = baos.toByteArray();
+            UploadTask uploadTask = bb.putBytes(data);
+        }
+        catch(Exception e){
+
+        }
 
 
     }

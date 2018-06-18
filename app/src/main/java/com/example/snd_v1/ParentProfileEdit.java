@@ -16,64 +16,58 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-//import com.bumptech.glide.Glide;
+import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-//import com.google.firebase.storage.FirebaseStorage;
-//import com.google.firebase.storage.StorageReference;
-//import com.google.firebase.storage.UploadTask;
-//
-//import java.io.ByteArrayOutputStream;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+/*
+   Title: Parent Profile Edit
+   Author: Jenny Shen (Modified by Jenny H)
+   Date: April 15, 2018
+   Description: Parent user can modify their profile information
+*/
+
 public class ParentProfileEdit extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    Parent parent = new Parent();
-    EditText name,addr,bio;
-    public String childGender, childAgeRange;
-    Bitmap image;
-    int h=0;
-    DatePicker age;
-    //age, addr, bio;
-    //children;
+
+    Parent parent = new Parent();//user parent object
+    EditText name,addr,bio;//parent's attribute
+    public String childGender, childAgeRange;//child's information
+
+    Bitmap image; // profile image
+    int p=0;//parent id
     String postalPattern = "[a-zA-Z]+[0-9]+[a-zA-Z]+[0-9]+[a-zA-Z]+[0-9]";
     public static final int IMAGE_GALLERY_REQUEST = 20;
     private ImageView profileImageView;
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("Users/Parent");
 
+    FirebaseDatabase database = FirebaseDatabase.getInstance();//initialize database
+    DatabaseReference myRef = database.getReference("Users/Parent");//initialize reference
+
+    //main method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_parent_profile_edit);
+        setContentView(R.layout.activity_parent_profile_edit);//set layout
 
-        final int id = (getIntent().getExtras().getInt("id"));
-        h=id;
+        final int id = (getIntent().getExtras().getInt("id"));//get parent id from last screen
+        p=id;
 
+        //set textfields/image views from xml to this class
         name = findViewById(R.id.name);
         addr = findViewById(R.id.address);
         bio = findViewById(R.id.bio);
-
         profileImageView = findViewById(R.id.profileImageView);
-        if(id==1) {
-            profileImageView.setImageResource(R.drawable.onep);
-        }
-        if(id==2){
-            profileImageView.setImageResource(R.drawable.twop);
-        }
-        if(id==3){
-            profileImageView.setImageResource(R.drawable.threep);
-        }
-        if(id==4){
-            profileImageView.setImageResource(R.drawable.fourb);
-        }
-        if(id==5){
-            profileImageView.setImageResource(R.drawable.fiveb);
-        }
 
         Spinner childGenderDrop = findViewById(R.id.genderDrop);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.genderDrop, android.R.layout.simple_spinner_item);
@@ -90,15 +84,17 @@ public class ParentProfileEdit extends AppCompatActivity implements AdapterView.
         childAgeDrop.setOnItemSelectedListener(this);
         setChildAge(childAgeDrop.getSelectedItem().toString());
 
-//        try {
-//            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-//            StorageReference pp = storageReference.child(id+"p.jpg");
-//            Glide.with(this.getApplicationContext()).load(pp).into(profileImageView);
-//        }
-//        catch(Exception e){
-//            Toast.makeText(this, "Unable to open image", Toast.LENGTH_LONG).show();
-//        }
+        //set Firebase Storage image
+        try {
+            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+            StorageReference pp = storageReference.child(id+"p.jpg");
+            Glide.with(this.getApplicationContext()).load(pp).into(profileImageView);
+        }
+        catch(Exception e){
+            Toast.makeText(this, "Unable to open image", Toast.LENGTH_LONG).show();
+        }
 
+        //retrieve user's object and set its attribute as the text in the text fields
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -163,14 +159,14 @@ public class ParentProfileEdit extends AppCompatActivity implements AdapterView.
         childAgeRange = ageRange;
     }
 
+    //sets parent's attributes text into text fields
     public void setText(){
         name.setText(parent.getName());
-        //age.setText("34 yrs old");
         addr.setText(parent.getAddress());
-        bio.setText("Bio\n\n"+parent.getBio());
-        //children.setText("Child\n\n"+parent.getChild());
-        Toast.makeText(getApplicationContext(),parent.getAge(),Toast.LENGTH_SHORT).show();
+        bio.setText(parent.getBio());
     }
+
+    //when user clicks the search icon in tool bar, screen changes to search screen
     public void Search(View view) {
         Intent intent = new Intent(this, ParentSearch.class);
         String numBB = (getIntent().getExtras().getString("n"));
@@ -179,6 +175,8 @@ public class ParentProfileEdit extends AppCompatActivity implements AdapterView.
         intent.putExtra("id",id);
         startActivity(intent);
     }
+
+    //when user clicks the profile icon in tool bar, screen changes to profile screen
     public void Profile(View view) {
         Intent intent = new Intent(this, ParentProfile.class);
         String numBB = (getIntent().getExtras().getString("n"));
@@ -187,6 +185,8 @@ public class ParentProfileEdit extends AppCompatActivity implements AdapterView.
         intent.putExtra("id",id);
         startActivity(intent);
     }
+
+    //when user clicks the job post icon in tool bar, screen changes to job post screen
     public void JobPost(View view) {
         Intent intent = new Intent(this, ParentPostJob.class);
         String numBB = (getIntent().getExtras().getString("n"));
@@ -195,6 +195,8 @@ public class ParentProfileEdit extends AppCompatActivity implements AdapterView.
         intent.putExtra("id",id);
         startActivity(intent);
     }
+
+    //when user clicks the home icon in tool bar, screen changes to home screen
     public void Home(View view) {
         Intent intent = new Intent(this, ParentHome.class);
         String numBB = (getIntent().getExtras().getString("n"));
@@ -204,32 +206,35 @@ public class ParentProfileEdit extends AppCompatActivity implements AdapterView.
         startActivity(intent);
     }
 
+    //when parent presses save, saves information and goes to parent home screen
     public void Save(View view) {
-        Intent intent = new Intent(this, ParentProfile.class);
+        Intent intent = new Intent(this, ParentHome.class);
         String numBB = (getIntent().getExtras().getString("n"));
         intent.putExtra("n",numBB);
 
+        //sets text from textfields to the parent's attributes and stores the parent into firebase
         parent.setName(name.getText().toString());
         if(postalCheck(addr.getText().toString())){
             parent.setAddress(addr.getText().toString());
         }
-//        int b = bio.getText().toString().indexOf("Bio\n");
         parent.setBio(bio.getText().toString());
         parent.setChild(childAgeRange+" yr old "+childGender);
-        myRef.child(h+"").setValue(parent);
-//        try{
-//            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-//            StorageReference pp = storageReference.child(Integer.parseInt(numBB)+"p.jpg");
-//            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//            image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-//            byte[] data = baos.toByteArray();
-//            UploadTask uploadTask = pp.putBytes(data);
-//        }
-//        catch(Exception e){
-//
-//        }
+        myRef.child(p+"").setValue(parent);
 
-        startActivity(intent);
+        //store image to firebase storage
+        try{
+            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+            StorageReference pp = storageReference.child(Integer.parseInt(numBB)+"p.jpg");
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] data = baos.toByteArray();
+            UploadTask uploadTask = pp.putBytes(data);
+        }
+        catch(Exception e){
+
+        }
+
+        startActivity(intent);//starts new activity
     }
 
     @Override

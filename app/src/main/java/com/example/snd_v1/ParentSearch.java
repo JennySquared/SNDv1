@@ -156,7 +156,7 @@ public class ParentSearch extends AppCompatActivity {
                                 imgid[i] = R.drawable.sixb;
                             }
                             if(counter.get(i)==7){
-                                imgid[i] = R.drawable.sevenb;
+                                imgid[i] = R.drawable.oneb;
                             }
 
                         }

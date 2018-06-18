@@ -213,6 +213,7 @@ public class ParentProfileEdit extends AppCompatActivity implements AdapterView.
         if(postalCheck(addr.getText().toString())){
             parent.setAddress(addr.getText().toString());
         }
+//        int b = bio.getText().toString().indexOf("Bio\n");
         parent.setBio(bio.getText().toString());
         parent.setChild(childAgeRange+" yr old "+childGender);
         myRef.child(h+"").setValue(parent);

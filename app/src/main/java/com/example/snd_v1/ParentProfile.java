@@ -63,7 +63,7 @@ public class ParentProfile extends AppCompatActivity {
 //                parent = dataSnapshot.child(id+"").getValue(Parent.class);
 //                setText();
                 String name = dataSnapshot.child(id+"").child("name").getValue(String.class);
-                String age = dataSnapshot.child(id+"").child("age").getValue(String.class)+ "yrs old";
+                String age = dataSnapshot.child(id+"").child("age").getValue(String.class)+ " yrs old";
                 String addr =dataSnapshot.child(id+"").child("address").getValue(String.class);
                 String bio =dataSnapshot.child(id+"").child("bio").getValue(String.class);
                 String children =dataSnapshot.child(id+"").child("child").getValue(String.class);

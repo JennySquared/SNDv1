@@ -140,17 +140,6 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <EditText
-                    android:id="@+id/age"
-                    android:layout_width="match_parent"
-                    android:layout_height="67dp"
-                    android:ems="10"
-                    android:hint="@string/age"
-                    android:inputType="number"
-                    app:layout_constraintBottom_toTopOf="@+id/address"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <EditText
                     android:id="@+id/address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

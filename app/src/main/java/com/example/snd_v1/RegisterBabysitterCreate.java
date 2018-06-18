@@ -181,7 +181,7 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
 
         setBabyBioText(babyBioTextBox.getText().toString());
 
-        Toast.makeText(this,qualifications, Toast.LENGTH_LONG).show();
+        //Toast.makeText(this,qualifications, Toast.LENGTH_LONG).show();
         int genderNum=-1;
 
         String gender = RegisterGender.gender;

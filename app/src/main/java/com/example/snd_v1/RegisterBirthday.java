@@ -21,17 +21,19 @@ public class RegisterBirthday extends AppCompatActivity {
     public static String bday;
     public static int age, year, month, date;
     public DatePicker birthdayPicker;
-    Calendar now = Calendar.getInstance();
+    Calendar now = Calendar.getInstance(); //Get current date information
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_birthday);
 
+        //Takes the current date from the system and assigns to corresponding variables
         year = now.get(Calendar.YEAR);
         month = now.get(Calendar.MONTH) + 1;
         date = now.get(Calendar.DATE);
 
+        //Instantiate datePicker
         birthdayPicker = findViewById(R.id.birthdayPicker);
 
         configureNextButton();
@@ -53,9 +55,9 @@ public class RegisterBirthday extends AppCompatActivity {
         });
     }
 
-    public boolean oldEnough (){
+    public boolean oldEnough (){ //Checks to see if the user is old enough (must be at least 13 years of age) by looking at their age
         if(age<13){
-            Toast.makeText(getApplicationContext(), "You must be at lest 13 years of age " ,Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "You must be at lest 13 years of age " ,Toast.LENGTH_LONG).show(); //If user is too young, a toast appears informing them so
             return false;
         }
 
@@ -64,9 +66,9 @@ public class RegisterBirthday extends AppCompatActivity {
 
     private void setBirthday(int d, int m, int y){
         bday = d + ", " + m + ", " + y;
-    }
+    } //Mutator method for birthday string
 
-    public int getAge(int thisYear, int thisMonth, int thisDate, int birthYear, int birthMonth, int birthDate)
+    public int getAge(int thisYear, int thisMonth, int thisDate, int birthYear, int birthMonth, int birthDate) //Calculates the user's age by comparing their birthday information to the information of the current date
     {
         int age;
 

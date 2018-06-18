@@ -24,9 +24,17 @@ public class RegisterEmail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email);
+
+       //Instantiate textField
         emailText = (EditText) findViewById(R.id.emailEdit);
         configureNextButton();
     }
+
+    /*
+    Upon clicking on the submit button this method checks to see if the
+    user's entry is in the correct format before assigning it to the
+    corresponding variable and switching to the next screen
+     */
     public void configureNextButton(){
         Button submitButton= (Button) findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +53,7 @@ public class RegisterEmail extends AppCompatActivity {
         });
     }
 
-    public boolean validateEmail(String eTest){
+    public boolean validateEmail(String eTest){ //Checks to see if the user's email entry is in the correct format
         if (eTest.matches(emailPattern) && eTest.length() > 0)
         {
             flag = true;

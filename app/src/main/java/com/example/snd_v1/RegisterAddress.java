@@ -18,7 +18,6 @@ public class RegisterAddress extends AppCompatActivity {
 
 
     public static String address, postalPattern = "[a-zA-Z]+[0-9]+[a-zA-Z]+[0-9]+[a-zA-Z]+[0-9]";
-    public String addressPattern = "[0-9]+[a-zA-Z]";
     public EditText addressText, postalText;
     boolean addressFlag;
 
@@ -27,18 +26,22 @@ public class RegisterAddress extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address);
 
+        //Instantiate text fields
         addressText = findViewById(R.id.addressText);
         postalText = findViewById(R.id.postalText);
 
         configureNextButton();
     }
-
+    /*
+        Upon the user pressing the submit button this method checks to see if
+        their address and postal code are entered correctly before assigning
+        the entries to the corresponding variable and switching to the next screen
+    */
     public void configureNextButton() {
         Button submitButton = findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if(postalCheck(postalText.getText().toString())&&postalText.getText().toString().length()==6&&addressCheck(addressText.getText().toString())){
                     setAddress(addressText.getText().toString(), postalText.getText().toString());
                     startActivity(new Intent(RegisterAddress.this, RegisterGender.class));
@@ -47,7 +50,7 @@ public class RegisterAddress extends AppCompatActivity {
         });
     }
 
-    public boolean postalCheck(String postalTest){
+    public boolean postalCheck(String postalTest){ //Checks to se if user's postal code entry is in the proper format
         if(!postalTest.matches(postalPattern)){
             postalText.setError("Invalid entry");
             return false;
@@ -55,9 +58,9 @@ public class RegisterAddress extends AppCompatActivity {
         return true;
     }
 
-    public boolean addressCheck(String a){
+    public boolean addressCheck(String a){ //Checks to see if the address textField is blank
         if(a.matches("")){
-            addressText.setError("Invalid entry");
+            addressText.setError("Invalid entry"); //If blank, sets an error message prompting user to enter a value
             addressFlag = false;
         }
         else{
@@ -65,7 +68,7 @@ public class RegisterAddress extends AppCompatActivity {
         }
         return addressFlag;
     }
-    private void setAddress(String a, String p){
+    private void setAddress(String a, String p){ //Mutator method for address
         address = a + ", " + p;
     }
 }

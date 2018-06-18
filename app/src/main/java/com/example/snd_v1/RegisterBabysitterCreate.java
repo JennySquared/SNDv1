@@ -53,14 +53,18 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_babysitter_create);
+
+        //Instantiate biography textField
         babyBioTextBox = findViewById(R.id.bioText);
-//        experienceEdit = findViewById(R.id.experienceText);
+
+        //Instantiate check boxes
         firstAidCheck = findViewById(R.id.fistAidCheck);
         babysittingCertificateCheck = findViewById(R.id.babysittingCertificateCheck);
         cprCheck = findViewById(R.id.cprCheck);
         policeCheck = findViewById(R.id.policeCheck);
         otherCheck = findViewById(R.id.otherCheck);
         otherEdit = findViewById(R.id.otherEdit);
+
         profileImageView = findViewById(R.id.profileImageView); //Get a reference to the imageView that holds the image that the user will see
     }
 
@@ -113,13 +117,9 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
 
     public void setBabyBioText(String babyBio) {
         babyBioText = babyBio;
-    }
+    } //Mutator method for biography text
 
-    public void setExperience(String e){
-        experience = e;
-    }
-
-    public void onCheckboxClicked(View view) {
+    public void onCheckboxClicked(View view) { //This method uses a switch statement to add the information from the checked checkboxes into an array of the babysitter's qualifications
         // Is the view now checked?
         boolean checked = ((CheckBox)view).isChecked();
 
@@ -149,7 +149,7 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
                     list[3] = "no";
                 break;
             case R.id.otherCheck:
-                if(checked) {
+                if(checked) { //If the user checked the box labeled other and the textField below it is blank, a message on the textField will pop up prompting the user to type in the qualification name
                     if (!otherCheck(otherEdit.getText().toString())) {
                         otherEdit.setError("Please input your qualification");
                     }
@@ -172,6 +172,7 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
     //When user presses submit
     public void submit(View view) {
 
+        //After the user presses the submit button, all the qualifications that the user checked will be added to an array and then each element in the array will be printed into a string called qualifications
         String qualifications = "";
         for(int i = 0;i < list.length; i++) {
             if(!(list[i].toString().equals("no"))) {

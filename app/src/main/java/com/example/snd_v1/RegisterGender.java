@@ -25,6 +25,7 @@ public class RegisterGender extends AppCompatActivity implements OnItemSelectedL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gender);
 
+        //Instantiate gender selection spinner
         Spinner spinner = findViewById(R.id.genderDrop);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.genderDrop, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -48,9 +49,9 @@ public class RegisterGender extends AppCompatActivity implements OnItemSelectedL
 
     private void setGender(String g){
         gender = g;
-    }
+    } //Mutator method for gender
 
-    private void configureNextButton() {
+    private void configureNextButton() { //After the user presses the submit button this method sets their selected gender to the corresponding variable and then switches to the next screen
         Button submitButton = (Button) findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -24,18 +24,25 @@ public class RegisterPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password);
 
+        //Instantiate textField
         passwordText = (EditText) findViewById(R.id.passwordText);
 
         configureNextButton();
     }
 
+    /*
+     Upon clicking on the submit button this method checks to see if the
+     user's entry is in the correct format(at least 8 characters, contains
+     one number, one uppercase and one lowercase letter)before assigning
+     it to the corresponding variable and switching to the next screen
+      */
     private void configureNextButton() {
         Button submitButton = (Button) findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(passwordCheck(passwordText.getText().toString())&&passwordText.getText().toString().length()>=8){
+                if(passwordCheck(passwordText.getText().toString())&&passwordText.getText().toString().length()>=8){ //Checks to see if the entry contains all the required types of characters and is longer than 8 characters
                     setPassword(passwordText.getText().toString());
                     startActivity(new Intent(RegisterPassword.this, RegisterBirthday.class));
                 }
@@ -47,24 +54,25 @@ public class RegisterPassword extends AppCompatActivity {
         boolean capitalFlag = false;
         boolean lowerCaseFlag = false;
         boolean numberFlag = false;
-        for(int i=0;i < str.length();i++) {
+
+        for(int i=0;i < str.length();i++) { //This method uses a fore loop to check each character of the user's entry individually
             ch = str.charAt(i);
-            if( Character.isDigit(ch)) {
+            if( Character.isDigit(ch)) { //If the character is a digit, the corresponding boolean flag is set to true
                 numberFlag = true;
             }
-            else if (Character.isUpperCase(ch)) {
+            else if (Character.isUpperCase(ch)) { //If the character is an uppercase letter, the corresponding boolean flag is set to true
                 capitalFlag = true;
             }
 
-            else if (Character.isLowerCase(ch)) {
+            else if (Character.isLowerCase(ch)) { //If the character is a lowercase letter, the corresponding boolean flag is set to true
                 lowerCaseFlag = true;
             }
-            if(numberFlag && capitalFlag && lowerCaseFlag)
+            if(numberFlag && capitalFlag && lowerCaseFlag) //If all three flags have been set to true then the entire method returns true
                 return true;
         }
-        passwordText.setError("Invalid password");
+        passwordText.setError("Invalid password"); //If any of the flags are not set to true, textField uses error message to tell the user that their entry is invalid
         return false;
     }
-    private void setPassword(String p){ password = p;}
+    private void setPassword(String p){ password = p;} //Mutator method for password
 
 }

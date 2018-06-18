@@ -23,13 +23,16 @@ public class RegisterName extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        //Instantiate textFields
         firstName = findViewById(R.id.firstName);
         lastName = findViewById(R.id.lastName);
         configureNextButton();
     }
 
     /*
-    Upon the user clicking the submit button this method checks to see if
+    Upon the user clicking the submit button this method checks to see if the
+    textFields are left blank or not before assigning the user's entries to
+    the corresponding variable and switching to the next screen
      */
     private void configureNextButton(){
 

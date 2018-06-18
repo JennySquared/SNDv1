@@ -54,8 +54,10 @@ public class RegisterParentCreate extends AppCompatActivity implements AdapterVi
 
         profileImageView = findViewById(R.id.profileImageView); //get reference to image view that holds image that the user will see
 
+        //Instantiate biography textField
         bioText = findViewById(R.id.bioText);
 
+        //Instantiate child gender selection spinner
         Spinner childGenderDrop = findViewById(R.id.genderDrop);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.genderDrop, android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -64,6 +66,7 @@ public class RegisterParentCreate extends AppCompatActivity implements AdapterVi
         childGenderDrop.setOnItemSelectedListener(this);
         setChildGender(childGenderDrop.getSelectedItem().toString());
 
+        //Instantiate child age range selection spinner
         Spinner childAgeDrop = findViewById(R.id.childAgeDrop);
         ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.childAgeDrop, android.R.layout.simple_spinner_item);
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -125,13 +128,13 @@ public class RegisterParentCreate extends AppCompatActivity implements AdapterVi
 
     public void setBio(String b){
         bio= b;
-    }
+    } //Mutator method for biography
 
     public void setChildGender(String g){
         childGender = g;
-    }
+    } //Mutator method for child's gender
 
-    public void setChildAge(String ageRange){
+    public void setChildAge(String ageRange){ //Mutator method for child's age range
         childAgeRange = ageRange;
     }
 

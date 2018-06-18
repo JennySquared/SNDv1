@@ -23,6 +23,11 @@ public class RegisterBorP extends AppCompatActivity {
         configureSitterButton();
     }
 
+    /*
+    Depending on which button the user presses (Babysitter or Parent)
+    the program will take them to the corresponding profile creation screen
+    */
+
     private void configureParentButton() {
         Button parentButton = (Button) findViewById(R.id.parentButton);
         parentButton.setOnClickListener(new View.OnClickListener() {

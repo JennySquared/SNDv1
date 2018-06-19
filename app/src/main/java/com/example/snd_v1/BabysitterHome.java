@@ -43,7 +43,6 @@ public class BabysitterHome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_babysitter_home);//set layout to babysitter home xml
-        FirebaseApp.initializeApp(getApplicationContext());//Firebase Storage App
 
 
         final ListView list= (ListView)findViewById(R.id.l);//listview in the GUI

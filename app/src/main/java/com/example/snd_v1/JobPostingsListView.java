@@ -15,7 +15,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 /*
-Title: Babysitter Home List View
+Title: Job Posting List View
 Author: Jenny S
 Date: May 23, 2018
 Description: Custom ListView Adapter that implements a custom format in the list view
@@ -36,7 +36,7 @@ public class JobPostingsListView extends ArrayAdapter<String> {
 
     //constructor method with all arrays as parameters along with the activity itself
     public JobPostingsListView(@NonNull Activity context, String[] name, String[] date, Integer[] imgid, String[] tStart, String[] tEnd, int id[]) {
-        super(context, R.layout.babysitter_profile_list, name);
+        super(context, R.layout.profile_list, name);
 
         this.context = context;
         this.name = name;
@@ -74,7 +74,7 @@ public class JobPostingsListView extends ArrayAdapter<String> {
         JobPostingsListView.ViewHolder viewHolder = null;
         if(r==null){
             LayoutInflater layoutInflater = context.getLayoutInflater();
-            r=layoutInflater.inflate(R.layout.babysitter_profile_list,null,true);
+            r=layoutInflater.inflate(R.layout.profile_list,null,true);
             viewHolder = new JobPostingsListView.ViewHolder(r);
             r.setTag(viewHolder);
 

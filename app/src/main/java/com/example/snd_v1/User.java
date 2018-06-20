@@ -11,7 +11,7 @@ stores attributes like address, password, birthday, email, name,bio, age, and ge
 
 public class User {
 
-    // user attribute
+    // user attributes
       private String address, password, birthday, email, name,bio, age;
       private int gend;
 
@@ -33,7 +33,7 @@ public class User {
 
     }
 
-    //assessor methods
+    //accessor methods
     public String getAddress (){
           return address;
       }

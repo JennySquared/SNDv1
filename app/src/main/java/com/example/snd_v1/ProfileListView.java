@@ -34,7 +34,7 @@ public class ProfileListView extends ArrayAdapter<String>{
 
     //constructor
     public ProfileListView(@NonNull Activity context, String[] name, String[] description, Integer[] imgid, String[] address, String[] other, int[] id) {
-        super(context, R.layout.babysitter_profile_list, name);
+        super(context, R.layout.profile_list, name);
 
         this.context = context;
             this.name = name;
@@ -45,6 +45,7 @@ public class ProfileListView extends ArrayAdapter<String>{
     }
 
     //mutator methods
+    //set name
     public void setName(String n, int index){
         name[index]=n;
     }
@@ -56,6 +57,8 @@ public class ProfileListView extends ArrayAdapter<String>{
             description[index] = n;
         }
     }
+
+
     public void setAddress(String n, int index){
         int pc = n.indexOf(", ")+2;//remove the actual address portion, only postal code portion of the address is kept
         address[index]=n.substring(pc);
@@ -81,6 +84,7 @@ public class ProfileListView extends ArrayAdapter<String>{
 
     }
 
+    //retrieve the listview from xml and set text into the listview
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -89,7 +93,7 @@ public class ProfileListView extends ArrayAdapter<String>{
         ViewHolder viewHolder = null;
         if(r==null){
             LayoutInflater layoutInflater = context.getLayoutInflater();
-            r=layoutInflater.inflate(R.layout.babysitter_profile_list,null,true);
+            r=layoutInflater.inflate(R.layout.profile_list,null,true);
             viewHolder = new ViewHolder(r);
             r.setTag(viewHolder);
 
@@ -97,6 +101,7 @@ public class ProfileListView extends ArrayAdapter<String>{
         else{
             viewHolder = (ViewHolder) r.getTag();
         }
+        //set image for babysitter
         if (imgid[position]== R.drawable.logo){
             try {
                 StorageReference storageReference = FirebaseStorage.getInstance().getReference();
@@ -107,6 +112,7 @@ public class ProfileListView extends ArrayAdapter<String>{
                 viewHolder.ivw.setImageResource(imgid[position]);
             }
         }
+        //set image for parent
         else{
             try {
                 StorageReference storageReference = FirebaseStorage.getInstance().getReference();
@@ -118,7 +124,7 @@ public class ProfileListView extends ArrayAdapter<String>{
             }
         }
 
-
+        //set text
         viewHolder.tvw1.setText(name[position]);
         viewHolder.tvw2.setText(description[position]);
         viewHolder.tvw3.setText(other[position]);
@@ -126,6 +132,7 @@ public class ProfileListView extends ArrayAdapter<String>{
         return r;
     }
 
+    //view holder for the listview element (layout xml profile_list)
     class ViewHolder{
 
         TextView tvw1;

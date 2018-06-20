@@ -51,7 +51,7 @@ public class BabysitterViewPProfile extends AppCompatActivity {
 
         tag=t;
 
-        //retirve parent's infromation from firebase and set them to the text view
+        //retrieve parent's information from firebase and set them to the text view
         myRef.addValueEventListener(new ValueEventListener(){
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -80,7 +80,8 @@ public class BabysitterViewPProfile extends AppCompatActivity {
 
                 //if job posting is there and not empty, the information of the job post is displayed
                 if(!post.getDate().equals("0")){
-                    String job = "Job Information\n"+post.getDate() +" at "+post.getStart()+ " till "+ post.getEnd()+"\nAdditional Information: "+
+                    String job = "Job Information\n"+post.getDate() +" at "+post.getStart()+
+                            " till "+ post.getEnd()+"\nAdditional Information: "+
                             post.getInfo();
                     TextView j = findViewById(R.id.job);
                     j.setText(job);
@@ -95,7 +96,6 @@ public class BabysitterViewPProfile extends AppCompatActivity {
             }
         });
 
-//        name.setText(tag+"");
     }
 
     //when user clicks the search icon in tool bar,screen changes to search screen

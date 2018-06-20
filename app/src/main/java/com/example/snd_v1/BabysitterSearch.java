@@ -102,7 +102,6 @@ public class BabysitterSearch extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Sorry no results found.", Toast.LENGTH_LONG).show();
                     }
 
-
                      list = (ListView) findViewById(R.id.list);//initialize the listView
 
                     //parent's information that does have the search string

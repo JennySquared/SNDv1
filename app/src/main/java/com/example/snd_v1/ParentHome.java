@@ -51,7 +51,7 @@ public class ParentHome extends AppCompatActivity {
         final String[] description= new String[num];
         final Integer[] imgid=new Integer[num];
         for(int i = 0;i<num;i++){
-            imgid[i]=R.drawable.logo; // default image
+            imgid[i]=R.drawable.logo; // default image if storage fails
         }
         final String[] rating = new String[num];
         final String[] address= new String[num];

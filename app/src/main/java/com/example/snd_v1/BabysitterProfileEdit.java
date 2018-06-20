@@ -260,7 +260,6 @@ public class BabysitterProfileEdit extends AppCompatActivity {
         catch(Exception e){
 
         }
-
         //sets new values onto Firebase
         myRef.child(b+"").child("name").setValue(name.getText().toString());
         myRef.child(b+"").child("address").setValue(addr.getText().toString());

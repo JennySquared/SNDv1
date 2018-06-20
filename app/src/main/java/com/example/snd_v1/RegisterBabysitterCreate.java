@@ -169,7 +169,7 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
         }
     }
 
-    //When user presses submit
+    //When user presses submit (Jenny S)
     public void submit(View view) {
 
         //After the user presses the submit button, all the qualifications that the user checked will be added to an array and then each element in the array will be printed into a string called qualifications

@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- Author: Jenny S
+Date: April 3, 2018
+Title: Babysitter Profile Edit Layout
+Description: GUI Layout for the  Babysitter Profile Edit screen
+-->
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,6 +13,9 @@
     android:layout_height="match_parent"
     tools:context="com.example.snd_v1.BabysitterProfileEdit">
 
+
+
+    <!-- Toolbar at the bottom of the screen-->
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
@@ -17,15 +27,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
+        <!-- Home button-->
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:contentDescription="@string/home"
-            android:onClick="Home"
+            android:tint="@android:color/darker_gray"
             app:srcCompat="@drawable/home" />
 
+        <!-- Search button-->
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -36,6 +48,7 @@
             android:tint="@android:color/transparent"
             app:srcCompat="@drawable/search" />
 
+        <!-- Profile button-->
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -50,6 +63,7 @@
 
     </LinearLayout>
 
+    <!-- Edit fields-->
     <android.support.constraint.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -73,12 +87,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
 
+                <!-- Profile image-->
                 <ImageView
                     android:id="@+id/imageView3"
                     android:layout_width="match_parent"
                     android:layout_height="85dp"
                     app:srcCompat="@mipmap/ic_launcher_round" />
 
+                <!-- upload image button-->
                 <Button
                     android:id="@+id/button9"
                     android:layout_width="match_parent"
@@ -94,6 +110,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/saveButton" />
 
+                <!-- Edit Name textfield-->
                 <EditText
                     android:id="@+id/editText"
                     android:layout_width="match_parent"
@@ -110,6 +127,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
 
+                <!-- Edit address textfield-->
                 <EditText
                     android:id="@+id/editText2"
                     android:layout_width="match_parent"
@@ -126,6 +144,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editText" />
 
+                <!-- Edit bio textfield-->
                 <EditText
                     android:id="@+id/editText4"
                     android:layout_width="match_parent"
@@ -144,6 +163,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/editText2"
                     app:layout_constraintVertical_bias="0.023" />
 
+                <!-- Qualifications title-->
                 <TextView
                     android:id="@+id/qualificationView"
                     android:layout_width="match_parent"
@@ -151,6 +171,7 @@
                     android:text="@string/c_qualifications"
                     android:textSize="8pt" />
 
+                <!-- Check boxes for qualifications-->
                 <CheckBox
                     android:id="@+id/fistAidCheck"
                     android:layout_width="match_parent"
@@ -186,6 +207,7 @@
                     android:onClick="onCheckboxClicked"
                     android:text="@string/q_other" />
 
+                <!-- textfield if babysitter clicked other-->
                 <EditText
                     android:id="@+id/otherEdit"
                     android:layout_width="match_parent"
@@ -193,6 +215,8 @@
                     android:ems="10"
                     android:hint="@string/q_specify"
                     android:inputType="textPersonName" />
+
+                <!-- save button-->
                 <Button
                     android:id="@+id/saveButton"
                     android:layout_width="match_parent"

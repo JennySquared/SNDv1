@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- Author: Jenny S
+     Date: April 13, 2018
+     Title: Parent Home Layout
+     Description: GUI Layout for the parent home screen
+ -->
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.snd_v1.ParentHome">
+
+
+
+    <!-- Toolbar at the bottom of the screen-->
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
@@ -16,6 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
+        <!-- Home button-->
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -25,6 +37,7 @@
             android:tint="@android:color/darker_gray"
             app:srcCompat="@drawable/home" />
 
+        <!-- Search button-->
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -35,6 +48,7 @@
             android:tint="@android:color/transparent"
             app:srcCompat="@drawable/search" />
 
+        <!-- Job post button-->
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -44,6 +58,7 @@
             android:onClick="JobPost"
             app:srcCompat="@drawable/job" />
 
+        <!-- Profile button-->
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -57,6 +72,7 @@
 
     </LinearLayout>
 
+    <!-- Profile List View-->
     <ListView
         android:id="@+id/list"
         android:layout_width="wrap_content"
@@ -73,6 +89,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
+    <!-- Logout button-->
     <Button
         android:id="@+id/button5"
         android:layout_width="358dp"

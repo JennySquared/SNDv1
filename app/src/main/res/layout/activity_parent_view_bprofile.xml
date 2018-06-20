@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Author: Jenny S
+     Date: May 5, 2018
+     Title: Parent View Babysitter Profile Layout
+     Description: GUI Layout for the Parent View Babysitter Profile screen
+ -->
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,6 +11,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.snd_v1.ParentViewBProfile">
 
+    <!-- Toolbar at the bottom of the screen-->
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
@@ -17,6 +23,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
+        <!-- Home button-->
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -26,6 +33,7 @@
             android:tint="@android:color/darker_gray"
             app:srcCompat="@drawable/home" />
 
+        <!-- Search button-->
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -36,6 +44,7 @@
             android:tint="@android:color/transparent"
             app:srcCompat="@drawable/search" />
 
+        <!-- Job post button-->
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -45,6 +54,7 @@
             android:onClick="JobPost"
             app:srcCompat="@drawable/job" />
 
+        <!-- Profile button-->
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -71,6 +81,7 @@ app:layout_constraintStart_toStartOf="parent"
 app:layout_constraintTop_toTopOf="parent"
 app:layout_constraintVertical_bias="1.0">
 
+    <!-- Babysitter Profile Image-->
 <ImageView
     android:id="@+id/imageView2"
     android:layout_width="50dp"
@@ -84,6 +95,7 @@ app:layout_constraintVertical_bias="1.0">
     app:layout_constraintTop_toTopOf="parent"
     app:srcCompat="@mipmap/ic_launcher_round" />
 
+    <!-- Babysitter Name-->
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
@@ -96,6 +108,7 @@ app:layout_constraintVertical_bias="1.0">
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
+    <!-- Babysitter Age-->
 <TextView
     android:id="@+id/age"
     android:layout_width="wrap_content"
@@ -108,6 +121,7 @@ app:layout_constraintVertical_bias="1.0">
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/name" />
 
+    <!-- Babysitter Address-->
 <TextView
     android:id="@+id/address"
     android:layout_width="wrap_content"
@@ -120,6 +134,7 @@ app:layout_constraintVertical_bias="1.0">
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/age" />
 
+    <!-- Babysitter Bio-->
 <TextView
     android:id="@+id/child"
     android:layout_width="wrap_content"
@@ -146,8 +161,9 @@ app:layout_constraintVertical_bias="1.0">
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/child" />
 
+    <!-- Babysitter Qualifications-->
     <TextView
-        android:id="@+id/job"
+        android:id="@+id/q"
         android:layout_width="300dp"
         android:layout_height="120dp"
         android:layout_marginBottom="8dp"

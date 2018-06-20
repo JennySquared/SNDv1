@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Author: Jenny S
+     Date: April 29, 2018
+     Title: Profile List
+     Description: GUI Layout for an element of the Profile List list view
+ -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -8,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp">
 
+        <!-- Profile Image-->
         <ImageView
             android:id="@+id/imgid"
             android:layout_width="50dp"
@@ -19,6 +25,7 @@
             android:layout_marginStart="24dp"
             app:srcCompat="@android:color/transparent" />
 
+        <!-- User name-->
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
@@ -30,8 +37,9 @@
             android:layout_marginStart="111dp"
             android:text="TextView" />
 
+        <!-- Babysitter rating or Parent child-->
         <TextView
-            android:id="@+id/date"
+            android:id="@+id/other"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/name"
@@ -42,8 +50,9 @@
             android:layout_marginRight="62dp"
             android:text="TextView" />
 
+        <!-- User bio-->
         <TextView
-            android:id="@+id/tStart"
+            android:id="@+id/bio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/address"
@@ -52,13 +61,14 @@
             android:layout_alignStart="@+id/name"
             android:text="TextView" />
 
+        <!-- User postal code-->
         <TextView
             android:id="@+id/address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/imgid"
-            android:layout_alignLeft="@+id/date"
-            android:layout_alignStart="@+id/date"
+            android:layout_alignLeft="@+id/other"
+            android:layout_alignStart="@+id/other"
             android:text="TextView" />
 
     </RelativeLayout>

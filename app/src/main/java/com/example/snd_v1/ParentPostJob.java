@@ -45,6 +45,7 @@ public class ParentPostJob extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Users/Parent");
 
+
         if(dateFormatCheck(date.getText().toString())&&timeFormatCheck(tStart.getText().toString(), tEnd.getText().toString())) {
             getJobDate(date.getText().toString());
             if(checkIfDatePast(year, month, day, jobYear, jobMonth, jobDay)){
@@ -85,6 +86,10 @@ public class ParentPostJob extends AppCompatActivity {
         }
     }
 
+    /*
+    This method compares the information of the job date to the information of the current date in order
+    to determine if the job date is valid or not. (Not in the past)
+     */
     public boolean checkIfDatePast(int thisYear, int thisMonth, int thisDate, int jobYear, int jobMonth, int jobDate){
         if((thisYear==jobYear)||thisYear<jobYear){
           if(thisMonth==jobMonth||thisMonth<jobMonth){
@@ -106,7 +111,7 @@ public class ParentPostJob extends AppCompatActivity {
         return false;
     }
 
-    public void getJobDate(String format){
+    public void getJobDate(String format){ //Accessor method for job posting date
         String jobDayString = format.substring(3,5);
         String jobMonthString = format.substring(0,2);
         String jobYearString = format.substring(6);
@@ -116,6 +121,7 @@ public class ParentPostJob extends AppCompatActivity {
         jobYear = Integer.parseInt(jobYearString);
     }
 
+    //This method checks that the time is entered in the correct format
     public boolean timeFormatCheck(String start, String end) {
         if (!start.matches("([0-9]{2}):([0-9]{2})")) {
             tStart.setError("Invalid Format");

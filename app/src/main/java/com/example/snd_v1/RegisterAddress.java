@@ -50,7 +50,7 @@ public class RegisterAddress extends AppCompatActivity {
         });
     }
 
-    public boolean postalCheck(String postalTest){ //Checks to se if user's postal code entry is in the proper format
+    public boolean postalCheck(String postalTest){ //Checks to see if user's postal code entry is in the proper format
         if(!postalTest.matches(postalPattern)){
             postalText.setError("Invalid entry");
             return false;

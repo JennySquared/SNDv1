@@ -12,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class RegisterEmail extends AppCompatActivity {
 
@@ -26,7 +25,7 @@ public class RegisterEmail extends AppCompatActivity {
         setContentView(R.layout.activity_email);
 
        //Instantiate textField
-        emailText = (EditText) findViewById(R.id.emailEdit);
+        emailText = findViewById(R.id.emailEdit);
         configureNextButton();
     }
 
@@ -36,7 +35,7 @@ public class RegisterEmail extends AppCompatActivity {
     corresponding variable and switching to the next screen
      */
     public void configureNextButton(){
-        Button submitButton= (Button) findViewById(R.id.submitButton);
+        Button submitButton= findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
@@ -49,21 +48,12 @@ public class RegisterEmail extends AppCompatActivity {
                     setEmail(emailTest);
                     startActivity (new Intent(RegisterEmail.this, RegisterPassword.class));
                 }
-            };
+            }
         });
     }
 
-    public boolean validateEmail(String eTest){ //Checks to see if the user's email entry is in the correct format
-        if (eTest.matches(emailPattern) && eTest.length() > 0)
-        {
-            flag = true;
-            return flag;
-        }
-        else
-        {
-            flag = false;
-            return flag;
-        }
+    public void validateEmail(String eTest){ //Checks to see if entry is in the correct format
+        flag = eTest.matches(emailPattern) && eTest.length() > 0;
     }
     private void setEmail(String e){
         email = e;

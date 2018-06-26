@@ -108,7 +108,7 @@ public class RegisterBabysitterCreate extends AppCompatActivity {
 
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
-                    Toast.makeText(this, "Unable to open image", Toast.LENGTH_LONG).show(); //Shows image to user saying image is unavailable
+                    Toast.makeText(this, "Unable to open image", Toast.LENGTH_LONG).show(); //Shows message to user saying image is unavailable
                 }
 
             }

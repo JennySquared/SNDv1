@@ -23,13 +23,14 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.snd_v1.MainActivity;
-import com.example.snd_v1.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 //import com.google.firebase.storage.FirebaseStorage;
 //import com.google.firebase.storage.StorageReference;
 //import com.google.firebase.storage.UploadTask;
@@ -137,9 +138,12 @@ public class RegisterParentCreate extends AppCompatActivity implements AdapterVi
         childAgeRange = ageRange;
     }
 
+    //when user presses submit
     public void submit(View view) {
+
         setBio(bioText.getText().toString());
 
+        //sets converts gender to an int 0,1, or 2
         int genderNum=-1;
         String gender = RegisterGender.gender;
         if(gender.compareTo("Female")==0){
@@ -151,10 +155,14 @@ public class RegisterParentCreate extends AppCompatActivity implements AdapterVi
         else{
             genderNum =2;
         }
-        final Parent p = new Parent(RegisterAddress.address, RegisterEmail.email, RegisterName.name, RegisterPassword.password, RegisterBirthday.bday, genderNum, childAgeRange+" yr old "+childGender, bio, ""+RegisterBirthday.age );
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference Ref = database.getReference();
 
+        //initialize babysitter object from inputted values
+        final Parent p = new Parent(RegisterAddress.address, RegisterEmail.email, RegisterName.name, RegisterPassword.password, RegisterBirthday.bday, genderNum, childAgeRange+" yr old "+childGender, bio, ""+RegisterBirthday.age );
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();//initialize database
+        final DatabaseReference Ref = database.getReference();//initialize reference
+
+        //store the new parent into Firebase
         Ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -168,25 +176,27 @@ public class RegisterParentCreate extends AppCompatActivity implements AdapterVi
             }
         });
 
-        startActivity(new Intent(RegisterParentCreate.this, MainActivity.class));
+        startActivity(new Intent(RegisterParentCreate.this, Login.class));//switch screen to login
     }
 
+    //method that takes in the parent object and stores that into Firebase
     public void setParent(int n, Parent p){
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference Ref = database.getReference("Users/Parent");
-        Ref.child(n+1+"").setValue(p);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();//initialize database
+        DatabaseReference Ref = database.getReference("Users/Parent");//initialize reference
+        Ref.child(n+1+"").setValue(p);//store value
 
-//        try{
-//            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-//            StorageReference pp = storageReference.child(n+"p.jpg");
-//            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//            image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-//            byte[] data = baos.toByteArray();
-//            UploadTask uploadTask = pp.putBytes(data);
-//        }
-//        catch(Exception e){
-//
-//        }
+        //upload image into Firebase Storage
+        try{
+            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+            StorageReference pp = storageReference.child(n+"p.jpg");
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] data = baos.toByteArray();
+            UploadTask uploadTask = pp.putBytes(data);
+        }
+        catch(Exception e){
+
+        }
 
     }
 

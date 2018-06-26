@@ -10,22 +10,33 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-/**
- * Created by jenny on 2018-05-23.
+import com.bumptech.glide.Glide;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+/*
+Title: Job Posting List View
+Author: Jenny S
+Date: May 23, 2018
+Description: Custom ListView Adapter that implements a custom format in the list view
+used for the babysitter home list view
  */
 
-public class BabysitterHomeListView extends ArrayAdapter<String> {
+public class JobPostingsListView extends ArrayAdapter<String> {
 
+    //information for job posting, each element is the information of 1 sitter
     private String [] name;
     private String [] date;
     private Integer[] imgid;
+    private int[] id;
     private String [] tEnd;
     private String [] tStart;
 
     private Activity context;
 
-    public BabysitterHomeListView(@NonNull Activity context, String[] name, String[] date, Integer[] imgid, String[] tStart, String[] tEnd) {
-        super(context, R.layout.babysitter_profile_list, name);
+    //constructor method with all arrays as parameters along with the activity itself
+    public JobPostingsListView(@NonNull Activity context, String[] name, String[] date, Integer[] imgid, String[] tStart, String[] tEnd, int id[]) {
+        super(context, R.layout.profile_list, name);
 
         this.context = context;
         this.name = name;
@@ -35,42 +46,53 @@ public class BabysitterHomeListView extends ArrayAdapter<String> {
         this.imgid = imgid;
     }
 
+
+    //mutator methods (change one index to another value)
     public void setName(String n, int index){
         name[index]=n;
     }
     public void setDate(String n, int index){
-
-
+        date[index]=n;
     }
     public void setTStart(String n, int index){
-
         tStart[index]="Time: "+n+"-  ";
     }
     public void setTEnd(String n, int index){
         tEnd[index]= "  "+n ;
-
     }
     public void setImgid(int n, int index){
         imgid[index]=n;
     }
 
+
+    //set arrays' information to the textviews and imageview of the listview
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         View r = convertView;
-        BabysitterHomeListView.ViewHolder viewHolder = null;
+        JobPostingsListView.ViewHolder viewHolder = null;
         if(r==null){
             LayoutInflater layoutInflater = context.getLayoutInflater();
-            r=layoutInflater.inflate(R.layout.babysitter_profile_list,null,true);
-            viewHolder = new BabysitterHomeListView.ViewHolder(r);
+            r=layoutInflater.inflate(R.layout.profile_list,null,true);
+            viewHolder = new JobPostingsListView.ViewHolder(r);
             r.setTag(viewHolder);
 
         }
         else{
-            viewHolder = (BabysitterHomeListView.ViewHolder) r.getTag();
+            viewHolder = (JobPostingsListView.ViewHolder) r.getTag();
         }
-        viewHolder.ivw.setImageResource(imgid[position]);
+
+        //retrieving images from Firebase
+        try {
+            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+            StorageReference bb = storageReference.child(id[position]+"p.jpg");
+            Glide.with(this.getContext()).load(bb).into(viewHolder.ivw);
+        }
+        catch(Exception e){
+            viewHolder.ivw.setImageResource(imgid[position]);
+        }
+
         viewHolder.tvw1.setText(name[position]);
         viewHolder.tvw2.setText(date[position]);
         viewHolder.tvw3.setText(tEnd[position]);

@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- Author: Jenny S
+     Date: April 20, 2018
+     Title: Parent Search Layout
+     Description: GUI Layout for the parent search screen
+ -->
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,6 +13,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.snd_v1.ParentSearch">
 
+    <!-- Toolbar at the bottom of the screen-->
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
@@ -17,24 +25,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
+        <!-- Home button-->
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:contentDescription="@string/home"
-            android:onClick="Home"
+            android:tint="@android:color/darker_gray"
             app:srcCompat="@drawable/home" />
 
+        <!-- Search button-->
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:contentDescription="@string/Search"
-            android:tint="@android:color/darker_gray"
+            android:onClick="Search"
+            android:tint="@android:color/transparent"
             app:srcCompat="@drawable/search" />
 
+        <!-- Job post button-->
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -44,6 +56,7 @@
             android:onClick="JobPost"
             app:srcCompat="@drawable/job" />
 
+        <!-- Profile button-->
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -69,6 +82,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!-- Search textfield-->
         <EditText
             android:id="@+id/Search"
             android:layout_width="wrap_content"
@@ -85,6 +99,7 @@
             android:layout_marginRight="137dp"
             android:layout_marginLeft="64dp" />
 
+        <!-- Search button-->
         <ImageButton
             android:id="@+id/sButton"
             android:layout_width="wrap_content"
@@ -103,6 +118,7 @@
             android:layout_marginRight="81dp"
             android:layout_marginLeft="8dp" />
 
+        <!-- Profile ListView-->
         <ListView
             android:id="@+id/list"
             android:layout_width="352dp"

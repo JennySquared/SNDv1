@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- Author: Jenny S
+Date: April 16, 2018
+Title: Babysitter Profile Layout
+Description: GUI Layout for the  Babysitter Profile home screen
+-->
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,6 +13,8 @@
     android:layout_height="match_parent"
     tools:context="com.example.snd_v1.BabysitterSearch">
 
+
+    <!-- Toolbar at the bottom of the screen-->
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
@@ -17,24 +26,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
+        <!-- Home button-->
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:contentDescription="@string/home"
-            android:onClick="Home"
+            android:tint="@android:color/darker_gray"
             app:srcCompat="@drawable/home" />
 
+        <!-- Search button-->
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:contentDescription="@string/Search"
-            android:tint="@android:color/darker_gray"
+            android:onClick="Search"
+            android:tint="@android:color/transparent"
             app:srcCompat="@drawable/search" />
 
+        <!-- Profile button-->
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -44,10 +57,12 @@
             android:contentDescription="@android:string/VideoView_error_button"
             android:cropToPadding="false"
             android:onClick="Profile"
+            android:tint="@android:color/darker_gray"
             app:srcCompat="@drawable/profile" />
 
     </LinearLayout>
 
+    <!-- Main Screen Area-->
     <android.support.constraint.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -60,6 +75,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!-- Search textfield-->
         <EditText
             android:id="@+id/search"
             android:layout_width="wrap_content"
@@ -76,6 +92,7 @@
             android:layout_marginLeft="64dp"
             android:layout_marginRight="137dp" />
 
+        <!-- Search button-->
         <ImageButton
             android:id="@+id/imageButton"
             android:layout_width="wrap_content"
@@ -94,6 +111,7 @@
             android:layout_marginRight="81dp"
             android:layout_marginLeft="8dp" />
 
+        <!-- Profile ListView-->
         <ListView
             android:id="@+id/list"
             android:layout_width="352dp"

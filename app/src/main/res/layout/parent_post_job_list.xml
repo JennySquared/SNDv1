@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Author: Jenny S
+     Date: April 29, 2018
+     Title: Parent Post Job List
+     Description: GUI Layout for an element of the Parent Post Job List list view
+ -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp">
 
+        <!-- Profile Image-->
         <ImageView
             android:id="@+id/imgid"
             android:layout_width="50dp"
@@ -18,6 +24,7 @@
             android:layout_marginStart="24dp"
             app:srcCompat="@android:color/transparent" />
 
+        <!-- Parent's name-->
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
@@ -29,6 +36,7 @@
             android:layout_marginStart="111dp"
             android:text="TextView" />
 
+        <!-- job date-->
         <TextView
             android:id="@+id/date"
             android:layout_width="wrap_content"
@@ -41,6 +49,7 @@
             android:layout_marginRight="62dp"
             android:text="TextView" />
 
+        <!-- job start time-->
         <TextView
             android:id="@+id/tStart"
             android:layout_width="wrap_content"
@@ -51,6 +60,7 @@
             android:layout_alignStart="@+id/name"
             android:text="TextView" />
 
+        <!-- job end time-->
         <TextView
             android:id="@+id/address"
             android:layout_width="wrap_content"

@@ -17,6 +17,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+/*
+   Title: Parent Search
+   Author: Jenny Shen
+   Date: April 15, 2018
+   Description: Screen for Babysitter to View Parent's information
+*/
+
 public class ParentSearch extends AppCompatActivity {
     public EditText search;
     final String [] num = new String [1];
@@ -29,20 +36,6 @@ public class ParentSearch extends AppCompatActivity {
         setContentView(R.layout.activity_parent_search);
         search = findViewById(R.id.Search);
 
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        DatabaseReference myRef = database.getReference();
-//
-//        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                num[0] = dataSnapshot.child("numBabysitters").getValue(String.class);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
     }
     public void Search(View view) {
         Intent intent = new Intent(this, ParentSearch.class);
@@ -76,7 +69,6 @@ public class ParentSearch extends AppCompatActivity {
         intent.putExtra("id",id);
         String numBB = (getIntent().getExtras().getString("n"));
         intent.putExtra("n",numBB);
-//        intent.putExtra("n",num[0]);
         startActivity(intent);
     }
 
@@ -100,12 +92,6 @@ public class ParentSearch extends AppCompatActivity {
                             else if((dataSnapshot.child("Babysitter").child(i+1+"").child("bio").getValue(String.class)).contains(text)){
                                 counter.add(i+1);
                             }
-//                            else if((dataSnapshot.child("Babysitter").child(i+1+"").child("experience").getValue(String.class)).contains(text)){
-//                                counter.add(i+1);
-//                            }
-//                            else if(text.contains(dataSnapshot.child("Babysitter").child(i+1+"").child("gender").getValue(String.class))){
-//                                counter.add(i+1);
- //                           }
                             else if((dataSnapshot.child("Babysitter").child(i+1+"").child("address").getValue(String.class)).contains(text)){
                                 counter.add(i+1);
                             }
@@ -173,7 +159,7 @@ public class ParentSearch extends AppCompatActivity {
     }
 
     public void listView(String[] n, String[] de, Integer[] i,String[] a,String[] r, ListView list ){
-        final ParentHomeListView liview = new ParentHomeListView(this, n,de,i,a,r);
+        final ProfileListView liview = new ProfileListView(this, n,de,i,a,r,idd);
         for(int j=0; j<n.length;j++) {
             liview.setName(n[j], j);
             liview.setDescription(de[j], j);

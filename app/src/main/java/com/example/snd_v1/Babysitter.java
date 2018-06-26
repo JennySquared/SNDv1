@@ -13,7 +13,6 @@ such as ratings, qualifications, experience and reviews
 public class Babysitter extends User{
 
     //additional attributes
-
     private String qualifications, experience, reviews, ratings;
 
     //parametrized constructor with all attributes
@@ -21,8 +20,7 @@ public class Babysitter extends User{
         super(a,e,n,p,b,g,bi,ag); //set variables in the inherited user class
         qualifications=q;
         experience = ex;
-        ratings=((Math.random()*5)+"").substring(0,1);
-        ratings = ""+1;
+        ratings=((Math.random()*5)+"").substring(0,1); //set ratings to a random number up to 5
         reviews="";
     }
 

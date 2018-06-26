@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.snd_v1.RegisterAddress">
 
+
     <TextView
         android:id="@+id/address_title"
         android:layout_width="wrap_content"
